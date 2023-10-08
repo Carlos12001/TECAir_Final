@@ -6,7 +6,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './componets/home/home.component';
+import { HomeComponent } from './components/home/home.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { HomeComponent } from './componets/home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, CarouselComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
