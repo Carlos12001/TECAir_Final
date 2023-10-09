@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
   ],
-  declarations: [AppComponent, HomeComponent, CarouselComponent],
+  declarations: [AppComponent, HomeComponent, SignInComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
