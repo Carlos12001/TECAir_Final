@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SeeFlightsComponent } from './components/see-flights/see-flights.component';
 import { SlidesComponent } from './components/slides/slides.component';
+import { PrincingComponent } from './components/princing/princing.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { SlidesComponent } from './components/slides/slides.component';
     SignInComponent,
     SeeFlightsComponent,
     SlidesComponent,
+    PrincingComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
