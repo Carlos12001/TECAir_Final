@@ -5,10 +5,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SeeFlightsComponent } from './components/see-flights/see-flights.component';
+import { SlidesComponent } from './components/slides/slides.component';
 
 @NgModule({
   imports: [
@@ -17,8 +20,16 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    MDBBootstrapModule,
   ],
-  declarations: [AppComponent, HomeComponent, SignInComponent],
+
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    SignInComponent,
+    SeeFlightsComponent,
+    SlidesComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
