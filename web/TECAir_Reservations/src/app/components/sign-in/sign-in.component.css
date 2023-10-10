@@ -1,46 +1,15 @@
-/* Center the form vertically */
-section {
-  height: 100vh;
-  display: flex;
-  align-items: center;
+/* Additional styling to make the form compact and centered */
+.compact-form {
+  max-width: 300px;
+  margin: 0 auto;
 }
 
-/* Style the card */
-.card {
-  border: none;
-  border-radius: 10px;
+.compact-form .form-control {
+  height: 35px;
+  font-size: 14px;
 }
 
-/* Style the card body */
-.card-body {
-  text-align: center;
-}
-
-/* Style the SVG icon */
-.card-body svg {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 20px;
-  fill: currentColor;
-}
-
-/* Style the form inputs */
-.form-control {
-  border-radius: 25px;
-}
-
-/* Style the login button */
-.btn-primary {
-  border-radius: 25px;
-  padding: 10px 30px;
-}
-
-/* Style the "Already have an account?" link */
-.nav-link {
-  text-decoration: none;
-  color: #007bff; /* Bootstrap primary color */
-}
-
-.nav-link:hover {
-  text-decoration: underline;
+.compact-form .btn {
+  font-size: 14px;
+  padding: 8px 12px;
 }
