@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Issue</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container h-100">
+      <div class="row align-items-center h-100">
+        <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+          <div class="d-flex justify-content-between flex-wrap">
+            <!-- Origen Dropdown -->
+            <div class="dropdown mb-2 mb-lg-0">
+              <button
+                class="btn btn-secondary btn-sm dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Salida
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul>
+                  <li><a class="dropdown-item" href="#">Normal</a></li>
+                  <li><a class="dropdown-item active" href="#">Active</a></li>
+                  <li><a class="dropdown-item disabled" href="#">perro</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="dropdown mb-2 mb-lg-0">
+              <button
+                class="btn btn-secondary btn-sm dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton2"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Destino
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <ul>
+                  <li><a class="dropdown-item" href="#">Normal</a></li>
+                  <li><a class="dropdown-item" href="#">Active</a></li>
+                  <li><a class="dropdown-item" href="#">perro</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Search Button -->
+            <button class="btn btn-primary btn-sm">buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
