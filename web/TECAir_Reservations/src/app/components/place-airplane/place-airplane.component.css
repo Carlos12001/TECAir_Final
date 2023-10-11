@@ -1,0 +1,32 @@
+.row {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  margin-bottom: 20px;
+  align-items: center; /* Espacio entre filas */
+}
+
+.seat-group {
+  display: flex;
+  margin-right: 20px;
+  align-items: center; /* Espacio entre grupos */
+}
+
+.turista-group {
+  margin-right: 0;
+  align-items: center; /* Eliminar el espacio extra después del último grupo */
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+.turista {
+  background-color: rgb(0, 217, 255);
+  align-items: center;
+}
