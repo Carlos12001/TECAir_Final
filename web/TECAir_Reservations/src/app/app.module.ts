@@ -13,6 +13,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SeeFlightsComponent } from './components/see-flights/see-flights.component';
 import { SlidesComponent } from './components/slides/slides.component';
 import { PricingComponent } from './components/pricing/pricing.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { PricingComponent } from './components/pricing/pricing.component';
     SeeFlightsComponent,
     SlidesComponent,
     PricingComponent,
+    NavbarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
