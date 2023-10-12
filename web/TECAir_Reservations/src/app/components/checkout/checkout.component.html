@@ -1,0 +1,214 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <script src="../assets/js/color-modes.js"></script>
+  <title>Checkout TECAirlines</title>
+</head>
+<body class="bg-body-tertiary">
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path
+        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+      />
+    </symbol>
+    <symbol id="circle-half" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+    </symbol>
+    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+      <path
+        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+      />
+      <path
+        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"
+      />
+    </symbol>
+    <symbol id="sun-fill" viewBox="0 0 16 16">
+      <path
+        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+      />
+    </symbol>
+  </svg>
+
+  <div
+    class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"
+  ></div>
+
+  <div class="container">
+    <main>
+      <div class="text-center py-5">
+        <img class="d-block mx-auto mb-4" alt="" width="50" height="47" />
+        <h2>Formulario de compra</h2>
+        <p class="lead">Página de compra de TECAirlines.</p>
+      </div>
+
+      <div class="row g-5">
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Billing address</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  placeholder=""
+                  value=""
+                  required
+                />
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  placeholder=""
+                  value=""
+                  required
+                />
+                <div class="invalid-feedback">Valid last name is required.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">@</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    placeholder="Username"
+                    required
+                  />
+                  <div class="invalid-feedback">Your username is required.</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label"
+                  >Email
+                  <span class="text-body-secondary">(Optional)</span></label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="you@example.com"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="1234 Main St"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="address2" class="form-label"
+                  >Address 2
+                  <span class="text-body-secondary">(Optional)</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address2"
+                  placeholder="Apartment or suite"
+                />
+              </div>
+
+              <div class="col-md-5">
+                <label for="country" class="form-label">País</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Escoger</option>
+                  <option>Costa Rica</option>
+
+                  <option>Mexico</option>
+
+                  <option>El Salvador</option>
+
+                  <option>Guiatemala</option>
+
+                  <option>HOnduras</option>
+
+                  <option>Panama</option>
+
+                  <option>Nicaggua</option>
+
+                  <option>Otro</option>
+                </select>
+                <div class="invalid-feedback">Digite un pais valido.</div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="state" class="form-label">Provincia</label>
+                <select class="form-select" id="state" required>
+                  <option value="">Escoger</option>
+                  <option>Guanacaste</option>
+                  <option>SanJose</option>
+                  <option>Cartago</option>
+                  <option>Limón</option>
+                  <option>Heredia</option>
+                  <option>Alajuela</option>
+                  <option>Puntarenas</option>
+                  <option>Extranjero</option>
+                </select>
+                <div class="invalid-feedback">digite una provincia válida.</div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="zip"
+                  placeholder=""
+                  required
+                />
+                <div class="invalid-feedback">Zip code required.</div>
+              </div>
+            </div>
+
+            <div class="text-center py-5">
+              <label class="plane-switch">
+                <input type="checkbox" aria-label="Cambiar modo" />
+                <div>
+                  <div>
+                    <svg viewBox="0 0 13 13">
+                      <path
+                        d="M1.55989957,5.41666667 L5.51582215,5.41666667 L4.47015462,0.108333333 L4.47015462,0.108333333 C4.47015462,0.0634601974 4.49708054,0.0249592654 4.5354546,0.00851337035 L4.57707145,0 L5.36229752,0 C5.43359776,0 5.50087375,0.028779451 5.55026392,0.0782711996 L5.59317877,0.134368264 L7.13659662,2.81558333 L8.29565964,2.81666667 C8.53185377,2.81666667 8.72332694,3.01067661 8.72332694,3.25 C8.72332694,3.48932339 8.53185377,3.68333333 8.29565964,3.68333333 L7.63589819,3.68225 L8.63450135,5.41666667 L11.9308317,5.41666667 C12.5213171,5.41666667 13,5.90169152 13,6.5 C13,7.09830848 12.5213171,7.58333333 11.9308317,7.58333333 L8.63450135,7.58333333 L7.63589819,9.31666667 L8.29565964,9.31666667 C8.53185377,9.31666667 8.72332694,9.51067661 8.72332694,9.75 C8.72332694,9.98932339 8.53185377,10.1833333 8.29565964,10.1833333 L7.13659662,10.1833333 L5.59317877,12.8656317 C5.55725264,12.9280353 5.49882018,12.9724157 5.43174295,12.9907056 L5.36229752,13 L4.57707145,13 L4.55610333,12.9978962 C4.51267695,12.9890959 4.48069792,12.9547924 4.47230803,12.9134397 L4.47223088,12.8704208 L5.51582215,7.58333333 L1.55989957,7.58333333 L0.891288881,8.55114605 C0.853775374,8.60544678 0.798421006,8.64327676 0.73629202,8.65879796 L0.672314689,8.66666667 L0.106844414,8.66666667 L0.0715243949,8.66058466 L0.0715243949,8.66058466 C0.0297243066,8.6457608 0.00275502199,8.60729104 0,8.5651586 L0.00593007386,8.52254537 L0.580855011,6.85813984 C0.64492547,6.67265611 0.6577034,6.47392717 0.619193545,6.28316421 L0.580694768,6.14191703 L0.00601851064,4.48064746 C0.00203480725,4.4691314 0,4.45701613 0,4.44481314 C0,4.39994001 0.0269259152,4.36143908 0.0652999725,4.34499318 L0.106916826,4.33647981 L0.672546853,4.33647981 C0.737865848,4.33647981 0.80011301,4.36066329 0.848265401,4.40322477 L0.89131128,4.45169723 L1.55989957,5.41666667 Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                  <span class="street-middle"></span>
+                  <span class="cloud"></span>
+                  <span class="cloud two"></span>
+                </div>
+              </label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>

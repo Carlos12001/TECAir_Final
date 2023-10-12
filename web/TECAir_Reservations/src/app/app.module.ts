@@ -16,6 +16,7 @@ import { PricingComponent } from './components/pricing/pricing.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PlaceAirplaneComponent } from './components/place-airplane/place-airplane.component';
 import { SearchPlaneComponent } from './components/search-plane/search-plane.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { SearchPlaneComponent } from './components/search-plane/search-plane.com
     NavbarComponent,
     PlaceAirplaneComponent,
     SearchPlaneComponent,
+    CheckoutComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
