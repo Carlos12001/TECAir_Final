@@ -4,7 +4,7 @@ class promotion {
   DateTime startDate;
   DateTime endDate;
   String imgPath;
-  Float percentage;
+  double percentage;
 
   promotion({
     required this.startDate,

@@ -1,4 +1,6 @@
-import 'package:emiratec/ads_home_page.dart';
+import 'package:emiratec/components/ads_home_page.dart';
+import 'package:emiratec/components/promotions_home_page.dart';
+import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           primary: const Color(0xFFC42F17),
-          seedColor: Colors.amber,
+          seedColor: Colors.black,
         ),
         useMaterial3: true,
       ),
@@ -36,7 +37,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
+  DateTime now1 = DateTime.now();
+
+  // Ejemplo de lista promocion
+  // TODO: obtener de la BD la lista de promociones
+  List<promotion> promo = [
+    promotion(
+        startDate: DateTime.utc(2023, 02, 9),
+        endDate: DateTime.utc(2023, 04, 9),
+        imgPath:
+            "https://i0.wp.com/www.ofertasahora.com/wp-content/uploads/2016/02/Promociones-de-san-valentin-2016-para-viajar-en-avianca.jpg?fit=1428%2C1815&ssl=1",
+        percentage: 10.5)
+  ];
 
   /// The function updates the selected index and triggers a state change.
   ///
@@ -64,18 +77,95 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: homeNavigationBar(),
       body: <Widget>[
-        homePage(),
-        //locationPage(cinemas),
+        homePage(promo),
         Container(
-          color: Color(0xFF222222),
-          alignment: Alignment.center,
-          child: const Text(
-            'reservar...',
-            style: TextStyle(fontSize: 30, color: Color(0xFFfdfcfc)),
+          color: const Color(0xFF222222),
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              const Text(
+                'Buscar vuelos',
+                style: TextStyle(fontSize: 20, color: Color(0xFFfdfcfc)),
+              ),
+              Container(
+                color: Colors.grey[400],
+                child: const Column(
+                  children: [
+                    IntrinsicHeight(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                Text("Desde"),
+                                Text("Seleccionar origen")
+                              ],
+                            ),
+                            VerticalDivider(
+                              color: Colors.grey,
+                              thickness: 2,
+                            ),
+                            Column(
+                              children: [
+                                Text("A"),
+                                Text("Seleccionar destino")
+                              ],
+                            )
+                          ]),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 2,
+                    ),
+                    IntrinsicHeight(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                Text("Fecha ida"),
+                                Text("Seleccionar fecha")
+                              ],
+                            ),
+                            VerticalDivider(
+                              color: Colors.grey,
+                              thickness: 2,
+                            ),
+                            Column(
+                              children: [
+                                Text("Fecha llegada"),
+                                Text("Seleccionar fecha")
+                              ],
+                            )
+                          ]),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          children: [
+                            Text("Cantidad de pasajeros"),
+                            Text("1 adulto")
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Buscar"),
+              ),
+            ],
           ),
         ),
         Container(
-          color: Color(0xFF222222),
+          color: const Color(0xFF222222),
           alignment: Alignment.center,
           child: const Text(
             'mis viajes...',
@@ -83,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         Container(
-          color: Color(0xFF222222),
+          color: const Color(0xFF222222),
           alignment: Alignment.center,
           child: const Text(
             'perfil...',
@@ -94,24 +184,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-   Column homePage() {
+  Column homePage(List<promotion> promoss) {
     return Column(
-      //crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         adsHomePage(),
-        Container(
-          color: const Color(0xFF404040),
-          child: const Center(
-              child: Text(
-            "Promociones",
-            style: TextStyle(
-              fontSize: 24.0, // TODO hacer constantes globales
-              color: Colors.white,
-            ),
-          )),
-        ),
-        // TODO hacer un listview para mostrar una lista de objetos promociones
+        const Divider(),
+        promotionsHomePage(promoss),
       ],
     );
   }
@@ -134,14 +214,12 @@ class _MyHomePageState extends State<MyHomePage> {
         BottomNavigationBarItem(
           icon: Icon(Icons.airplane_ticket),
           label: "Mis viajes",
-          activeIcon:
-              Icon(Icons.airplane_ticket, color: Colors.red),
+          activeIcon: Icon(Icons.airplane_ticket, color: Colors.red),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: "Perfil",
-          activeIcon:
-              Icon(Icons.person, color: Colors.red),
+          activeIcon: Icon(Icons.person, color: Colors.red),
         ),
       ],
       currentIndex: _selectedIndex,
@@ -152,4 +230,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-

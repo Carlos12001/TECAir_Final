@@ -1,13 +1,12 @@
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
-
 Expanded promotionsHomePage(List<promotion>? promotionList) {
   return Expanded(
     flex: 4,
     child: FutureBuilder<List<promotion>>(
-      future:
-          getPromotionList(promotionList), // Aquí se supone que tendrías una función que retorna Future<List<Movie>>
+      future: getPromotionList(
+          promotionList), // Aquí se supone que tendrías una función que retorna Future<List<Movie>>
       builder: (BuildContext context, AsyncSnapshot<List<promotion>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -59,22 +58,18 @@ Expanded promotionsHomePage(List<promotion>? promotionList) {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  "Inicion de promoción: ${currentPromotion.startDate}",
+                                  "Inicion de promoción: ${currentPromotion.startDate.day}-${currentPromotion.startDate.month}-${currentPromotion.startDate.year}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
-                                  style: const TextStyle(color: Color(0xFFfdfcfc)),
+                                  style:
+                                      const TextStyle(color: Color(0xFFfdfcfc)),
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Fin de promoción: ${currentPromotion..endDate}",
-                                      overflow: TextOverflow.fade,
-                                      maxLines: 2,
-                                      style: const TextStyle(color: Color(0xFFfdfcfc)),
-                                    ),
-                                  ],
+                                Text(
+                                  "Fin de promoción: ${currentPromotion.endDate.day}-${currentPromotion.endDate.month}-${currentPromotion.endDate.year}",
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 3,
+                                  style:
+                                      const TextStyle(color: Color(0xFFfdfcfc)),
                                 ),
                               ],
                             ),
@@ -95,12 +90,11 @@ Expanded promotionsHomePage(List<promotion>? promotionList) {
   );
 }
 
-
-Future<List<promotion>> getPromotionList(List<promotion>? promotionsList) async {
-  if(promotionsList != null){
+Future<List<promotion>> getPromotionList(
+    List<promotion>? promotionsList) async {
+  if (promotionsList != null) {
     return promotionsList;
-  } else{
+  } else {
     return [];
   }
-  
 }
