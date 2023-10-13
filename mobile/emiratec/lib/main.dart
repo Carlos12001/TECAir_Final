@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:emiratec/components/ads_home_page.dart';
 import 'package:emiratec/components/fechaInput.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
+import 'package:emiratec/components/reservation_page.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
@@ -257,7 +258,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => reservationPage(
+                          title: "Reservación",
+                        )),
+              );
+            },
             child: const Text("Buscar"),
           ),
         ],
