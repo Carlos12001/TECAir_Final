@@ -179,48 +179,48 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ]),
                 ),
-                const Divider(
-                  color: Colors.grey,
-                  thickness: 2,
-                ),
-                IntrinsicHeight(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            Text("Fecha ida"),
-                            Container(
-                              width: 100,
-                              height: 50,
-                              child: FechaInput(
-                                onDateSelected: (selectedDate) {
-                                  fechaInicio = selectedDate;
-                                },
-                              ),
-                            )
-                          ],
-                        ),
-                        VerticalDivider(
-                          color: Colors.grey,
-                          thickness: 2,
-                        ),
-                        Column(
-                          children: [
-                            Text("Fecha llegada"),
-                            Container(
-                              width: 100,
-                              height: 50,
-                              child: FechaInput(
-                                onDateSelected: (selectedDate) {
-                                  fechaFin = selectedDate;
-                                },
-                              ),
-                            )
-                          ],
-                        )
-                      ]),
-                ),
+                // const Divider(
+                //   color: Colors.grey,
+                //   thickness: 2,
+                // ),
+                // IntrinsicHeight(
+                //   child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //       children: [
+                //         Column(
+                //           children: [
+                //             Text("Fecha ida"),
+                //             Container(
+                //               width: 100,
+                //               height: 50,
+                //               child: FechaInput(
+                //                 onDateSelected: (selectedDate) {
+                //                   fechaInicio = selectedDate;
+                //                 },
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //         VerticalDivider(
+                //           color: Colors.grey,
+                //           thickness: 2,
+                //         ),
+                //         Column(
+                //           children: [
+                //             Text("Fecha llegada"),
+                //             Container(
+                //               width: 100,
+                //               height: 50,
+                //               child: FechaInput(
+                //                 onDateSelected: (selectedDate) {
+                //                   fechaFin = selectedDate;
+                //                 },
+                //               ),
+                //             )
+                //           ],
+                //         )
+                //       ]),
+                // ),
                 const Divider(
                   color: Colors.grey,
                   thickness: 2,
