@@ -1,5 +1,7 @@
+import 'dart:ffi';
+
 import 'package:emiratec/components/ads_home_page.dart';
-import 'package:emiratec/components/flight_search_bar.dart';
+import 'package:emiratec/components/fechaInput.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +42,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   DateTime now1 = DateTime.now();
+  String? selectedOrigin;
+  List<String> origins = [
+    'Origen 1',
+    'Origen 2',
+    'Origen 3'
+  ]; // Tus valores de origen
+
+  String? selectedDestination;
+  List<String> destinations = ['Destino 1', 'Destino 2', 'Destino 3'];
+  DateTime fechaInicio = DateTime.now();
+  DateTime fechaFin = DateTime.now();
+  int cantPasajeros = 1;
 
   // Ejemplo de lista promocion
   // TODO: obtener de la BD la lista de promociones
@@ -100,7 +114,157 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
- 
+  Container flightSearchBar() {
+    return Container(
+      color: const Color(0xFF222222),
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        children: [
+          const Text(
+            'Buscar vuelos',
+            style: TextStyle(fontSize: 20, color: Color(0xFFfdfcfc)),
+          ),
+          Container(
+            color: Colors.grey[400],
+            child: Column(
+              children: [
+                IntrinsicHeight(
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          children: [
+                            const Text("Desde"),
+                            DropdownButton<String>(
+                              value: selectedOrigin,
+                              hint: const Text("Origen"),
+                              items: origins.map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedOrigin = newValue;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        const VerticalDivider(
+                          color: Colors.grey,
+                          thickness: 2,
+                        ),
+                        Column(
+                          children: [
+                            Text("A"),
+                            DropdownButton<String>(
+                              value: selectedDestination,
+                              hint: const Text("Destino"),
+                              items: destinations.map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedDestination = newValue;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ]),
+                ),
+                const Divider(
+                  color: Colors.grey,
+                  thickness: 2,
+                ),
+                IntrinsicHeight(
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          children: [
+                            Text("Fecha ida"),
+                            Container(
+                              width: 100,
+                              height: 50,
+                              child: FechaInput(
+                                onDateSelected: (selectedDate) {
+                                  fechaInicio = selectedDate;
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                        VerticalDivider(
+                          color: Colors.grey,
+                          thickness: 2,
+                        ),
+                        Column(
+                          children: [
+                            Text("Fecha llegada"),
+                            Container(
+                              width: 100,
+                              height: 50,
+                              child: FechaInput(
+                                onDateSelected: (selectedDate) {
+                                  fechaFin = selectedDate;
+                                },
+                              ),
+                            )
+                          ],
+                        )
+                      ]),
+                ),
+                const Divider(
+                  color: Colors.grey,
+                  thickness: 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Text("Cantidad de pasajeros"),
+                        Text("$cantPasajeros adulto")
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          if (cantPasajeros > 1) {
+                            cantPasajeros--;
+                          }
+                        });
+                      },
+                      child: const Text("-"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          cantPasajeros++;
+                        });
+                      },
+                      child: const Text("+"),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text("Buscar"),
+          ),
+        ],
+      ),
+    );
+  }
+
   Column homePage(List<promotion> promoss) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
