@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: '**', redirectTo: '/home' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register', component: HomeComponent },
+  { path: 'prices', component: HomeComponent },
   { path: 'search-flights', component: HomeComponent },
   { path: 'seat-selection', component: HomeComponent },
   { path: 'checkout', component: HomeComponent },
