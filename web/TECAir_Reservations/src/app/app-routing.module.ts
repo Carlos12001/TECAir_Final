@@ -7,6 +7,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
+  { path: 'search-flights', component: HomeComponent },
+  { path: 'seat-selection', component: HomeComponent },
+  { path: 'checkout', component: HomeComponent },
+  { path: 'confirmation', component: HomeComponent },
 ];
 
 @NgModule({
