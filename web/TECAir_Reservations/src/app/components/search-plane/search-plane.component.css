@@ -5,7 +5,7 @@ body {
 
 .container {
   background-color: #ffffff;
-  border-radius: 5px;
+  border-radius: 6px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
   max-width: 100%;
@@ -13,7 +13,8 @@ body {
 }
 
 .dropdown .dropdown-toggle {
-  font-size: 70%;
+  font-size: 95%; /* Ajusta el tamaño de fuente al 85% del tamaño original */
+  padding: 7.5px 12px; /* Ajusta el espaciado del botón */
 }
 
 .dropdown .dropdown-menu ul {
@@ -23,8 +24,8 @@ body {
 }
 
 .dropdown .dropdown-menu li a {
-  padding: 6.5px 10.75px;
-  font-size: 70%;
+  padding: 7.5px 11.75px; /* Ajusta el espaciado de los elementos del menú */
+  font-size: 95%; /* Ajusta el tamaño de fuente al 85% del tamaño original */
   display: block;
 }
 
@@ -36,8 +37,8 @@ body {
   background-color: #007bff;
   border-color: #007bff;
   color: #ffffff;
-  font-size: 70%;
-  padding: 6px 12px;
+  font-size: 95%; /* Ajusta el tamaño de fuente al 85% del tamaño original */
+  padding: 7.5px 12px; /* Ajusta el espaciado del botón */
 }
 
 .btn-primary:hover {
@@ -52,11 +53,11 @@ body {
 
   .btn-primary {
     padding: 4px 8px;
-    font-size: 65%;
+    font-size: 95%; /* Ajusta el tamaño de fuente al 75% del tamaño original */
   }
 
   .dropdown .dropdown-toggle {
-    font-size: 60%;
+    font-size: 97%; /* Ajusta el tamaño de fuente al 75% del tamaño original */
   }
 }
 
@@ -68,10 +69,7 @@ body {
 
   .dropdown .dropdown-toggle,
   .dropdown .dropdown-menu li a {
-    font-size: 55%;
-  }
-
-  .dropdown .dropdown-menu li a {
-    padding: 4.5px 7.75px;
+    font-size: 70%; /* Ajusta el tamaño de fuente al 70% del tamaño original */
+    padding: 6.75px 11.75px; /* Ajusta el espaciado de los elementos del menú */
   }
 }
