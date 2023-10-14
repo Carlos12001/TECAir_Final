@@ -1,6 +1,7 @@
-/* Container style - add this if the button's container doesn't have position: relative; */
+/* Container style */
 .container {
   position: relative;
+  height: 100px;
 }
 
 /* Modified .fancy class */
