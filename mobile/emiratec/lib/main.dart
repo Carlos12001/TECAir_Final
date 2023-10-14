@@ -159,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         Column(
                           children: [
-                            Text("A"),
+                            const Text("A"),
                             DropdownButton<String>(
                               value: selectedDestination,
                               hint: const Text("Destino"),
@@ -179,48 +179,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ]),
                 ),
-                // const Divider(
-                //   color: Colors.grey,
-                //   thickness: 2,
-                // ),
-                // IntrinsicHeight(
-                //   child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //       children: [
-                //         Column(
-                //           children: [
-                //             Text("Fecha ida"),
-                //             Container(
-                //               width: 100,
-                //               height: 50,
-                //               child: FechaInput(
-                //                 onDateSelected: (selectedDate) {
-                //                   fechaInicio = selectedDate;
-                //                 },
-                //               ),
-                //             )
-                //           ],
-                //         ),
-                //         VerticalDivider(
-                //           color: Colors.grey,
-                //           thickness: 2,
-                //         ),
-                //         Column(
-                //           children: [
-                //             Text("Fecha llegada"),
-                //             Container(
-                //               width: 100,
-                //               height: 50,
-                //               child: FechaInput(
-                //                 onDateSelected: (selectedDate) {
-                //                   fechaFin = selectedDate;
-                //                 },
-                //               ),
-                //             )
-                //           ],
-                //         )
-                //       ]),
-                // ),
                 const Divider(
                   color: Colors.grey,
                   thickness: 2,
@@ -230,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Column(
                       children: [
-                        Text("Cantidad de pasajeros"),
+                        const Text("Cantidad de pasajeros"),
                         Text("$cantPasajeros adulto")
                       ],
                     ),
@@ -259,13 +217,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => reservationPage(
-                          title: "Reservación",
-                        )),
-              );
+              if (selectedOrigin != null && selectedDestination != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => reservationPage(
+                            title: "Reservación",
+                            origin: selectedOrigin!,
+                            destination: selectedDestination!,
+                            cantPasajeros_: cantPasajeros
+                          )),
+                );
+              }
             },
             child: const Text("Buscar"),
           ),

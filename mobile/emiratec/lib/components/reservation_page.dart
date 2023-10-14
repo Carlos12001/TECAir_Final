@@ -1,12 +1,20 @@
+import 'package:emiratec/components/flights_listview.dart';
+import 'package:emiratec/objects/flight.dart';
 import 'package:flutter/material.dart';
 
 /// The `reservationPage` class is a stateful widget that displays the details of a movie, including its
 /// title and information about the movie itself.
 class reservationPage extends StatefulWidget {
-  const reservationPage({super.key, required this.title});
+  const reservationPage(
+      {super.key,
+      required this.title,
+      required this.origin,
+      required this.destination, required this.cantPasajeros_});
 
   final String title;
-  //final Movie pelicula;
+  final String origin;
+  final String destination;
+  final int cantPasajeros_;
 
   @override
   State<reservationPage> createState() => _reservationPageState();
@@ -15,22 +23,23 @@ class reservationPage extends StatefulWidget {
 /// The `_reservationPageState` class is responsible for displaying movie details and allowing the user to
 /// select a showtime and proceed to seat selection.
 class _reservationPageState extends State<reservationPage> {
-
   // TODO agregar lectura de la BD
   List<String> times = ["10:00", '15:00', '22:00'];
   String? selectedTime;
+  List<flight> listaVuelos =[flight(origin: "SJO", destination: "FRA", noFlight: 400, arrivalHour: "12:30", departureHour: "05:00", date: DateTime.now(), price: 1220),
+  flight(origin: "SJO", destination: "FRA", noFlight: 500, arrivalHour: "18:30", departureHour: "08:00", date: DateTime.now(), price: 220)];
 
-/// The `_showErrorDialog` function displays an error dialog with a title, content, and an OK button
-/// that closes the dialog when pressed.
-/// 
-/// Args:
-///   context (BuildContext): The `BuildContext` object represents the location in the widget tree where
-/// the dialog should be shown. It is typically obtained from the `BuildContext` parameter of the
-/// enclosing widget's build method.
-/// 
-/// Returns:
-///   The `_showErrorDialog` function returns an `AlertDialog` widget.
-    void _showErrorDialog(BuildContext context) {
+  /// The `_showErrorDialog` function displays an error dialog with a title, content, and an OK button
+  /// that closes the dialog when pressed.
+  ///
+  /// Args:
+  ///   context (BuildContext): The `BuildContext` object represents the location in the widget tree where
+  /// the dialog should be shown. It is typically obtained from the `BuildContext` parameter of the
+  /// enclosing widget's build method.
+  ///
+  /// Returns:
+  ///   The `_showErrorDialog` function returns an `AlertDialog` widget.
+  void _showErrorDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -67,76 +76,29 @@ class _reservationPageState extends State<reservationPage> {
           alignment: Alignment.center,
           child: Column(
             children: [
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      width: 150,
-                      height: 170,
-                      child: Text("hola")
-                    ),
-               
-                  ],
-                ),
-              ),
+              // Container(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //     children: [
+              //       SizedBox(width: 150, height: 170, child: Text("hola")),
+              //     ],
+              //   ),
+              // ),
               Container(
                 color: const Color(0xFF404040),
-                child: const Center(
+                child:  Center(
                     child: Text(
-                  "Horarios disponibles",
+                  "Vuelos ${widget.origin} -> ${widget.destination}",
                   style: TextStyle(
-                    fontSize: 24.0, // TODO hacer constantes globales
+                    fontSize: 18.0, // TODO hacer constantes globales
                     color: Colors.white,
                   ),
                 )),
               ),
               //listview de los vueslo que cumplen con las fechas y destinos
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    DropdownButton<String>(
-                      dropdownColor: const Color(0xFF404040),
-                      value: selectedTime,
-                      hint: const Text(
-                        'Selecciona un horario',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      items: times.map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          selectedTime = newValue;
-                        });
-                      },
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // if (selectedTime != null){
-                        //   Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => SeatSelectionPage(nameMovie: peliculaN.cname , time: selectedTime!)),
-                        // );
-                        // } else {
-                        //   _showErrorDialog(context);
-                        // }
-                       
-                      },
-                      child: const Text("Reservar asientos"),
-                    ),
-                  ],
-                ),
-              ),
+              flightListview(listaVuelos, widget.cantPasajeros_),
+
             ],
           )),
     );
