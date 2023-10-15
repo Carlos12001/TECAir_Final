@@ -1,0 +1,152 @@
+import 'package:flutter/material.dart';
+
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => LoginState();
+}
+
+class LoginState extends State<Login> {
+  double opacity = 0;
+  static final loginController = TextEditingController();
+  static final passwordController = TextEditingController();
+
+  callback(double newOpacity) {
+    setState(() {
+      opacity = newOpacity;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //SizeConfig().init(context);
+
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromRGBO(2, 0, 36, 1),
+              Color.fromRGBO(9, 50, 121, 1),
+              Color.fromRGBO(0, 212, 255, 1),
+            ],
+            stops: [0.0, 0.4, 1.0],
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 40.0), // Add padding to left and right
+            child: Column(
+              mainAxisAlignment:
+                  MainAxisAlignment.center, // center everything vertically
+              children: [
+                Text(
+                  'Welcome to',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Color.fromRGBO(174, 254, 255, 1),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'TecAir!',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 50.0),
+                FloatingLoginBox(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FloatingLoginBox extends StatefulWidget {
+  @override
+  _FloatingLoginBoxState createState() => _FloatingLoginBoxState();
+}
+
+class _FloatingLoginBoxState extends State<FloatingLoginBox> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(
+            controller: emailController,
+            decoration: InputDecoration(
+              labelText: 'Email',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 16.0),
+          TextField(
+            controller: passwordController,
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 16.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(width: 15.0),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    print("Email: ${emailController.text}");
+                    print("Password: ${passwordController.text}");
+                  },
+                  child: Text('Login'),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                ),
+              ),
+              SizedBox(width: 30.0),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Code for signing in can be added here.
+                  },
+                  child: Text('Sign In'),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                ),
+              ),
+              SizedBox(width: 15.0),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
