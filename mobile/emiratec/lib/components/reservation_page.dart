@@ -1,3 +1,4 @@
+import 'package:emiratec/components/class_selection.dart';
 import 'package:emiratec/components/flights_listview.dart';
 import 'package:emiratec/objects/flight.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,12 @@ class reservationPage extends StatefulWidget {
       {super.key,
       required this.title,
       required this.origin,
-      required this.destination, required this.cantPasajeros_});
+      required this.destination, required this.seatType_});
 
   final String title;
   final String origin;
   final String destination;
-  final int cantPasajeros_;
+  final seatType seatType_;
 
   @override
   State<reservationPage> createState() => _reservationPageState();
@@ -97,7 +98,7 @@ class _reservationPageState extends State<reservationPage> {
                 )),
               ),
               //listview de los vueslo que cumplen con las fechas y destinos
-              flightListview(listaVuelos, widget.cantPasajeros_),
+              flightListview(listaVuelos, widget.seatType_),
 
             ],
           )),

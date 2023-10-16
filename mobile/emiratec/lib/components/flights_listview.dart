@@ -1,9 +1,10 @@
+import 'package:emiratec/components/class_selection.dart';
 import 'package:emiratec/components/flight_detail_page.dart';
 import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
-Expanded flightListview(List<flight>? flightList, int cantPasajeros_) {
+Expanded flightListview(List<flight>? flightList, seatType seatType_) {
   return Expanded(
     flex: 4,
     child: FutureBuilder<List<flight>>(
@@ -33,7 +34,7 @@ Expanded flightListview(List<flight>? flightList, int cantPasajeros_) {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          FlightDetailsPage(reservedflight: currentFlight, cantPasajeros: cantPasajeros_,),
+                          FlightDetailsPage(reservedflight: currentFlight, seatType__: seatType_,),
                     ),
                   );
                 },
@@ -81,6 +82,13 @@ Expanded flightListview(List<flight>? flightList, int cantPasajeros_) {
                                 ),
                                 Text(
                                   "Precio: \$${currentFlight.price}",
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 3,
+                                  style:
+                                      const TextStyle(color: Color(0xFFfdfcfc)),
+                                ),
+                                Text(
+                                  "Tipo de asiento: ${seatType_.name}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
                                   style:

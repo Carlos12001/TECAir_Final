@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:emiratec/components/ads_home_page.dart';
-import 'package:emiratec/components/fechaInput.dart';
+import 'package:emiratec/components/class_selection.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
 import 'package:emiratec/components/reservation_page.dart';
 import 'package:emiratec/objects/promotion.dart';
@@ -41,7 +41,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
   DateTime now1 = DateTime.now();
   String? selectedOrigin;
   List<String> origins = [
@@ -55,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
   DateTime fechaInicio = DateTime.now();
   DateTime fechaFin = DateTime.now();
   int cantPasajeros = 1;
+  classSelection seatSelection = classSelection();
+
+
 
   // Ejemplo de lista promocion
   // TODO: obtener de la BD la lista de promociones
@@ -183,50 +186,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.grey,
                   thickness: 2,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        const Text("Cantidad de pasajeros"),
-                        Text("$cantPasajeros adulto")
-                      ],
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (cantPasajeros > 1) {
-                            cantPasajeros--;
-                          }
-                        });
-                      },
-                      child: const Text("-"),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          cantPasajeros++;
-                        });
-                      },
-                      child: const Text("+"),
-                    ),
-                  ],
-                )
+                const Text(
+                  "Seleccione el tipo de asiento",
+                  style: TextStyle(fontSize: 18),
+                ),
+                seatSelection,
               ],
             ),
           ),
           ElevatedButton(
             onPressed: () {
               if (selectedOrigin != null && selectedDestination != null) {
+                print(seatSelection.getType());
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => reservationPage(
-                            title: "Reservación",
-                            origin: selectedOrigin!,
-                            destination: selectedDestination!,
-                            cantPasajeros_: cantPasajeros
-                          )),
+                          title: "Reservación",
+                          origin: selectedOrigin!,
+                          destination: selectedDestination!,
+                          seatType_: seatSelection.getType()!)),
                 );
               }
             },
