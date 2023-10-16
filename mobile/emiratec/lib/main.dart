@@ -5,7 +5,11 @@ import 'package:emiratec/components/class_selection.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
 import 'package:emiratec/components/reservation_page.dart';
 import 'package:emiratec/objects/promotion.dart';
+import 'package:emiratec/screens/scheduled.dart';
 import 'package:flutter/material.dart';
+
+import 'package:emiratec/screens/login.dart';
+import 'package:emiratec/screens/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Emiratec mobile',
+      title: 'TecAir mobile',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           primary: const Color(0xFFC42F17),
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Emiratec'),
+      //home: Login(),
     );
   }
 }
@@ -98,22 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: <Widget>[
         homePage(promo),
         flightSearchBar(),
-        Container(
-          color: const Color(0xFF222222),
-          alignment: Alignment.center,
-          child: const Text(
-            'mis viajes...',
-            style: TextStyle(fontSize: 30, color: Color(0xFFfdfcfc)),
-          ),
-        ),
-        Container(
-          color: const Color(0xFF222222),
-          alignment: Alignment.center,
-          child: const Text(
-            'perfil...',
-            style: TextStyle(fontSize: 30, color: Color(0xFFfdfcfc)),
-          ),
-        ),
+        Scheduled(),
+        Profile()
       ][_selectedIndex],
     );
   }
