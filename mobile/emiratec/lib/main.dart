@@ -5,6 +5,7 @@ import 'package:emiratec/components/fechaInput.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
 import 'package:emiratec/components/reservation_page.dart';
 import 'package:emiratec/objects/promotion.dart';
+import 'package:emiratec/screens/scheduled.dart';
 import 'package:flutter/material.dart';
 
 import 'package:emiratec/screens/login.dart';
@@ -99,14 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: <Widget>[
         homePage(promo),
         flightSearchBar(),
-        Container(
-          color: const Color(0xFF222222),
-          alignment: Alignment.center,
-          child: const Text(
-            'mis viajes...',
-            style: TextStyle(fontSize: 30, color: Color(0xFFfdfcfc)),
-          ),
-        ),
+        Scheduled(),
         Profile()
       ][_selectedIndex],
     );
