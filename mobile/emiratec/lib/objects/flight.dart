@@ -1,4 +1,6 @@
 
+import 'package:emiratec/components/class_selection.dart';
+
 /// The `flight` class in Dart represents a flight with properties such as origin, destination, flight
 /// number, departure and arrival hours, date, and price.
 class flight {
@@ -9,6 +11,8 @@ class flight {
   String arrivalHour;
   int price;
   DateTime date;
+  String? selectedSeat;
+  seatType? selectedSeatType;
   // agregar estado
 
 
