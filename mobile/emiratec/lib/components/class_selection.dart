@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum seatType { Standard, Premium }
+enum seatType { Turista, Ejecutivo }
 
 class classSelection extends StatefulWidget {
   classSelection({super.key});
-  seatType? _seatType = seatType.Standard;
+  seatType? _seatType = seatType.Turista;
   @override
   State<classSelection> createState() => _classSelectionState();
 
@@ -18,9 +18,9 @@ class _classSelectionState extends State<classSelection> {
     return Column(
       children: <Widget>[
         ListTile(
-          title: const Text("Standard"),
+          title: const Text("Turista"),
           leading: Radio<seatType>(
-            value: seatType.Standard,
+            value: seatType.Turista,
             groupValue: widget._seatType,
             onChanged: (seatType? value) {
               setState(() {
@@ -30,9 +30,9 @@ class _classSelectionState extends State<classSelection> {
           ),
         ),
         ListTile(
-          title: const Text("Premium"),
+          title: const Text("Ejecutivo"),
           leading: Radio<seatType>(
-            value: seatType.Premium,
+            value: seatType.Ejecutivo,
             groupValue: widget._seatType,
             onChanged: (seatType? value) {
               setState(() {

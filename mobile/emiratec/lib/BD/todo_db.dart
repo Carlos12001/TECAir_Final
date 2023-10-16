@@ -7,4 +7,13 @@ class TodoDB {
   Future<void> createTable(Database database) async {
     await database.execute(Sql.tables);
   }
+
+  //Future<int> insertReservation({required })
+  
+  // insert
+
+  // updates
+
+  // delete
+
 }
