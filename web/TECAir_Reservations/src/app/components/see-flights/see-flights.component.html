@@ -112,321 +112,38 @@
     </ul>
   </div>
 
-  <h1>DROPDOWN FLIES</h1>
-
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
+        <div class="col" *ngFor="let flight of seeFlights">
+          <div class="card shadow-sm" (click)="reserveFlight(flight)">
             <img
               class="card-img-top"
               width="100%"
               height="225"
-              src="assets/images/1.webp"
-              alt="1.jpg"
+              [src]="flight.StoImage"
+              [alt]=""
+              style="cursor: pointer"
             />
-
             <div class="card-body">
-              <p class="card-text">San Jose-Panama</p>
-              <p class="card-text">$322</p>
+              <p class="card-text">
+                {{ flight.SfromCity }} - {{ flight.StoCity }}
+              </p>
+              <p class="card-text">{{ flight.Fprice }} USD</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 534</small>
+                <small class="text-body-secondary"
+                  >Vuelo: {{ flight.Fnumber }}</small
+                >
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/nica.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose-Nicagua</p>
-              <p class="card-text">$322</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 173</small>
+                <small class="text-body-secondary"
+                  >Escala: {{ flight.StopID }}</small
+                >
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/guate.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose-Ciudad de Guatemala</p>
-              <p class="card-text">$322</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 967</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/BA.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose-Buenos Aires</p>
-              <p class="card-text">$322</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 234</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/Mendoza.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose-Mendoza</p>
-              <p class="card-text">$322</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 679</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/chile.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose-Ciudad de Chile</p>
-              <p class="card-text">$322</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 135</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/patagonia.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose- La Patagonia</p>
-              <p class="card-text">$322</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 686</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/mexico.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose-Ciudad de Mexico</p>
-              <p class="card-text">$322</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 745</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <!-- Corrected image source extension and removed stray SVG elements -->
-            <img
-              class="card-img-top"
-              width="100%"
-              height="225"
-              src="assets/images/salvador.webp"
-              alt="1.jpg"
-            />
-
-            <div class="card-body">
-              <p class="card-text">San Jose-El Salvador</p>
-              <p class="card-text">$322</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Informacion
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Reservar
-                  </button>
-                </div>
-                <small class="text-body-secondary">TA 463</small>
+                <small class="text-body-secondary"
+                  >Fecha: {{ flight.Fdate }}</small
+                >
               </div>
             </div>
           </div>
