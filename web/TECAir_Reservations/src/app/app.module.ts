@@ -19,6 +19,7 @@ import { SearchPlaneComponent } from './components/search-plane/search-plane.com
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { FooterComponent } from './components/footer/footer.component';
     CheckoutComponent,
     ButtonsComponent,
     FooterComponent,
+    GeneratepdfComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
