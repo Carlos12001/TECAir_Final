@@ -10,9 +10,10 @@ import { DisplayPricesComponent } from './components/display-prices/display-pric
 import { DisplaySeatComponent } from './components/display-seat/display-seat.component';
 import { DisplayCheckoutComponent } from './components/display-checkout/display-checkout.component';
 import { DisplayConfirmationComponent } from './components/display-confirmation/display-confirmation.component';
+import { SeeFlightsComponent } from './components/see-flights/see-flights.component';
 
 const routes: Routes = [
-  { path: 'home', component: DisplaySignInComponent },
+  { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
   { path: 'display-sign-in', component: DisplaySignInComponent },

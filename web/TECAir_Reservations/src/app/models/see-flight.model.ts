@@ -32,9 +32,9 @@ export const seeFlights: SeeFlight[] = [
     Fnumber: 10,
     StopID: 19,
     SfromCity: 'New York',
-    StoCity: 'San Francisco',
+    StoCity: 'Ciudad de Mexico',
     StoImage:
-      'https://upload.wikimedia.org/wikipedia/commons/b/b9/JFK_Aerial_Nov_14_2018.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/4/40/AICM_AIR_T2.jpg',
     Fdate: '2024-03-15',
     Fprice: 100,
   },
