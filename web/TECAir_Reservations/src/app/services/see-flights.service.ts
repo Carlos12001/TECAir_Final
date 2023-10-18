@@ -22,4 +22,19 @@ export class SeeFlightsService {
   public getSeeFlights(): Observable<SeeFlight[]> {
     return this.http.get<SeeFlight[]>(this.url + 'api/see-flights');
   }
+
+  public postSeeFlightsWithSelection(
+    SfromAirportID: number,
+    StoAirportID: number
+  ): Observable<SeeFlight[]> {
+    const body = {
+      SfromAirportID: SfromAirportID,
+      StoAirportID: StoAirportID,
+    };
+
+    return this.http.post<SeeFlight[]>(this.url + 'api/see-flights', {
+      ...this.httpOptions,
+      body,
+    });
+  }
 }
