@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchPlaneService } from 'src/app/services/search-plane.service';
 import { SearchStop, searchStops } from 'src/app/models/search-stop.model';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-search-plane',
@@ -15,8 +15,33 @@ export class SearchPlaneComponent implements OnInit {
   selectedOrigin: { city: string; id: number } | null = null;
   selectedDestination: { city: string; id: number } | null = null;
 
+  private onDestroy = new Subject<void>();
+
   ngOnInit(): void {
     this.fetchSearchStops();
+    this.populateSelectionFromService();
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy.next();
+  }
+
+  populateSelectionFromService(): void {
+    this.searchPlaneService
+      .getSearchData()
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((data) => {
+        if (data) {
+          this.selectedOrigin = {
+            city: data.SfromCity,
+            id: data.SfromAirportID,
+          };
+          this.selectedDestination = {
+            city: data.StoCity,
+            id: data.StoAirportID,
+          };
+        }
+      });
   }
 
   constructor(
@@ -81,9 +106,21 @@ export class SearchPlaneComponent implements OnInit {
   clearSelections(): void {
     this.selectedOrigin = null;
     this.selectedDestination = null;
+    this.searchPlaneService.setSearchData(null);
   }
 
   seeFlights(): void {
-    this.router.navigate(['/see-flights']);
+    if (this.selectedOrigin == null || this.selectedDestination == null) {
+      return;
+    }
+    this.searchPlaneService.setSearchData({
+      SfromAirportID: this.selectedOrigin.id,
+      SfromCity: this.selectedOrigin.city,
+      StoAirportID: this.selectedDestination.id,
+      StoCity: this.selectedDestination.city,
+    });
+    console.log('NEXT DISPLAY FLIGHTS');
+
+    this.router.navigate(['display-flights']);
   }
 }

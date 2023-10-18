@@ -14,15 +14,15 @@ import { SeeFlightsComponent } from './components/see-flights/see-flights.compon
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
   { path: 'display-sign-in', component: DisplaySignInComponent },
   { path: 'display-register', component: DisplayResgiterComponent },
   { path: 'display-prices', component: DisplayPricesComponent },
-  { path: 'display-flies', component: DisplayFliesComponent },
+  { path: 'display-flights', component: DisplayFliesComponent },
   { path: 'display-seat', component: DisplaySeatComponent },
   { path: 'display-checkout', component: DisplayCheckoutComponent },
   { path: 'display-confirmation', component: DisplayConfirmationComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
