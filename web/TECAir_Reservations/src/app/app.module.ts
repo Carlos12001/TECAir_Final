@@ -19,6 +19,13 @@ import { SearchPlaneComponent } from './components/search-plane/search-plane.com
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DisplayFliesComponent } from './components/display-flies/display-flies.component';
+import { DisplaySignInComponent } from './components/display-sign-in/display-sign-in.component';
+import { DisplayResgiterComponent } from './components/display-resgiter/display-resgiter.component';
+import { DisplayPricesComponent } from './components/display-prices/display-prices.component';
+import { DisplaySeatComponent } from './components/display-seat/display-seat.component';
+import { DisplayCheckoutComponent } from './components/display-checkout/display-checkout.component';
+import { DisplayConfirmationComponent } from './components/display-confirmation/display-confirmation.component';
 import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
 
 @NgModule({
@@ -44,6 +51,13 @@ import { GeneratepdfComponent } from './components/generatepdf/generatepdf.compo
     CheckoutComponent,
     ButtonsComponent,
     FooterComponent,
+    DisplayFliesComponent,
+    DisplaySignInComponent,
+    DisplayResgiterComponent,
+    DisplayPricesComponent,
+    DisplaySeatComponent,
+    DisplayCheckoutComponent,
+    DisplayConfirmationComponent,
     GeneratepdfComponent,
   ],
   providers: [],
