@@ -6,6 +6,8 @@ namespace TECAirAPI.Models;
 
 public partial class Passenger
 {
+    public int Pnumber { get; set; }
+
     public string Uemail { get; set; } = null!;
 
     public bool CheckedIn { get; set; }

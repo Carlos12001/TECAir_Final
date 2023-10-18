@@ -89,15 +89,13 @@ public partial class TecairContext : DbContext
             entity.ToTable("baggage");
 
             entity.Property(e => e.Bnumber).HasColumnName("bnumber");
-            entity.Property(e => e.Pemail)
-                .HasMaxLength(25)
-                .HasColumnName("pemail");
+            entity.Property(e => e.Pno).HasColumnName("pno");
             entity.Property(e => e.Weight)
                 .HasMaxLength(3)
                 .HasColumnName("weight");
 
-            entity.HasOne(d => d.PemailNavigation).WithMany(p => p.Baggages)
-                .HasForeignKey(d => d.Pemail)
+            entity.HasOne(d => d.PnoNavigation).WithMany(p => p.Baggages)
+                .HasForeignKey(d => d.Pno)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("baggage_passenger_fk");
         });
@@ -156,23 +154,24 @@ public partial class TecairContext : DbContext
 
         modelBuilder.Entity<Passenger>(entity =>
         {
-            entity.HasKey(e => e.Uemail).HasName("passenger_pkey");
+            entity.HasKey(e => e.Pnumber).HasName("passenger_pkey");
 
             entity.ToTable("passenger");
 
+            entity.Property(e => e.Pnumber).HasColumnName("pnumber");
+            entity.Property(e => e.CheckedIn).HasColumnName("checked_in");
+            entity.Property(e => e.Fno).HasColumnName("fno");
             entity.Property(e => e.Uemail)
                 .HasMaxLength(25)
                 .HasColumnName("uemail");
-            entity.Property(e => e.CheckedIn).HasColumnName("checked_in");
-            entity.Property(e => e.Fno).HasColumnName("fno");
 
             entity.HasOne(d => d.FnoNavigation).WithMany(p => p.Passengers)
                 .HasForeignKey(d => d.Fno)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("passenger_flight_fk");
 
-            entity.HasOne(d => d.UemailNavigation).WithOne(p => p.Passenger)
-                .HasForeignKey<Passenger>(d => d.Uemail)
+            entity.HasOne(d => d.UemailNavigation).WithMany(p => p.Passengers)
+                .HasForeignKey(d => d.Uemail)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("passenger_user_fk");
         });
@@ -211,34 +210,23 @@ public partial class TecairContext : DbContext
 
         modelBuilder.Entity<Seat>(entity =>
         {
-            entity.HasKey(e => e.Snumber).HasName("seat_pkey");
+            entity.HasKey(e => new { e.Snumber, e.Pno }).HasName("seat_pkey");
 
             entity.ToTable("seat");
 
             entity.Property(e => e.Snumber)
                 .HasMaxLength(2)
                 .HasColumnName("snumber");
-            entity.Property(e => e.Pemail)
-                .HasMaxLength(25)
-                .HasColumnName("pemail");
-            entity.Property(e => e.Pid)
-                .HasMaxLength(6)
-                .IsFixedLength()
-                .HasColumnName("pid");
+            entity.Property(e => e.Pno).HasColumnName("pno");
             entity.Property(e => e.Sclass)
                 .HasMaxLength(10)
                 .HasDefaultValueSql("'general'::character varying")
                 .HasColumnName("sclass");
 
-            entity.HasOne(d => d.PemailNavigation).WithMany(p => p.Seats)
-                .HasForeignKey(d => d.Pemail)
+            entity.HasOne(d => d.PnoNavigation).WithMany(p => p.Seats)
+                .HasForeignKey(d => d.Pno)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("seat_passenger_fk");
-
-            entity.HasOne(d => d.PidNavigation).WithMany(p => p.Seats)
-                .HasForeignKey(d => d.Pid)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("seat_plane_fk");
         });
 
         modelBuilder.Entity<Stop>(entity =>

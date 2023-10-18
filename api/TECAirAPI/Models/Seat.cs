@@ -10,11 +10,7 @@ public partial class Seat
 
     public string? Sclass { get; set; }
 
-    public string Pemail { get; set; } = null!;
-
-    public string Pid { get; set; } = null!;
+    public int Pno { get; set; }
     [JsonIgnore]
-    public virtual Passenger PemailNavigation { get; set; } = null!;
-    [JsonIgnore]
-    public virtual Plane PidNavigation { get; set; } = null!;
+    public virtual Passenger PnoNavigation { get; set; } = null!;
 }

@@ -10,9 +10,9 @@ public partial class Baggage
 
     public string Weight { get; set; } = null!;
 
-    public string Pemail { get; set; } = null!;
+    public int Pno { get; set; }
     [JsonIgnore]
     public virtual ICollection<BaggageColor> BaggageColors { get; set; } = new List<BaggageColor>();
     [JsonIgnore]
-    public virtual Passenger PemailNavigation { get; set; } = null!;
+    public virtual Passenger PnoNavigation { get; set; } = null!;
 }

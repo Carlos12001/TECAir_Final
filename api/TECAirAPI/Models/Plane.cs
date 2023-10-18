@@ -11,6 +11,4 @@ public partial class Plane
     public int Capacity { get; set; }
     [JsonIgnore]
     public virtual ICollection<Flight> Flights { get; set; } = new List<Flight>();
-    [JsonIgnore]
-    public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
 }

@@ -22,7 +22,7 @@ public partial class Userw
     [JsonIgnore]
     public virtual ICollection<Airadmin> Airadmins { get; set; } = new List<Airadmin>();
     [JsonIgnore]
-    public virtual Passenger? Passenger { get; set; }
+    public virtual ICollection<Passenger> Passengers { get; set; } = new List<Passenger>();
     [JsonIgnore]
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();
     [JsonIgnore]
