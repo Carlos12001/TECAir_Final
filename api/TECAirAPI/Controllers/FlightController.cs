@@ -4,13 +4,16 @@ using Npgsql;
 using System.Data;
 using TECAirAPI.Dtos;
 using TECAirAPI.Models;
+using TECAirAPI.Functions;
 
 namespace TECAirAPI.Controllers
 {
+
     [Route("api/")]
     [ApiController]
     public class FlightController : ControllerBase
     {
+        SQLfn sqlfn = new SQLfn();
         private readonly TecairContext _context;
         private readonly IConfiguration _configuration;
 
@@ -47,6 +50,32 @@ namespace TECAirAPI.Controllers
 
             return new JsonResult(table);
         }
+
+        [HttpGet]
+        [Route("flight/available")]
+        public JsonResult GetFlights()
+        {
+            string query = sqlfn.Available(); // SQL function stored in SQLfn class to get available flights
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
 
         [HttpPut]
         [Route("flight/state")]

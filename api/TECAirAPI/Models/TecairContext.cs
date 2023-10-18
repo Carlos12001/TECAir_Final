@@ -71,7 +71,7 @@ public partial class TecairContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("aname");
             entity.Property(e => e.City)
-                .HasMaxLength(15)
+                .HasMaxLength(50)
                 .HasColumnName("city");
             entity.Property(e => e.Code)
                 .HasMaxLength(3)
