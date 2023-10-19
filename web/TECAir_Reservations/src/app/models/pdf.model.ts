@@ -12,8 +12,8 @@ export class PDF {
   sfrom: number;
   sto: number;
   sdate: string;
-  Departure_hour: string;
-  Arrival_hour: string;
+  departurehour: string;
+  arrivalhour: string;
   fno: number;
 
   studentid: string;
@@ -33,8 +33,8 @@ export class PDF {
     sfrom: number,
     sto: number,
     sdate: string,
-    Departure_hour: string,
-    Arrival_hour: string,
+    departurehour: string,
+    arrivalhour: string,
     fno: number,
 
     studentid: string,
@@ -52,8 +52,8 @@ export class PDF {
     this.sfrom = sfrom;
     this.sto = sto;
     this.sdate = sdate;
-    this.Departure_hour = Departure_hour;
-    this.Arrival_hour = Arrival_hour;
+    this.departurehour = departurehour;
+    this.arrivalhour = arrivalhour;
     this.fno = fno;
     this.studentid = studentid;
     this.university = university;
@@ -73,8 +73,8 @@ export const pdf = {
   sfrom: 5,
   sto: 2,
   sdate: '9/12/2023',
-  Departure_hour: '14:05',
-  Arrival_hour: '15:08',
+  departurehour: '14:05',
+  arrivalhour: '15:08',
   fno: 25,
   studentid: '211683',
   university: 'TEC',

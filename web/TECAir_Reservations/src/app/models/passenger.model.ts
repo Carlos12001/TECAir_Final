@@ -1,5 +1,5 @@
 export interface Passenger {
   uemail: string;
-  Checked_in: boolean;
+  checkedin: boolean;
   fno: number;
 }

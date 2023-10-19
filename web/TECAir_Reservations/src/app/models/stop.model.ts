@@ -3,8 +3,8 @@ export interface Stop {
   sfrom: number;
   sto: number;
   sdate: string;
-  Departure_hour: string;
-  Arrival_hour: string;
+  departurehour: string;
+  arrivalhour: string;
   fno: number;
 }
 
@@ -18,7 +18,7 @@ export const stop = {
   sfrom: 0,
   sto: 0,
   sdate: '',
-  Departure_hour: '',
-  Arrival_hour: '',
+  departurehour: '',
+  arrivalhour: '',
   fno: 0,
 };
