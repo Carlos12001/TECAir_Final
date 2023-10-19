@@ -9,7 +9,7 @@ export interface Stop {
 }
 
 export interface UserStop {
-  Uemail: string;
+  uemail: string;
   Sid: string;
 }
 

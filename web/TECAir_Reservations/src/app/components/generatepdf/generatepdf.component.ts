@@ -41,7 +41,7 @@ export class GeneratepdfComponent implements OnInit {
         { text: `StudentID: ${this.pdfData.StudentID}` },
         { text: `University: ${this.pdfData.University}` },
         { text: `Miles: ${this.pdfData.Miles}` },
-        { text: `Uemail: ${this.pdfData.Uemail}` },
+        { text: `uemail: ${this.pdfData.uemail}` },
       ],
     };
 
