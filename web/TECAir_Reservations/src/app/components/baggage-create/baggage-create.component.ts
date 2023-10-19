@@ -20,24 +20,50 @@ export class BaggageCreateComponent {
 
   ngOnInit(): void {
     this.baggageForm = this.fb.group({
+      suitcases: this.fb.array([this.createSuitcaseFormGroup()]), // initialize with one suitcase
+    });
+  }
+
+  // Helper function to create a form group for a suitcase
+  private createSuitcaseFormGroup(): FormGroup {
+    return this.fb.group({
       weight: ['', Validators.required],
       colors: this.buildColors(),
     });
   }
 
-  onSubmit() {
-    console.log(this.baggageForm.value);
-  }
-
   // helper function to build the form array of colors
   private buildColors() {
-    const arr = this.getColors().map((color) => {
-      return this.fb.control(false); // initialize each control as unchecked
-    });
+    const arr = this.getColors().map(() => this.fb.control(false));
     return this.fb.array(arr);
   }
 
   getColors() {
     return Object.keys(Color);
+  }
+
+  // Getter for the suitcases form array
+  get suitcasesFormArray(): FormArray {
+    return this.baggageForm.get('suitcases') as FormArray;
+  }
+
+  // Add a new suitcase form group to the suitcases form array
+  addBaggage() {
+    this.suitcasesFormArray.push(this.createSuitcaseFormGroup());
+  }
+
+  onSubmit() {
+    const formValue = this.baggageForm.value;
+
+    const baggages: Baggage[] = formValue.suitcases.map((suitcase: any) => {
+      const colors = this.getColors().filter(
+        (color, index) => suitcase.colors[index]
+      );
+      return {
+        Weight: suitcase.weight.toString(),
+        BaggageColor: colors,
+      };
+    });
+    console.log('baggages', baggages);
   }
 }
