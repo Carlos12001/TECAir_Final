@@ -297,7 +297,7 @@ public partial class TecairContext : DbContext
                 .HasMaxLength(25)
                 .HasColumnName("email");
             entity.Property(e => e.Fname)
-                .HasMaxLength(10)
+                .HasMaxLength(15)
                 .HasColumnName("fname");
             entity.Property(e => e.Lname1)
                 .HasMaxLength(15)
@@ -306,14 +306,14 @@ public partial class TecairContext : DbContext
                 .HasMaxLength(15)
                 .HasColumnName("lname2");
             entity.Property(e => e.Mname)
-                .HasMaxLength(10)
+                .HasMaxLength(15)
                 .HasColumnName("mname");
             entity.Property(e => e.Unumber)
-                .HasMaxLength(8)
+                .HasMaxLength(10)
                 .IsFixedLength()
                 .HasColumnName("unumber");
             entity.Property(e => e.Upassword)
-                .HasMaxLength(10)
+                .HasMaxLength(16)
                 .HasColumnName("upassword");
 
             entity.HasMany(d => d.Sids).WithMany(p => p.Uemails)

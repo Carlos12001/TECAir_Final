@@ -17,7 +17,7 @@ namespace TECAirAPI.Functions
 			JOIN STOP s ON f.Fnumber = s.Fno
 			JOIN AIRPORT a1 ON s.Sfrom = a1.AirportID
 			JOIN AIRPORT a2 ON s.Sto = a2.AirportID
-			LEFT JOIN SEAT seat ON seat.Pid = f.Pid
+			LEFT JOIN PASSENGER pas ON pas.Fno = f.Fnumber
 			LEFT JOIN PLANE p ON p.PlaneID = f.Pid
 			WHERE 
 				f.Fstate = true AND
@@ -26,8 +26,9 @@ namespace TECAirAPI.Functions
 				   OR 
 				   s.Sdate > CURRENT_DATE
 				) AND
-				(SELECT COUNT(*) FROM SEAT WHERE Pid = f.Pid) < p.Capacity
+				(SELECT COUNT(*) FROM PASSENGER WHERE Fno = f.Fnumber) < p.Capacity
 			GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price;
+
         ";
 
 		public string Available() {
