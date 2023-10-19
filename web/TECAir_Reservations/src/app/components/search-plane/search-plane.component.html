@@ -26,17 +26,22 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Vuelos
+                  {{ selectedOrigin ? selectedOrigin.city : "Origen" }}
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Reservaciones</a></li>
-                  <li><a class="dropdown-item" href="#">check-in</a></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Promociones</a></li>
+                  <li *ngFor="let origin of uniqueOrigins">
+                    <button
+                      class="dropdown-item"
+                      (click)="selectOrigin(origin)"
+                    >
+                      {{ origin.city }}
+                    </button>
+                  </li>
                 </ul>
               </li>
             </ul>
 
+            <!-- Destino Dropdown -->
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a
@@ -46,19 +51,34 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Vuelos
+                  {{
+                    selectedDestination ? selectedDestination.city : "Destino"
+                  }}
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Reservaciones</a></li>
-                  <li><a class="dropdown-item" href="#">check-in</a></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Promociones</a></li>
+                  <li *ngFor="let destination of uniqueDestinations">
+                    <button
+                      class="dropdown-item"
+                      (click)="selectDestination(destination)"
+                    >
+                      {{ destination.city }}
+                    </button>
+                  </li>
                 </ul>
               </li>
             </ul>
 
-            <!-- Search Button -->
-            <button class="btn btn-primary btn-sm">buscar</button>
+            <button class="btn btn-remove btn-sm" (click)="clearSelections()">
+              X
+            </button>
+
+            <button
+              class="btn btn-primary btn-sm"
+              (click)="seeFlights()"
+              [disabled]="!selectedOrigin || !selectedDestination"
+            >
+              Buscar
+            </button>
           </div>
         </div>
       </div>

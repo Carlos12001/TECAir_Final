@@ -73,3 +73,16 @@ body {
     padding: 6.75px 11.75px; /* Ajusta el espaciado de los elementos del menú */
   }
 }
+
+.btn-remove {
+  background-color: #d9534f; /* A shade of red */
+  border-color: #d43f00;
+  color: #ffffff;
+  font-size: 95%;
+  padding: 7.5px 12px; /* Adjust the button spacing */ /* Adjust font size to 85% of the original size */
+}
+
+.btn-remove:hover {
+  background-color: #c9302c; /* Slightly darker shade of red for hover */
+  border-color: #ac2925;
+}

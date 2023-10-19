@@ -3,18 +3,26 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { DisplayFliesComponent } from './components/display-flies/display-flies.component';
+import { DisplayResgiterComponent } from './components/display-resgiter/display-resgiter.component';
+import { DisplaySignInComponent } from './components/display-sign-in/display-sign-in.component';
+import { DisplayPricesComponent } from './components/display-prices/display-prices.component';
+import { DisplaySeatComponent } from './components/display-seat/display-seat.component';
+import { DisplayCheckoutComponent } from './components/display-checkout/display-checkout.component';
+import { DisplayConfirmationComponent } from './components/display-confirmation/display-confirmation.component';
+import { SeeFlightsComponent } from './components/see-flights/see-flights.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'register', component: HomeComponent },
-  { path: 'prices', component: HomeComponent },
-  { path: 'search-flights', component: HomeComponent },
-  { path: 'seat-selection', component: HomeComponent },
-  { path: 'checkout', component: HomeComponent },
-  { path: 'confirmation', component: HomeComponent },
+  { path: 'display-sign-in', component: DisplaySignInComponent },
+  { path: 'display-register', component: DisplayResgiterComponent },
+  { path: 'display-prices', component: DisplayPricesComponent },
+  { path: 'display-flights', component: DisplayFliesComponent },
+  { path: 'display-seat', component: DisplaySeatComponent },
+  { path: 'display-checkout', component: DisplayCheckoutComponent },
+  { path: 'display-confirmation', component: DisplayConfirmationComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
