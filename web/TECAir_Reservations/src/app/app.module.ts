@@ -27,7 +27,7 @@ import { DisplaySeatComponent } from './components/display-seat/display-seat.com
 import { DisplayCheckoutComponent } from './components/display-checkout/display-checkout.component';
 import { DisplayConfirmationComponent } from './components/display-confirmation/display-confirmation.component';
 import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
-import { BaggageComponent } from './components/baggage/baggage.component';
+
 import { BaggageCreateComponent } from './components/baggage-create/baggage-create.component';
 
 @NgModule({
@@ -61,7 +61,6 @@ import { BaggageCreateComponent } from './components/baggage-create/baggage-crea
     DisplayCheckoutComponent,
     DisplayConfirmationComponent,
     GeneratepdfComponent,
-    BaggageComponent,
     BaggageCreateComponent,
   ],
   providers: [],
