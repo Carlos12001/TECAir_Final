@@ -4,13 +4,13 @@ import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
-Expanded flightListview(List<flight>? flightList, seatType seatType_) {
+Expanded flightListview(List<Flight>? flightList, seatType seatType_) {
   return Expanded(
     flex: 4,
-    child: FutureBuilder<List<flight>>(
+    child: FutureBuilder<List<Flight>>(
       future: getFlightsList(
           flightList), // Aquí se supone que tendrías una función que retorna Future<List<Movie>>
-      builder: (BuildContext context, AsyncSnapshot<List<flight>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Flight>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
               child:
@@ -19,13 +19,13 @@ Expanded flightListview(List<flight>? flightList, seatType seatType_) {
           return Text(
               'Error: ${snapshot.error}'); // Muestra un mensaje de error si algo sale mal.
         } else {
-          List<flight>? flights = snapshot.data;
+          List<Flight>? flights = snapshot.data;
 
           return ListView.separated(
             padding: const EdgeInsets.all(8),
             itemCount: flights!.length,
             itemBuilder: (context, index) {
-              flight currentFlight = flights[index];
+              Flight currentFlight = flights[index];
 
               return InkWell(
                 // Lógica para navegar a la nueva página
@@ -113,7 +113,7 @@ Expanded flightListview(List<flight>? flightList, seatType seatType_) {
   );
 }
 
-Future<List<flight>> getFlightsList(List<flight>? flightList) async {
+Future<List<Flight>> getFlightsList(List<Flight>? flightList) async {
   if (flightList != null) {
     return flightList;
   } else {

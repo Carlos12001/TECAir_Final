@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:emiratec/BD/database_service.dart';
 import 'package:emiratec/components/ads_home_page.dart';
 import 'package:emiratec/components/class_selection.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
@@ -61,13 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
   DateTime fechaFin = DateTime.now();
   int cantPasajeros = 1;
   classSelection seatSelection = classSelection();
-
+  final dbService = DatabaseService();
 
 
   // Ejemplo de lista promocion
   // TODO: obtener de la BD la lista de promociones
-  List<promotion> promo = [
-    promotion(
+  List<Promotion> promo = [
+    Promotion(
         startDate: DateTime.utc(2023, 02, 9),
         endDate: DateTime.utc(2023, 04, 9),
         imgPath:
@@ -87,6 +88,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  _insertPromotion() async {
+      final promotion = Promotion(
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(Duration(days: 10)),
+        imgPath: "/path/to/image.jpg",
+        percentage: 15.0,
+      );
+      await dbService.insertPromotion(promotion);
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () {
               if (selectedOrigin != null && selectedDestination != null) {
-                print(seatSelection.getType());
+                _insertPromotion();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -207,7 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Column homePage(List<promotion> promoss) {
+  Column homePage(List<Promotion> promoss) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,

@@ -4,7 +4,7 @@ import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
 class FlightDetailsPage extends StatelessWidget {
-  final flight reservedflight;
+  final Flight reservedflight;
   final seatType seatType__;
   String _data = "";
 

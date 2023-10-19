@@ -1,13 +1,13 @@
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
-Expanded promotionsHomePage(List<promotion>? promotionList) {
+Expanded promotionsHomePage(List<Promotion>? promotionList) {
   return Expanded(
     flex: 4,
-    child: FutureBuilder<List<promotion>>(
+    child: FutureBuilder<List<Promotion>>(
       future: getPromotionList(
           promotionList), // Aquí se supone que tendrías una función que retorna Future<List<Movie>>
-      builder: (BuildContext context, AsyncSnapshot<List<promotion>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Promotion>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
               child:
@@ -16,13 +16,13 @@ Expanded promotionsHomePage(List<promotion>? promotionList) {
           return Text(
               'Error: ${snapshot.error}'); // Muestra un mensaje de error si algo sale mal.
         } else {
-          List<promotion>? promotions = snapshot.data;
+          List<Promotion>? promotions = snapshot.data;
 
           return ListView.separated(
             padding: const EdgeInsets.all(8),
             itemCount: promotions!.length,
             itemBuilder: (context, index) {
-              promotion currentPromotion = promotions[index];
+              Promotion currentPromotion = promotions[index];
 
               return InkWell(
                 // Lógica para navegar a la nueva página
@@ -90,8 +90,8 @@ Expanded promotionsHomePage(List<promotion>? promotionList) {
   );
 }
 
-Future<List<promotion>> getPromotionList(
-    List<promotion>? promotionsList) async {
+Future<List<Promotion>> getPromotionList(
+    List<Promotion>? promotionsList) async {
   if (promotionsList != null) {
     return promotionsList;
   } else {

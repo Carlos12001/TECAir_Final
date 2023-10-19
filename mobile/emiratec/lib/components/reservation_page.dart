@@ -27,8 +27,8 @@ class _reservationPageState extends State<reservationPage> {
   // TODO agregar lectura de la BD
   List<String> times = ["10:00", '15:00', '22:00'];
   String? selectedTime;
-  List<flight> listaVuelos =[flight(origin: "SJO", destination: "FRA", noFlight: 400, arrivalHour: "12:30", departureHour: "05:00", date: DateTime.now(), price: 1220),
-  flight(origin: "SJO", destination: "FRA", noFlight: 500, arrivalHour: "18:30", departureHour: "08:00", date: DateTime.now(), price: 220)];
+  List<Flight> listaVuelos =[Flight(origin: "SJO", destination: "FRA", noFlight: 400, arrivalHour: "12:30", departureHour: "05:00", date: DateTime.now(), price: 1220),
+  Flight(origin: "SJO", destination: "FRA", noFlight: 500, arrivalHour: "18:30", departureHour: "08:00", date: DateTime.now(), price: 220)];
 
   /// The `_showErrorDialog` function displays an error dialog with a title, content, and an OK button
   /// that closes the dialog when pressed.

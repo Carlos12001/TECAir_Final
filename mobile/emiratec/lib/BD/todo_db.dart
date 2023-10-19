@@ -1,19 +1,38 @@
 import 'package:emiratec/BD/sql.dart';
+import 'package:emiratec/objects/flight.dart';
+import 'package:emiratec/objects/layover.dart';
+import 'package:emiratec/objects/promotion.dart';
+import 'package:emiratec/objects/user.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TodoDB {
-  final tableName = "todos";
-
   Future<void> createTable(Database database) async {
-    await database.execute(Sql.tables);
+    List<String> commands = Sql.tables.split(';');
+    for (String command in commands) {
+      if (command.trim().isNotEmpty) {
+        await database.execute(command);
+      }
+    }
   }
 
-  //Future<int> insertReservation({required })
-  
-  // insert
+  // Insert
+  Future<void> insertPromotion(Database database, Promotion promotion) async {
+    final map = promotion.toMap();
+    await database.insert('PROMO', map);
+  }
 
-  // updates
+  Future<void> insertFlight(Database database, Flight promotion) async {
+    final map = promotion.toMap();
+    await database.insert('FLIGHT', map);
+  }
 
-  // delete
+  Future<void> insertLayover(Database database, Layover promotion) async {
+    final map = promotion.toMap();
+    await database.insert('STOP', map);
+  }
 
+  Future<void> insertUser(Database database, User promotion) async {
+    final map = promotion.toMap();
+    await database.insert('USERW', map);
+  }
 }
