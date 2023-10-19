@@ -6,8 +6,8 @@ export interface Student {
 }
 
 export const student = {
-  stutdentid: '12345678',
-  university: 'TEC',
-  miles: 100,
-  uemail: 'prueba@tecair.com',
+  stutdentid: '',
+  university: '',
+  miles: 0,
+  uemail: '',
 };
