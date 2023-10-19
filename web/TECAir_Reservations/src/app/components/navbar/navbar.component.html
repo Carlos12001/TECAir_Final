@@ -55,7 +55,7 @@
         aria-label="Offcanvas navbar large"
       >
         <div class="container-fluid">
-          <a class="navbar-brand" href="">TECAir</a>
+          <a class="navbar-brand" routerLink="/home">TECAIR Reservations</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -86,16 +86,25 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Ver Vuelos</a>
+                  <a class="nav-link" routerLink="/display-flights"
+                    >Ver Vuelos</a
+                  >
+                </li>
+
+                <li class="nav-item">
+                  <a routerLink="/display-sign-in" class="nav-link"
+                    >Promociones</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Promociones</a>
+                  <a class="nav-link" routerLink="/display-sign-in"
+                    >Inicie sesión</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Inicie sesión</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Regístrate</a>
+                  <a class="nav-link" routerLink="/display-sign-in"
+                    >Regístrate</a
+                  >
                 </li>
               </ul>
             </div>
