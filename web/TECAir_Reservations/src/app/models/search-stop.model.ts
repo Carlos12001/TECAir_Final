@@ -1,33 +1,33 @@
 export interface SearchStop {
-  SfromAirportID: number;
+  sfromAirportid: number;
   sfromcity: string;
-  StoAirportID: number;
+  stoairportid: number;
   stocity: string;
 }
 
 export const searchStops: SearchStop[] = [
   {
-    SfromAirportID: 1,
+    sfromAirportid: 1,
     sfromcity: 'San Jose',
-    StoAirportID: 3,
+    stoairportid: 3,
     stocity: 'Miami',
   },
   {
-    SfromAirportID: 1,
+    sfromAirportid: 1,
     sfromcity: 'San Jose',
-    StoAirportID: 4,
+    stoairportid: 4,
     stocity: 'New York',
   },
   {
-    SfromAirportID: 4,
+    sfromAirportid: 4,
     sfromcity: 'New York',
-    StoAirportID: 6,
+    stoairportid: 6,
     stocity: 'Ciudad de Mexico',
   },
   {
-    SfromAirportID: 3,
+    sfromAirportid: 3,
     sfromcity: 'Miami',
-    StoAirportID: 6,
+    stoairportid: 6,
     stocity: 'Ciudad de Mexico',
   },
 ];

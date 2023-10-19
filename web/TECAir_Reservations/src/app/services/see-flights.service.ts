@@ -24,12 +24,12 @@ export class SeeFlightsService {
   }
 
   public postSeeFlightsWithSelection(
-    SfromAirportID: number,
-    StoAirportID: number
+    sfromAirportid: number,
+    stoairportid: number
   ): Observable<SeeFlight[]> {
     const body = {
-      SfromAirportID: SfromAirportID,
-      StoAirportID: StoAirportID,
+      sfromAirportid: sfromAirportid,
+      stoairportid: stoairportid,
     };
 
     return this.http.post<SeeFlight[]>(this.url + 'api/see-flights', {

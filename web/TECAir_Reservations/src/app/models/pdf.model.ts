@@ -1,84 +1,84 @@
 import { Injectable } from '@angular/core';
 
 export class PDF {
-  Email: string;
-  Unumber: string;
-  Fname: string;
-  Mname: string;
-  Lname1: string;
-  Lname2: string;
+  email: string;
+  unumber: string;
+  fname: string;
+  mname: string;
+  lname1: string;
+  lname2: string;
 
   stopid: number;
-  Sfrom: number;
-  Sto: number;
-  Sdate: string;
+  sfrom: number;
+  sto: number;
+  sdate: string;
   Departure_hour: string;
   Arrival_hour: string;
-  Fno: number;
+  fno: number;
 
-  StudentID: string;
-  University: string;
-  Miles: number;
+  studentid: string;
+  university: string;
+  miles: number;
   uemail: string;
 
   constructor(
-    Email: string,
-    Unumber: string,
-    Fname: string,
-    Mname: string,
-    Lname1: string,
-    Lname2: string,
+    email: string,
+    unumber: string,
+    fname: string,
+    mname: string,
+    lname1: string,
+    lname2: string,
 
     stopid: number,
-    Sfrom: number,
-    Sto: number,
-    Sdate: string,
+    sfrom: number,
+    sto: number,
+    sdate: string,
     Departure_hour: string,
     Arrival_hour: string,
-    Fno: number,
+    fno: number,
 
-    StudentID: string,
-    University: string,
-    Miles: number,
+    studentid: string,
+    university: string,
+    miles: number,
     uemail: string
   ) {
-    this.Email = Email;
-    this.Unumber = Unumber;
-    this.Fname = Fname;
-    this.Mname = Mname;
-    this.Lname1 = Lname1;
-    this.Lname2 = Lname2;
+    this.email = email;
+    this.unumber = unumber;
+    this.fname = fname;
+    this.mname = mname;
+    this.lname1 = lname1;
+    this.lname2 = lname2;
     this.stopid = stopid;
-    this.Sfrom = Sfrom;
-    this.Sto = Sto;
-    this.Sdate = Sdate;
+    this.sfrom = sfrom;
+    this.sto = sto;
+    this.sdate = sdate;
     this.Departure_hour = Departure_hour;
     this.Arrival_hour = Arrival_hour;
-    this.Fno = Fno;
-    this.StudentID = StudentID;
-    this.University = University;
-    this.Miles = Miles;
+    this.fno = fno;
+    this.studentid = studentid;
+    this.university = university;
+    this.miles = miles;
     this.uemail = uemail;
   }
 }
 
 export const pdf = {
-  Email: 'felipevaras@tecair',
-  Unumber: '123',
-  Fname: 'felipe',
-  Mname: 'marco',
-  Lname1: 'vinicio',
-  Lname2: 'patricio',
+  email: 'felipevaras@tecair',
+  unumber: '123',
+  fname: 'felipe',
+  mname: 'marco',
+  lname1: 'vinicio',
+  lname2: 'patricio',
   stopid: 6,
-  Sfrom: 5,
-  Sto: 2,
-  Sdate: '9/12/2023',
+  sfrom: 5,
+  sto: 2,
+  sdate: '9/12/2023',
   Departure_hour: '14:05',
   Arrival_hour: '15:08',
-  Fno: 25,
-  StudentID: '211683',
-  University: 'TEC',
-  Miles: 25,
+  fno: 25,
+  studentid: '211683',
+  university: 'TEC',
+  miles: 25,
   uemail: 'pepe@pepe',
 };
 

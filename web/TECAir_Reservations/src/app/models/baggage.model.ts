@@ -1,8 +1,8 @@
 export interface Baggage {
-  Bnumber?: number;
-  Weight: string;
-  Pemail?: string;
-  BaggageColor: Color[];
+  bnumber?: number;
+  weight: string;
+  pemail?: string;
+  baggagecolor: Color[];
 }
 
 export enum Color {
@@ -18,15 +18,15 @@ export enum Color {
 
 export const baggages: Baggage[] = [
   {
-    Weight: '10',
-    BaggageColor: [Color.rojo, Color.verde],
+    weight: '10',
+    baggagecolor: [Color.rojo, Color.verde],
   },
   {
-    Weight: '20',
-    BaggageColor: [Color.rojo, Color.verde],
+    weight: '20',
+    baggagecolor: [Color.rojo, Color.verde],
   },
   {
-    Weight: '30',
-    BaggageColor: [Color.rojo, Color.amarillo, Color.verde],
+    weight: '30',
+    baggagecolor: [Color.rojo, Color.amarillo, Color.verde],
   },
 ];

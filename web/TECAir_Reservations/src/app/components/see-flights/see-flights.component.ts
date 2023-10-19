@@ -60,8 +60,8 @@ export class SeeFlightsComponent implements OnInit {
   fetchFlightsWithSelection(searchStop: SearchStop): void {
     this.seeFlightsService
       .postSeeFlightsWithSelection(
-        searchStop.SfromAirportID,
-        searchStop.StoAirportID
+        searchStop.sfromAirportid,
+        searchStop.stoairportid
       )
       .subscribe({
         next: (data) => {

@@ -34,11 +34,11 @@ export class SearchPlaneComponent implements OnInit {
         if (data) {
           this.selectedOrigin = {
             city: data.sfromcity,
-            id: data.SfromAirportID,
+            id: data.sfromAirportid,
           };
           this.selectedDestination = {
             city: data.stocity,
-            id: data.StoAirportID,
+            id: data.stoairportid,
           };
         }
       });
@@ -67,13 +67,13 @@ export class SearchPlaneComponent implements OnInit {
     if (this.selectedDestination) {
       return this.searchStops
         .filter((stop) => stop.stocity === this.selectedDestination?.city)
-        .map((stop) => ({ city: stop.sfromcity, id: stop.SfromAirportID }));
+        .map((stop) => ({ city: stop.sfromcity, id: stop.sfromAirportid }));
     }
 
     // This part ensures that each origin appears only once in the array
     const originsSet: { [key: string]: number } = {};
     this.searchStops.forEach((stop) => {
-      originsSet[stop.sfromcity] = stop.SfromAirportID;
+      originsSet[stop.sfromcity] = stop.sfromAirportid;
     });
 
     return Object.entries(originsSet).map(([city, id]) => ({ city, id }));
@@ -83,13 +83,13 @@ export class SearchPlaneComponent implements OnInit {
     if (this.selectedOrigin) {
       return this.searchStops
         .filter((stop) => stop.sfromcity === this.selectedOrigin?.city)
-        .map((stop) => ({ city: stop.stocity, id: stop.StoAirportID }));
+        .map((stop) => ({ city: stop.stocity, id: stop.stoairportid }));
     }
 
     // This part ensures that each destination appears only once in the array
     const destinationsSet: { [key: string]: number } = {};
     this.searchStops.forEach((stop) => {
-      destinationsSet[stop.stocity] = stop.StoAirportID;
+      destinationsSet[stop.stocity] = stop.stoairportid;
     });
 
     return Object.entries(destinationsSet).map(([city, id]) => ({ city, id }));
@@ -114,9 +114,9 @@ export class SearchPlaneComponent implements OnInit {
       return;
     }
     this.searchPlaneService.setSearchData({
-      SfromAirportID: this.selectedOrigin.id,
+      sfromAirportid: this.selectedOrigin.id,
       sfromcity: this.selectedOrigin.city,
-      StoAirportID: this.selectedDestination.id,
+      stoairportid: this.selectedDestination.id,
       stocity: this.selectedDestination.city,
     });
     console.log('NEXT DISPLAY FLIGHTS');

@@ -1,9 +1,9 @@
 export interface Plane {
-  PlaneID: string;
-  Capacity: number;
+  planeid: string;
+  capacity: number;
 }
 
 export const plane = {
-  PlaneID: 'A0023',
-  Capacity: 24,
+  planeid: 'A0023',
+  capacity: 24,
 };

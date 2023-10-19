@@ -1,24 +1,24 @@
 export interface Stop {
   stopid: number;
-  Sfrom: number;
-  Sto: number;
-  Sdate: string;
+  sfrom: number;
+  sto: number;
+  sdate: string;
   Departure_hour: string;
   Arrival_hour: string;
-  Fno: number;
+  fno: number;
 }
 
 export interface UserStop {
   uemail: string;
-  Sid: string;
+  sid: string;
 }
 
 export const stop = {
   stopid: 0,
-  Sfrom: 0,
-  Sto: 0,
-  Sdate: '',
+  sfrom: 0,
+  sto: 0,
+  sdate: '',
   Departure_hour: '',
   Arrival_hour: '',
-  Fno: 0,
+  fno: 0,
 };

@@ -80,9 +80,9 @@ export class BaggageCreateComponent {
         (color, index) => suitcase.colors[index]
       );
       return {
-        Weight: suitcase.weight.toString(),
-        BaggageColor: colors,
-        Price: suitcase.price, // Asegúrate de que también estás recopilando el precio.
+        weight: suitcase.weight.toString(),
+        baggagecolor: colors,
+        price: suitcase.price, // Asegúrate de que también estás recopilando el precio.
       };
     });
     console.log('baggages', baggages);

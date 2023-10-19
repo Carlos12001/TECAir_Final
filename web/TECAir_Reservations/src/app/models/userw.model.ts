@@ -1,14 +1,14 @@
 export interface UserW {
-  Email: string;
-  Upassword: string;
-  Unumber?: string;
-  Fname?: string;
-  Mname?: string;
-  Lname1?: string;
-  Lname2?: string;
+  email: string;
+  upassword: string;
+  unumber?: string;
+  fname?: string;
+  mname?: string;
+  lname1?: string;
+  lname2?: string;
 }
 
 export const userw: UserW = {
-  Email: '',
-  Upassword: '',
+  email: '',
+  upassword: '',
 };

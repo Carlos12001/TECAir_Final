@@ -1,19 +1,19 @@
 export interface Flight {
   fnumber: number;
-  Ffrom: number;
-  Fto: number;
-  Price: number;
+  ffrom: number;
+  fto: number;
+  price: number;
   fdate: string;
-  Fstate: boolean;
-  Pid: string;
+  fstate: boolean;
+  pid: string;
 }
 
 export const flight = {
   fnumber: 0,
-  Ffrom: 0,
-  Fto: 0,
-  Price: 0,
+  ffrom: 0,
+  fto: 0,
+  price: 0,
   fdate: '',
-  Fstate: false,
-  Pid: '',
+  fstate: false,
+  pid: '',
 };
