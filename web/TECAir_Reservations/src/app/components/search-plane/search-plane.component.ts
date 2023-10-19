@@ -33,11 +33,11 @@ export class SearchPlaneComponent implements OnInit {
       .subscribe((data) => {
         if (data) {
           this.selectedOrigin = {
-            city: data.SfromCity,
+            city: data.sfromcity,
             id: data.SfromAirportID,
           };
           this.selectedDestination = {
-            city: data.StoCity,
+            city: data.stocity,
             id: data.StoAirportID,
           };
         }
@@ -66,14 +66,14 @@ export class SearchPlaneComponent implements OnInit {
   get uniqueOrigins(): { city: string; id: number }[] {
     if (this.selectedDestination) {
       return this.searchStops
-        .filter((stop) => stop.StoCity === this.selectedDestination?.city)
-        .map((stop) => ({ city: stop.SfromCity, id: stop.SfromAirportID }));
+        .filter((stop) => stop.stocity === this.selectedDestination?.city)
+        .map((stop) => ({ city: stop.sfromcity, id: stop.SfromAirportID }));
     }
 
     // This part ensures that each origin appears only once in the array
     const originsSet: { [key: string]: number } = {};
     this.searchStops.forEach((stop) => {
-      originsSet[stop.SfromCity] = stop.SfromAirportID;
+      originsSet[stop.sfromcity] = stop.SfromAirportID;
     });
 
     return Object.entries(originsSet).map(([city, id]) => ({ city, id }));
@@ -82,14 +82,14 @@ export class SearchPlaneComponent implements OnInit {
   get uniqueDestinations(): { city: string; id: number }[] {
     if (this.selectedOrigin) {
       return this.searchStops
-        .filter((stop) => stop.SfromCity === this.selectedOrigin?.city)
-        .map((stop) => ({ city: stop.StoCity, id: stop.StoAirportID }));
+        .filter((stop) => stop.sfromcity === this.selectedOrigin?.city)
+        .map((stop) => ({ city: stop.stocity, id: stop.StoAirportID }));
     }
 
     // This part ensures that each destination appears only once in the array
     const destinationsSet: { [key: string]: number } = {};
     this.searchStops.forEach((stop) => {
-      destinationsSet[stop.StoCity] = stop.StoAirportID;
+      destinationsSet[stop.stocity] = stop.StoAirportID;
     });
 
     return Object.entries(destinationsSet).map(([city, id]) => ({ city, id }));
@@ -115,9 +115,9 @@ export class SearchPlaneComponent implements OnInit {
     }
     this.searchPlaneService.setSearchData({
       SfromAirportID: this.selectedOrigin.id,
-      SfromCity: this.selectedOrigin.city,
+      sfromcity: this.selectedOrigin.city,
       StoAirportID: this.selectedDestination.id,
-      StoCity: this.selectedDestination.city,
+      stocity: this.selectedDestination.city,
     });
     console.log('NEXT DISPLAY FLIGHTS');
 

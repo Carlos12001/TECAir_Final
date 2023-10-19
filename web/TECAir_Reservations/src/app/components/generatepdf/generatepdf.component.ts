@@ -31,7 +31,7 @@ export class GeneratepdfComponent implements OnInit {
         { text: `Mname: ${this.pdfData.Mname}` },
         { text: `Lname1: ${this.pdfData.Lname1}` },
         { text: `Lname2: ${this.pdfData.Lname2}` },
-        { text: `StopID: ${this.pdfData.StopID}` },
+        { text: `stopid: ${this.pdfData.stopid}` },
         { text: `Sfrom: ${this.pdfData.Sfrom}` },
         { text: `Sto: ${this.pdfData.Sto}` },
         { text: `Sdate: ${this.pdfData.Sdate}` },

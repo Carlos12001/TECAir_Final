@@ -8,7 +8,7 @@ export class PDF {
   Lname1: string;
   Lname2: string;
 
-  StopID: number;
+  stopid: number;
   Sfrom: number;
   Sto: number;
   Sdate: string;
@@ -29,7 +29,7 @@ export class PDF {
     Lname1: string,
     Lname2: string,
 
-    StopID: number,
+    stopid: number,
     Sfrom: number,
     Sto: number,
     Sdate: string,
@@ -48,7 +48,7 @@ export class PDF {
     this.Mname = Mname;
     this.Lname1 = Lname1;
     this.Lname2 = Lname2;
-    this.StopID = StopID;
+    this.stopid = stopid;
     this.Sfrom = Sfrom;
     this.Sto = Sto;
     this.Sdate = Sdate;
@@ -69,7 +69,7 @@ export const pdf = {
   Mname: 'marco',
   Lname1: 'vinicio',
   Lname2: 'patricio',
-  StopID: 6,
+  stopid: 6,
   Sfrom: 5,
   Sto: 2,
   Sdate: '9/12/2023',

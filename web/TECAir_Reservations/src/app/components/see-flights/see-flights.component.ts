@@ -71,8 +71,8 @@ export class SeeFlightsComponent implements OnInit {
           console.error('Error fetching flights:', error);
           this.seeFlights = seeFlights.filter(
             (seeFlight) =>
-              seeFlight.SfromCity === searchStop.SfromCity &&
-              seeFlight.StoCity === searchStop.StoCity
+              seeFlight.sfromcity === searchStop.sfromcity &&
+              seeFlight.stocity === searchStop.stocity
           );
         },
         complete: () => {

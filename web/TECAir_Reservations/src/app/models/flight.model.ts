@@ -3,7 +3,7 @@ export interface Flight {
   Ffrom: number;
   Fto: number;
   Price: number;
-  Fdate: string;
+  fdate: string;
   Fstate: boolean;
   Pid: string;
 }
@@ -13,7 +13,7 @@ export const flight = {
   Ffrom: 0,
   Fto: 0,
   Price: 0,
-  Fdate: '',
+  fdate: '',
   Fstate: false,
   Pid: '',
 };

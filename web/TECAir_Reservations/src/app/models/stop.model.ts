@@ -1,5 +1,5 @@
 export interface Stop {
-  StopID: number;
+  stopid: number;
   Sfrom: number;
   Sto: number;
   Sdate: string;
@@ -14,7 +14,7 @@ export interface UserStop {
 }
 
 export const stop = {
-  StopID: 0,
+  stopid: 0,
   Sfrom: 0,
   Sto: 0,
   Sdate: '',
