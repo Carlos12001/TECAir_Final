@@ -4,6 +4,6 @@ export interface AirAdmin {
 }
 
 export const airAdmin = {
-  adminid: 'admin1',
-  uemail: 'prueba@tecair.com',
+  adminid: '',
+  uemail: '',
 };
