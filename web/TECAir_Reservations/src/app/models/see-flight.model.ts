@@ -1,5 +1,5 @@
 /**
-  Fnumber: number; // ID de vuelo
+  fnumber: number; // ID de vuelo
   StopID: number; // ID de parada
   SfromCity: string; // city aeropuerto de salida
   StoCity: string; // city aeropuerto de llegada
@@ -8,7 +8,7 @@
   Fprice: number; // precio del vuelo
  */
 export interface SeeFlight {
-  Fnumber: number;
+  fnumber: number;
   StopID: number;
   SfromCity: string;
   StoCity: string;
@@ -19,7 +19,7 @@ export interface SeeFlight {
 
 export const seeFlights: SeeFlight[] = [
   {
-    Fnumber: 653,
+    fnumber: 653,
     StopID: 224,
     SfromCity: 'San Jose',
     StoCity: 'Miami',
@@ -29,7 +29,7 @@ export const seeFlights: SeeFlight[] = [
     Fprice: 299,
   },
   {
-    Fnumber: 10,
+    fnumber: 10,
     StopID: 19,
     SfromCity: 'New York',
     StoCity: 'Ciudad de Mexico',
@@ -39,7 +39,7 @@ export const seeFlights: SeeFlight[] = [
     Fprice: 599,
   },
   {
-    Fnumber: 12,
+    fnumber: 12,
     StopID: 432,
     SfromCity: 'San Jose',
     StoCity: 'New York',
@@ -49,7 +49,7 @@ export const seeFlights: SeeFlight[] = [
     Fprice: 899,
   },
   {
-    Fnumber: 232,
+    fnumber: 232,
     StopID: 765,
     SfromCity: 'Miami',
     StoCity: 'Ciudad de Mexico',
