@@ -24,15 +24,14 @@ export class BaggageCreateComponent {
     });
   }
 
-  // Helper function to create a form group for a suitcase
   private createSuitcaseFormGroup(): FormGroup {
     return this.fb.group({
       weight: ['', Validators.required],
       colors: this.buildColors(),
+      price: [0], // Añade un FormControl para el precio con un valor inicial de 0.
     });
   }
 
-  // helper function to build the form array of colors
   private buildColors() {
     const arr = this.getColors().map(() => this.fb.control(false));
     return this.fb.array(arr);
@@ -42,14 +41,35 @@ export class BaggageCreateComponent {
     return Object.keys(Color);
   }
 
-  // Getter for the suitcases form array
   get suitcasesFormArray(): FormArray {
     return this.baggageForm.get('suitcases') as FormArray;
   }
 
-  // Add a new suitcase form group to the suitcases form array
   addBaggage() {
     this.suitcasesFormArray.push(this.createSuitcaseFormGroup());
+    this.updatePriceBasedOnCount();
+  }
+
+  updatePriceBasedOnCount() {
+    const count = this.suitcasesFormArray.length;
+
+    let price = 0;
+    if (count === 1) {
+      price = 0;
+    } else if (count === 2) {
+      price = 50;
+    } else if (count >= 3) {
+      price = 75;
+    }
+
+    // Ajustar el precio para el último grupo de maletas añadido.
+    const lastFormGroup = this.suitcasesFormArray.at(
+      this.suitcasesFormArray.length - 1
+    ) as FormGroup;
+    const priceControl = lastFormGroup.get('price');
+    if (priceControl) {
+      priceControl.setValue(price);
+    }
   }
 
   onSubmit() {
@@ -62,6 +82,7 @@ export class BaggageCreateComponent {
       return {
         Weight: suitcase.weight.toString(),
         BaggageColor: colors,
+        Price: suitcase.price, // Asegúrate de que también estás recopilando el precio.
       };
     });
     console.log('baggages', baggages);
