@@ -1,0 +1,55 @@
+<div class="row align-items-center">
+  <div class="col">
+    <div class="container">
+      <label>
+        CREATE A SUITCASE <br />
+        To create a suitcase you must indicate the user to which it belongs, its
+        color and weight. <br />
+        The system will create a specific id for each suitcase.
+      </label>
+    </div>
+  </div>
+
+  <form [formGroup]="baggageForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <!-- Add this row div -->
+      <div class="col-md-6">
+        <!-- First column for weight input -->
+        <div class="input-group">
+          <label class="input-group-text" for="weightInput">Weight</label>
+          <input
+            id="weightInput"
+            type="number"
+            formControlName="weight"
+            class="form-control"
+            placeholder="Enter weight..."
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <!-- Second column for colors checkboxes -->
+        <label class="input-group-text" for="weightInput">Colors</label>
+        <div class="colors-container" formArrayName="colors">
+          <div
+            *ngFor="let color of getColors(); let i = index"
+            class="color-item"
+          >
+            <input
+              type="checkbox"
+              [formControlName]="i"
+              id="colorCheckbox{{ i }}"
+            />
+            <label for="colorCheckbox{{ i }}">{{ color }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Close the row div -->
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button type="button" class="btn btn-primary me-md-2">Cancel</button>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  </form>
+</div>

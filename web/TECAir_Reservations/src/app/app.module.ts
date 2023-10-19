@@ -20,6 +20,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
+import { BaggageComponent } from './components/baggage/baggage.component';
+import { BaggageCreateComponent } from './components/baggage-create/baggage-create.component';
 
 @NgModule({
   imports: [
@@ -45,6 +47,8 @@ import { GeneratepdfComponent } from './components/generatepdf/generatepdf.compo
     ButtonsComponent,
     FooterComponent,
     GeneratepdfComponent,
+    BaggageComponent,
+    BaggageCreateComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

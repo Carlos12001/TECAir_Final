@@ -63,7 +63,7 @@ export class PDF {
 }
 
 export const pdf = {
-  Email: 'lnjknjnjknjk',
+  Email: 'felipevaras@tecair',
   Unumber: '123',
   Fname: 'felipe',
   Mname: 'marco',
@@ -82,16 +82,13 @@ export const pdf = {
   Uemail: 'pepe@pepe',
 };
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PdfService {
-
-  constructor() { }
+  constructor() {}
 
   getPdfData(): PDF {
     return pdf; // Retornando la constante pdf que ya tienes definida
   }
 }
-

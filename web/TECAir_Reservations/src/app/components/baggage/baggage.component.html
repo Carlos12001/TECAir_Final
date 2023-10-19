@@ -1,0 +1,94 @@
+<div class="row align-items-center">
+  <div class="col">
+    <div class="container">
+      <label>
+        CREATE A SUITCASE <br />
+        To create a suitcase you must indicate the user to which it belongs, its
+        color and weight. <br />
+        The system will create a specific id for each suitcase.
+      </label>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>Create a Baggage</h3>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupInput01">Passenger</label>
+      <input
+        #user
+        type="text"
+        class="form-control"
+        id="inputGroupInput01"
+        placeholder="Type here..."
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="colorSelect" class="input-group-text">Suitcase Color</label>
+      <select #color class="form-select" id="colorSelect">
+        <option selected>Choose a color...</option>
+        <option *ngFor="let colorOption of colorOptions" [value]="colorOption">
+          {{ colorOption }}
+        </option>
+      </select>
+    </div>
+
+    <br />
+
+    <div class="input-group">
+      <span class="input-group-text">Weight</span>
+      <input
+        #weight
+        type="number"
+        class="form-control"
+        placeholder="Enter weight..."
+      />
+    </div>
+    <br />
+
+    <div class="input-group">
+      <span class="input-group-text">Precio</span>
+      <!-- Cambié los checkboxes a radios -->
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="price"
+          value="0"
+          id="zeroPercent"
+        />
+        <label class="form-check-label" for="zeroPercent">0%</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="price"
+          value="50"
+          id="fiftyPercent"
+        />
+        <label class="form-check-label" for="fiftyPercent">50%</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="price"
+          value="75"
+          id="seventyFivePercent"
+        />
+        <label class="form-check-label" for="seventyFivePercent">75%</label>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary me-md-2" (click)="goBack()">Cancel</button>
+      <button
+        class="btn btn-primary"
+        (click)="postSuitCase(color.value, weight.value)"
+      >
+        Create
+      </button>
+    </div>
+  </div>
+</div>
