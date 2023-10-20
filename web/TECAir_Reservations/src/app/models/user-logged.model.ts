@@ -7,7 +7,7 @@ export interface UserLogged {
   lname1: string;
   lname2: string;
   studentid: string;
-  miles: 0;
+  miles: number;
   university: string;
   adminid: string;
 }

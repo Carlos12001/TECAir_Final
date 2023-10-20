@@ -34,7 +34,7 @@ export class SearchPlaneComponent implements OnInit {
         if (data) {
           this.selectedOrigin = {
             city: data.sfromcity,
-            id: data.sfromAirportid,
+            id: data.sfromairportid,
           };
           this.selectedDestination = {
             city: data.stocity,
@@ -50,30 +50,30 @@ export class SearchPlaneComponent implements OnInit {
   ) {}
 
   fetchSearchStops(): void {
-    this.searchPlaneService.getSeeFlights().subscribe({
-      next: (data) => {
-        this.searchStops = data;
-      },
-      error: (error) => {
-        console.error('Error fetching SearchStops:', error);
-      },
-      complete: () => {
-        console.log('Finished SearchStops fetched');
-      },
-    });
+    // this.searchPlaneService.getSeeFlights().subscribe({
+    //   next: (data) => {
+    //     this.searchStops = data;
+    //   },
+    //   error: (error) => {
+    //     console.error('Error fetching SearchStops:', error);
+    //   },
+    //   complete: () => {
+    //     console.log('Finished SearchStops fetched');
+    //   },
+    // });
   }
 
   get uniqueOrigins(): { city: string; id: number }[] {
     if (this.selectedDestination) {
       return this.searchStops
         .filter((stop) => stop.stocity === this.selectedDestination?.city)
-        .map((stop) => ({ city: stop.sfromcity, id: stop.sfromAirportid }));
+        .map((stop) => ({ city: stop.sfromcity, id: stop.sfromairportid }));
     }
 
     // This part ensures that each origin appears only once in the array
     const originsSet: { [key: string]: number } = {};
     this.searchStops.forEach((stop) => {
-      originsSet[stop.sfromcity] = stop.sfromAirportid;
+      originsSet[stop.sfromcity] = stop.sfromairportid;
     });
 
     return Object.entries(originsSet).map(([city, id]) => ({ city, id }));
@@ -114,7 +114,7 @@ export class SearchPlaneComponent implements OnInit {
       return;
     }
     this.searchPlaneService.setSearchData({
-      sfromAirportid: this.selectedOrigin.id,
+      sfromairportid: this.selectedOrigin.id,
       sfromcity: this.selectedOrigin.city,
       stoairportid: this.selectedDestination.id,
       stocity: this.selectedDestination.city,

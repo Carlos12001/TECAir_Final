@@ -13,7 +13,7 @@ import { SearchStop } from 'src/app/models/search-stop.model';
 })
 export class SeeFlightsComponent implements OnInit {
   private onDestroy = new Subject<void>();
-  seeFlights: SeeFlight[] = seeFlights;
+  seeFlights: SeeFlight[] = [];
   constructor(
     private router: Router,
     private seeFlightsService: SeeFlightsService,
@@ -49,7 +49,7 @@ export class SeeFlightsComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching flights:', error);
-        this.seeFlights = seeFlights;
+        // this.seeFlights = seeFlights;
       },
       complete: () => {
         console.log('Finished Flights fetched');
@@ -60,7 +60,7 @@ export class SeeFlightsComponent implements OnInit {
   fetchFlightsWithSelection(searchStop: SearchStop): void {
     this.seeFlightsService
       .postSeeFlightsWithSelection(
-        searchStop.sfromAirportid,
+        searchStop.sfromairportid,
         searchStop.stoairportid
       )
       .subscribe({
@@ -69,11 +69,11 @@ export class SeeFlightsComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error fetching flights:', error);
-          this.seeFlights = seeFlights.filter(
-            (seeFlight) =>
-              seeFlight.sfromcity === searchStop.sfromcity &&
-              seeFlight.stocity === searchStop.stocity
-          );
+          // this.seeFlights = seeFlights.filter(
+          //   (seeFlight) =>
+          //     seeFlight.sfromcity === searchStop.sfromcity &&
+          //     seeFlight.stocity === searchStop.stocity
+          // );
         },
         complete: () => {
           console.log('Finished Flights fetched');

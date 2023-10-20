@@ -20,15 +20,15 @@ export class SeeFlightsService {
   constructor(private http: HttpClient) {}
 
   public getSeeFlights(): Observable<SeeFlight[]> {
-    return this.http.get<SeeFlight[]>(this.url + 'api/see-flights');
+    return this.http.get<SeeFlight[]>(this.url + 'api/flight/available');
   }
 
   public postSeeFlightsWithSelection(
-    sfromAirportid: number,
+    sfromairportid: number,
     stoairportid: number
   ): Observable<SeeFlight[]> {
     const body = {
-      sfromAirportid: sfromAirportid,
+      sfromairportid: sfromairportid,
       stoairportid: stoairportid,
     };
 

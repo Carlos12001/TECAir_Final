@@ -15,7 +15,7 @@ import { SeeFlightsComponent } from './components/see-flights/see-flights.compon
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'display-sign-in', component: DisplaySignInComponent },
-  { path: 'display-resgiter', component: DisplayResgiterComponent },
+  { path: 'display-register', component: DisplayResgiterComponent },
   { path: 'display-prices', component: DisplayPricesComponent },
   { path: 'display-flights', component: DisplayFliesComponent },
   { path: 'display-seat', component: DisplaySeatComponent },
