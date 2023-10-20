@@ -56,7 +56,7 @@ export class SeeFlightsComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching flights:', error);
-        // this.seeFlights = seeFlights;
+        this.seeFlights = seeFlights;
       },
       complete: () => {
         console.log('Finished Flights fetched');
@@ -76,11 +76,12 @@ export class SeeFlightsComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error fetching flights:', error);
-          // this.seeFlights = seeFlights.filter(
-          //   (seeFlight) =>
-          //     seeFlight.sfromcity === searchStop.sfromcity &&
-          //     seeFlight.stocity === searchStop.stocity
-          // );
+          this.seeFlights = seeFlights;
+          this.seeFlights = seeFlights.filter(
+            (seeFlight) =>
+              seeFlight.sfromcity === searchStop.sfromcity &&
+              seeFlight.stocity === searchStop.stocity
+          );
         },
         complete: () => {
           console.log('Finished Flights fetched');

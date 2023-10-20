@@ -15,7 +15,7 @@ export interface SeeFlight {
   stoimage: string;
   fdate: string;
   fprice: number;
-  depercent?: 0;
+  depercent?: number;
 }
 
 export const seeFlights: SeeFlight[] = [
@@ -28,6 +28,7 @@ export const seeFlights: SeeFlight[] = [
       'https://upload.wikimedia.org/wikipedia/commons/a/a1/Miami_International_Airport_%28KMIA-MIA%29_%288204606870%29.jpg',
     fdate: '2024-03-15',
     fprice: 299,
+    depercent: 15,
   },
   {
     fnumber: 10,
@@ -38,6 +39,7 @@ export const seeFlights: SeeFlight[] = [
       'https://upload.wikimedia.org/wikipedia/commons/4/40/AICM_AIR_T2.jpg',
     fdate: '2024-03-15',
     fprice: 599,
+    depercent: 5,
   },
   {
     fnumber: 12,
@@ -48,6 +50,7 @@ export const seeFlights: SeeFlight[] = [
       'https://upload.wikimedia.org/wikipedia/commons/b/b9/JFK_Aerial_Nov_14_2018.jpg',
     fdate: '2023-12-15',
     fprice: 899,
+    depercent: 30,
   },
   {
     fnumber: 232,
@@ -58,6 +61,7 @@ export const seeFlights: SeeFlight[] = [
       'https://upload.wikimedia.org/wikipedia/commons/4/40/AICM_AIR_T2.jpg',
     fdate: '2024-01-02',
     fprice: 399,
+    depercent: 10,
   },
 ];
 

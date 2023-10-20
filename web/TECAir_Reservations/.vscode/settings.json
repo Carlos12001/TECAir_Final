@@ -1,7 +1,12 @@
 {
   "cSpell.words": [
+    "adminid",
     "aname",
     "bnumber",
+    "depercent",
+    "fdate",
+    "fnumber",
+    "fprice",
     "generatepdf",
     "Generatepdf",
     "pemail",
@@ -12,6 +17,8 @@
     "snumber",
     "stoairportid",
     "stocity",
+    "stoimage",
+    "stopid",
     "studentid",
     "stutdentid",
     "uemail",
