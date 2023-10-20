@@ -1,0 +1,80 @@
+<div class="user-selection">
+  <button
+    (click)="selectUserType('normal')"
+    [disabled]="selectedUserType && selectedUserType !== 'normal'"
+  >
+    Usuario Normal
+  </button>
+  <button
+    (click)="selectUserType('student')"
+    [disabled]="selectedUserType && selectedUserType !== 'student'"
+  >
+    Estudiante
+  </button>
+  <button
+    (click)="selectUserType('admin')"
+    [disabled]="selectedUserType && selectedUserType !== 'admin'"
+  >
+    Admin
+  </button>
+  <button (click)="resetSelection()">Cancelar</button>
+</div>
+
+<div *ngIf="selectedUserType">
+  <h2>Formulario para {{ selectedUserType }}</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <!-- Todos los campos comunes -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" />
+    </div>
+    <div class="form-group">
+      <label for="upassword">Contraseña</label>
+      <input id="upassword" type="password" formControlName="upassword" />
+    </div>
+    <div class="form-group">
+      <label for="unumber">Número</label>
+      <input id="unumber" formControlName="unumber" />
+    </div>
+    <div class="form-group">
+      <label for="fname">Primer nombre</label>
+      <input id="fname" formControlName="fname" />
+    </div>
+    <div class="form-group">
+      <label for="mname">Segundo nombre</label>
+      <input id="mname" formControlName="mname" />
+    </div>
+    <div class="form-group">
+      <label for="lname1">Primer apellido</label>
+      <input id="lname1" formControlName="lname1" />
+    </div>
+    <div class="form-group">
+      <label for="lname2">Segundo apellido</label>
+      <input id="lname2" formControlName="lname2" />
+    </div>
+
+    <!-- Campos específicos para estudiantes -->
+    <div *ngIf="selectedUserType === 'student'">
+      <div class="form-group">
+        <label for="studentid">Student ID</label>
+        <input id="studentid" formControlName="studentid" />
+      </div>
+      <div class="form-group">
+        <label for="university">Universidad</label>
+        <input id="university" formControlName="university" />
+      </div>
+    </div>
+
+    <!-- Campos específicos para administradores -->
+    <div *ngIf="selectedUserType === 'admin'">
+      <div class="form-group">
+        <label for="adminid">Admin ID</label>
+        <input id="adminid" formControlName="adminid" />
+      </div>
+    </div>
+
+    <!-- Botón de envío -->
+    <button type="submit" [disabled]="!userForm.valid">Registrar</button>
+  </form>
+</div>

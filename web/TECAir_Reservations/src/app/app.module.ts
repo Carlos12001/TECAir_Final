@@ -29,6 +29,7 @@ import { DisplayConfirmationComponent } from './components/display-confirmation/
 import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
 
 import { BaggageCreateComponent } from './components/baggage-create/baggage-create.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { BaggageCreateComponent } from './components/baggage-create/baggage-crea
     DisplayConfirmationComponent,
     GeneratepdfComponent,
     BaggageCreateComponent,
+    RegisterUserComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
