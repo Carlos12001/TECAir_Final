@@ -66,6 +66,6 @@ export class SignInComponent implements OnInit {
       },
     });
 
-    console.log(this.signInForm.value);
+    console.log(userLogged);
   }
 }
