@@ -64,7 +64,7 @@ export const seeFlights: SeeFlight[] = [
 export const seeFlightSelected: SeeFlight = {
   fnumber: 0,
   stopid: 0,
-  sfromcity: '',
+  sfromcity: 'sjo',
   stocity: '',
   stoimage: '',
   fdate: '',

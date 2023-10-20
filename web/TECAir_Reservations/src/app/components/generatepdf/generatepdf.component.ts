@@ -9,11 +9,10 @@ import { PDF, PdfService } from '../../models/pdf.model';
   styleUrls: ['./generatepdf.component.css'],
 })
 export class GeneratepdfComponent implements OnInit {
-  pdfData!: PDF;
+  pdfData?: PDF; // Usamos ? para indicar que puede ser undefined.
 
   constructor(private pdfService: PdfService) {
     (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
-    this.pdfData = this.pdfService.getPdfData();
   }
 
   ngOnInit(): void {
@@ -22,6 +21,11 @@ export class GeneratepdfComponent implements OnInit {
   }
 
   generatePdf() {
+    if (!this.pdfData) {
+      console.error('No hay datos para generar el PDF');
+      return;
+    }
+
     const simpleDocument = {
       content: [
         { text: 'Detalles del PDF', bold: true },
@@ -32,8 +36,8 @@ export class GeneratepdfComponent implements OnInit {
         { text: `lname1: ${this.pdfData.lname1}` },
         { text: `lname2: ${this.pdfData.lname2}` },
         { text: `stopid: ${this.pdfData.stopid}` },
-        { text: `sfrom: ${this.pdfData.sfrom}` },
-        { text: `sto: ${this.pdfData.sto}` },
+        { text: `sfromcity: ${this.pdfData.sfromcity}` },
+        { text: `stocity: ${this.pdfData.stocity}` },
         { text: `sdate: ${this.pdfData.sdate}` },
         { text: `departurehour: ${this.pdfData.departurehour}` },
         { text: `arrivalhour: ${this.pdfData.arrivalhour}` },

@@ -9,8 +9,8 @@ export class PDF {
   lname2: string;
 
   stopid: number;
-  sfrom: number;
-  sto: number;
+  sfromcity: string;
+  stocity: string; // deberia ser la cuidad ya que yo no le muestro el id de la aeropuerto sino el nombre del lugar
   sdate: string;
   departurehour: string;
   arrivalhour: string;
@@ -30,8 +30,8 @@ export class PDF {
     lname2: string,
 
     stopid: number,
-    sfrom: number,
-    sto: number,
+    sfromcity: string,
+    stocity: string,
     sdate: string,
     departurehour: string,
     arrivalhour: string,
@@ -49,8 +49,8 @@ export class PDF {
     this.lname1 = lname1;
     this.lname2 = lname2;
     this.stopid = stopid;
-    this.sfrom = sfrom;
-    this.sto = sto;
+    this.sfromcity = sfromcity;
+    this.stocity = stocity;
     this.sdate = sdate;
     this.departurehour = departurehour;
     this.arrivalhour = arrivalhour;
@@ -70,8 +70,8 @@ export const pdf = {
   lname1: '',
   lname2: '',
   stopid: 0,
-  sfrom: 0,
-  sto: 0,
+  sfromcity: '',
+  stocity: '',
   sdate: '',
   departurehour: '',
   arrivalhour: '',
@@ -86,9 +86,15 @@ export const pdf = {
   providedIn: 'root',
 })
 export class PdfService {
+  private pdfData: PDF = pdf;
+
   constructor() {}
 
+  setPdfData(data: PDF) {
+    this.pdfData = data;
+  }
+
   getPdfData(): PDF {
-    return pdf; // Retornando la constante pdf que ya tienes definida
+    return this.pdfData;
   }
 }
