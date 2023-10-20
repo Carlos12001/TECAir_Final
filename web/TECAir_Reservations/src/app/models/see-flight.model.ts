@@ -15,6 +15,7 @@ export interface SeeFlight {
   stoimage: string;
   fdate: string;
   fprice: number;
+  depercent?: 0;
 }
 
 export const seeFlights: SeeFlight[] = [
@@ -59,3 +60,14 @@ export const seeFlights: SeeFlight[] = [
     fprice: 399,
   },
 ];
+
+export const seeFlightSelected: SeeFlight = {
+  fnumber: 0,
+  stopid: 0,
+  sfromcity: '',
+  stocity: '',
+  stoimage: '',
+  fdate: '',
+  fprice: 399,
+  depercent: 0,
+};

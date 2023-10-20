@@ -2,9 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeeFlightsService } from 'src/app/services/see-flights.service';
 import { SearchPlaneService } from 'src/app/services/search-plane.service';
-import { SeeFlight, seeFlights } from 'src/app/models/see-flight.model';
+import {
+  SeeFlight,
+  seeFlightSelected,
+  seeFlights,
+} from 'src/app/models/see-flight.model';
 import { Subject, takeUntil } from 'rxjs';
-import { SearchStop } from 'src/app/models/search-stop.model';
+import {
+  SearchStop,
+  searchStopSelected,
+} from 'src/app/models/search-stop.model';
 
 @Component({
   selector: 'app-see-flights',
@@ -82,6 +89,24 @@ export class SeeFlightsComponent implements OnInit {
   }
 
   reserveFlight(flight: SeeFlight): void {
+    if (
+      searchStopSelected.sfromairportid == 0 ||
+      searchStopSelected.stoairportid == 0 ||
+      searchStopSelected.sfromcity == '' ||
+      searchStopSelected.stocity == ''
+    ) {
+      window.alert('TIENES QUE BUSCAR UN ORIGEN Y DESTINO!!');
+      return;
+    }
     console.log('Reserving flight: ', flight);
+    seeFlightSelected.fnumber = flight.fnumber;
+    seeFlightSelected.stopid = flight.stopid;
+    seeFlightSelected.sfromcity = flight.sfromcity;
+    seeFlightSelected.stocity = flight.stocity;
+    seeFlightSelected.stoimage = flight.stoimage;
+    seeFlightSelected.fdate = flight.fdate;
+    seeFlightSelected.fprice = flight.fprice;
+
+    this.router.navigate(['/display-checkout']);
   }
 }

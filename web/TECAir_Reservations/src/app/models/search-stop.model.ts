@@ -31,3 +31,10 @@ export const searchStops: SearchStop[] = [
     stocity: 'Ciudad de Mexico',
   },
 ];
+
+export const searchStopSelected: SearchStop = {
+  sfromairportid: 0,
+  sfromcity: '',
+  stoairportid: 0,
+  stocity: '',
+};

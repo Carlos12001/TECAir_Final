@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchPlaneService } from 'src/app/services/search-plane.service';
-import { SearchStop, searchStops } from 'src/app/models/search-stop.model';
+import {
+  SearchStop,
+  searchStopSelected,
+  searchStops,
+} from 'src/app/models/search-stop.model';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -119,7 +123,10 @@ export class SearchPlaneComponent implements OnInit {
       stoairportid: this.selectedDestination.id,
       stocity: this.selectedDestination.city,
     });
-    console.log('NEXT DISPLAY FLIGHTS');
+    searchStopSelected.sfromairportid = this.selectedOrigin.id;
+    searchStopSelected.sfromcity = this.selectedOrigin.city;
+    searchStopSelected.stoairportid = this.selectedDestination.id;
+    searchStopSelected.stocity = this.selectedDestination.city;
 
     this.router.navigate(['display-flights']);
   }

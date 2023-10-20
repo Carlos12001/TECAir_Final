@@ -11,6 +11,7 @@ import { DisplaySeatComponent } from './components/display-seat/display-seat.com
 import { DisplayCheckoutComponent } from './components/display-checkout/display-checkout.component';
 import { DisplayConfirmationComponent } from './components/display-confirmation/display-confirmation.component';
 import { SeeFlightsComponent } from './components/see-flights/see-flights.component';
+import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'display-seat', component: DisplaySeatComponent },
   { path: 'display-checkout', component: DisplayCheckoutComponent },
   { path: 'display-confirmation', component: DisplayConfirmationComponent },
+  { path: 'generate-pdf', component: GeneratepdfComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];
