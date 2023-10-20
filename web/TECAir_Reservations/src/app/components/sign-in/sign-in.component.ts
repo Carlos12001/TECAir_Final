@@ -54,12 +54,20 @@ export class SignInComponent implements OnInit {
           console.error('Invalid email or password');
           userLogged.email = '';
           userLogged.upassword = '';
+          userLogged.fname = '';
+          userLogged.mname = '';
+          userLogged.lname1 = '';
+          userLogged.lname2 = '';
         }
       },
       error: (error) => {
         console.error('Error fetching users:', error);
         userLogged.email = '';
         userLogged.upassword = '';
+        userLogged.fname = '';
+        userLogged.mname = '';
+        userLogged.lname1 = '';
+        userLogged.lname2 = '';
       },
       complete: () => {
         console.log('Finished users fetched');
