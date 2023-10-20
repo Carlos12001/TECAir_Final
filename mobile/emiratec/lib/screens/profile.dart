@@ -12,20 +12,20 @@ class ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color.fromRGBO(2, 0, 36, 1),
-                Color.fromRGBO(9, 50, 121, 1),
-                Color.fromRGBO(0, 212, 255, 1),
-              ],
-              stops: [0.0, 0.4, 1.0],
-            ),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromRGBO(2, 0, 36, 1),
+              Color.fromRGBO(9, 50, 121, 1),
+              Color.fromRGBO(0, 212, 255, 1),
+            ],
+            stops: [0.0, 0.4, 1.0],
           ),
-          child: Center(
-              child: Column(
+        ),
+        child: Center(
+          child: Column(
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
@@ -49,60 +49,111 @@ class ProfileState extends State<Profile> {
                 ),
               ),
             ],
-          ))),
+          ),
+        ),
+      ),
     );
   }
 }
 
-class UserInfoBox extends StatelessWidget {
+class UserInfoBox extends StatefulWidget {
+  @override
+  _UserInfoBoxState createState() => _UserInfoBoxState();
+}
+
+class _UserInfoBoxState extends State<UserInfoBox> {
+  final firstNameController = TextEditingController();
+  final middleNameController = TextEditingController();
+  final firstLastNameController = TextEditingController();
+  final secondLastNameController = TextEditingController();
+  final telController = TextEditingController();
+  final emailController = TextEditingController();
+  final universityController = TextEditingController();
+  final studentIDController = TextEditingController();
+  final milesController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Dispose of the controllers when the widget is removed
+    firstNameController.dispose();
+    middleNameController.dispose();
+    firstLastNameController.dispose();
+    secondLastNameController.dispose();
+    telController.dispose();
+    emailController.dispose();
+    universityController.dispose();
+    studentIDController.dispose();
+    milesController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              spreadRadius: 10,
-              blurRadius: 5,
-              offset: Offset(5, 5),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 10,
+            blurRadius: 5,
+            offset: Offset(5, 5),
+          ),
+        ],
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            readOnlyTextField("First Name", firstNameController),
+            readOnlyTextField("Middle Name", middleNameController),
+            Row(
+              children: [
+                Expanded(
+                    child: readOnlyTextField(
+                        "First Lastname", firstLastNameController)),
+                SizedBox(width: 16.0),
+                Expanded(
+                    child: readOnlyTextField(
+                        "Second Lastname", secondLastNameController)),
+              ],
             ),
+            readOnlyTextField("Tel", telController),
+            readOnlyTextField("Email", emailController),
+            readOnlyTextField("Universidad", universityController),
+            Row(
+              children: [
+                Expanded(
+                    child: readOnlyTextField(
+                        "ID de Estudiante", studentIDController)),
+                SizedBox(width: 16.0),
+                Expanded(child: readOnlyTextField("Millas", milesController)),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: _printValues,
+              child: Text("Print Values"),
+            )
           ],
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              readOnlyTextField("First Name", "Pedro"),
-              readOnlyTextField("Middle Name", ""),
-              Row(
-                children: [
-                  Expanded(
-                      child: readOnlyTextField("First Lastname", "Gutierrez")),
-                  SizedBox(width: 16.0),
-                  Expanded(
-                      child: readOnlyTextField("Second Lastname", "Garcia")),
-                ],
-              ),
-              readOnlyTextField("Tel", "86431346"),
-              readOnlyTextField("Email", "pedrog@gmail.com"),
-              readOnlyTextField("Universidad", "Tec"),
-              Row(
-                children: [
-                  Expanded(
-                      child: readOnlyTextField("ID de Estudiante", "123456")),
-                  SizedBox(width: 16.0),
-                  Expanded(child: readOnlyTextField("Millas", "580")),
-                ],
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 
-  Widget readOnlyTextField(String title, String value) {
+  void _printValues() {
+    print("First Name: ${firstNameController.text}");
+    print("Middle Name: ${middleNameController.text}");
+    print("First Lastname: ${firstLastNameController.text}");
+    print("Second Lastname: ${secondLastNameController.text}");
+    print("Tel: ${telController.text}");
+    print("Email: ${emailController.text}");
+    print("Universidad: ${universityController.text}");
+    print("ID de Estudiante: ${studentIDController.text}");
+    print("Millas: ${milesController.text}");
+  }
+
+  Widget readOnlyTextField(String title, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
@@ -111,13 +162,12 @@ class UserInfoBox extends StatelessWidget {
           Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 4.0),
           TextField(
-            controller: TextEditingController(text: value),
+            controller: controller,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey[200],
               border: OutlineInputBorder(),
             ),
-            enabled: false, // Makes it read-only
           ),
         ],
       ),
