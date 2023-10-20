@@ -65,6 +65,6 @@ class TodoDB {
   ''', [
       origin,
       destination
-    ]); // Usar consultas parametrizadas para evitar inyecciones SQL
+    ]);
   }
 }

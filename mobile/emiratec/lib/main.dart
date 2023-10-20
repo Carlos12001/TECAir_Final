@@ -47,24 +47,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 3;
-  DateTime now1 = DateTime.now();
   String? selectedOrigin;
-  List<String> origins = [
-    'Origen 1',
-    'Origen 2',
-    'Origen 3'
-  ]; // Tus valores de origen
-
   String? selectedDestination;
-  List<String> destinations = ['Destino 1', 'Destino 2', 'Destino 3'];
-  DateTime fechaInicio = DateTime.now();
-  DateTime fechaFin = DateTime.now();
-  int cantPasajeros = 1;
   classSelection seatSelection = classSelection();
   final dbService = DatabaseService();
 
-  // Ejemplo de lista promocion
-  // TODO: obtener de la BD la lista de promociones
+  //Obtener listas de promos y nombres de aeropuertos 
   List<Promotion> promo = [];
   List<String> airportsNames = [];
 
@@ -94,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
       airportsNames = initialAirports;
     });
     print(promo);
-    print(airportsNames);
   }
 
   _updateData() async {

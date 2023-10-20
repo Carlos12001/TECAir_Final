@@ -28,7 +28,7 @@ class ProfileState extends State<Profile> {
               child: Column(
             children: [
               SizedBox(
-                height: 40,
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
               Text(
                 'Profile',
@@ -40,12 +40,13 @@ class ProfileState extends State<Profile> {
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
-              SizedBox(
-                child: UserInfoBox(),
-                height: 580,
-                width: 360,
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: UserInfoBox(),
+                ),
               ),
             ],
           ))),
