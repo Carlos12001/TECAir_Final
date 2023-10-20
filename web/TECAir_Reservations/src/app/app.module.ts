@@ -30,6 +30,8 @@ import { GeneratepdfComponent } from './components/generatepdf/generatepdf.compo
 
 import { BaggageCreateComponent } from './components/baggage-create/baggage-create.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { PromotionsComponent } from './components/promotions/promotions.component';
+import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
 
 @NgModule({
   imports: [
@@ -64,6 +66,8 @@ import { RegisterUserComponent } from './components/register-user/register-user.
     GeneratepdfComponent,
     BaggageCreateComponent,
     RegisterUserComponent,
+    PromotionsComponent,
+    DisplayPromotionsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

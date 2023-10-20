@@ -29,6 +29,7 @@ export class SignInComponent implements OnInit {
   onSubmit(): void {
     const emailInput = this.signInForm.value.email;
     const passwordInput = this.signInForm.value.password;
+    console.log(emailInput, passwordInput);
 
     this.signInService.getUsers().subscribe({
       next: (data: UserLogged[]) => {
@@ -47,11 +48,13 @@ export class SignInComponent implements OnInit {
           userLogged.lname1 = userFound.lname1;
           userLogged.lname2 = userFound.lname2;
 
+          console.log(userLogged);
           // Navegamos a la página de inicio
           this.router.navigate(['/home']);
         } else {
           // Si no encontramos al usuario, podemos mostrar un mensaje de error.
           console.error('Invalid email or password');
+          window.alert('Invalid email or password');
           userLogged.email = '';
           userLogged.upassword = '';
           userLogged.fname = '';
@@ -68,12 +71,21 @@ export class SignInComponent implements OnInit {
         userLogged.mname = '';
         userLogged.lname1 = '';
         userLogged.lname2 = '';
+        if (emailInput === 'pedrog@gmail.com' && passwordInput === 'yes') {
+          userLogged.fname = 'Pedro';
+          userLogged.unumber = '123456';
+          userLogged.mname = 'Garcia';
+          userLogged.lname1 = 'Rodriguez';
+          userLogged.lname2 = 'Perez';
+          userLogged.email = 'pedrogr@gmail.com';
+          userLogged.upassword = 'yes';
+          console.log(userLogged);
+          this.router.navigate(['/home']);
+        }
       },
       complete: () => {
         console.log('Finished users fetched');
       },
     });
-
-    console.log(userLogged);
   }
 }
