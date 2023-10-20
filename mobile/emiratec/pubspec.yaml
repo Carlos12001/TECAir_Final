@@ -65,6 +65,7 @@ flutter:
     - lib/resources/mexico.jpg
     - lib/resources/maldivas.jpg
     - lib/resources/dubai.jpg
+    - lib/BD/tecAirMobile.db
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

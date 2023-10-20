@@ -58,7 +58,7 @@ Expanded promotionsHomePage(List<Promotion>? promotionList) {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  "Inicion de promoción: ${currentPromotion.startDate.day}-${currentPromotion.startDate.month}-${currentPromotion.startDate.year}",
+                                  "Porcentaje de descuento: ${currentPromotion.percentage}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
                                   style:

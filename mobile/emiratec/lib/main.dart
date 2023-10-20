@@ -1,14 +1,13 @@
 import 'dart:ffi';
-
 import 'package:emiratec/BD/database_service.dart';
 import 'package:emiratec/components/ads_home_page.dart';
 import 'package:emiratec/components/class_selection.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
 import 'package:emiratec/components/reservation_page.dart';
+import 'package:emiratec/objects/Airport.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:emiratec/screens/scheduled.dart';
 import 'package:flutter/material.dart';
-
 import 'package:emiratec/screens/login.dart';
 import 'package:emiratec/screens/profile.dart';
 
@@ -64,17 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
   classSelection seatSelection = classSelection();
   final dbService = DatabaseService();
 
-
   // Ejemplo de lista promocion
   // TODO: obtener de la BD la lista de promociones
-  List<Promotion> promo = [
-    Promotion(
-        startDate: DateTime.utc(2023, 02, 9),
-        endDate: DateTime.utc(2023, 04, 9),
-        imgPath:
-            "https://i0.wp.com/www.ofertasahora.com/wp-content/uploads/2016/02/Promociones-de-san-valentin-2016-para-viajar-en-avianca.jpg?fit=1428%2C1815&ssl=1",
-        percentage: 10.5)
-  ];
+  List<Promotion> promo = [];
+  List<String> airportsNames = [];
 
   /// The function updates the selected index and triggers a state change.
   ///
@@ -88,15 +80,34 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _insertPromotion() async {
-      final promotion = Promotion(
-        startDate: DateTime.now(),
-        endDate: DateTime.now().add(Duration(days: 10)),
-        imgPath: "/path/to/image.jpg",
-        percentage: 15.0,
-      );
-      await dbService.insertPromotion(promotion);
-    }
+  @override
+  void initState() {
+    super.initState();
+    _loadInitialData();
+  }
+
+  _loadInitialData() async {
+    List<Promotion> initialPromos = await dbService.getPromotions();
+    List<String> initialAirports = await dbService.getAirportsNames();
+    setState(() {
+      promo = initialPromos;
+      airportsNames = initialAirports;
+    });
+    print(promo);
+    print(airportsNames);
+  }
+
+  _updateData() async {
+    List<Promotion> updatedPromos = await dbService.getPromotions();
+    setState(() {
+      promo = updatedPromos;
+    });
+  }
+
+  _getFlight(String origin, String destination){
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,10 +154,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             DropdownButton<String>(
                               value: selectedOrigin,
                               hint: const Text("Origen"),
-                              items: origins.map((String value) {
+                              items: airportsNames.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
-                                  child: Text(value),
+                                  child: Text(value, style: TextStyle(fontSize: 14)),
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
@@ -167,10 +178,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             DropdownButton<String>(
                               value: selectedDestination,
                               hint: const Text("Destino"),
-                              items: destinations.map((String value) {
+                              items: airportsNames.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
-                                  child: Text(value),
+                                  child: Text(value, style: TextStyle(fontSize: 14),),
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
@@ -198,7 +209,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () {
               if (selectedOrigin != null && selectedDestination != null) {
-                _insertPromotion();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -224,6 +234,11 @@ class _MyHomePageState extends State<MyHomePage> {
       children: <Widget>[
         adsHomePage(),
         const Divider(),
+        ElevatedButton(
+            onPressed: () async {
+             _updateData();
+            },
+            child: Text("Actualizar promos")),
         promotionsHomePage(promoss),
       ],
     );
