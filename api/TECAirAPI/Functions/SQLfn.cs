@@ -28,7 +28,6 @@ namespace TECAirAPI.Functions
 				) AND
 				(SELECT COUNT(*) FROM PASSENGER WHERE Fno = f.Fnumber) < p.Capacity
 			GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price;
-
         ";
 
 		public string Available() {
