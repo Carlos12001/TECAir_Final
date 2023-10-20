@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 type UserType = 'normal' | 'student' | 'admin' | null;
 
@@ -12,7 +13,7 @@ export class RegisterUserComponent implements OnInit {
   userForm!: FormGroup;
   selectedUserType: UserType = null;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.userForm = this.fb.group({
@@ -103,5 +104,11 @@ export class RegisterUserComponent implements OnInit {
     }
 
     console.log(UserLogged);
+  }
+  onRegister(): void {
+    if (this.userForm.valid) {
+      console.log(this.userForm.value); // O cualquier otra acción que desees realizar
+      this.router.navigate(['/display-sign-in']); // <--- Asegúrate de que la ruta esté escrita correctamente
+    }
   }
 }

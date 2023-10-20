@@ -75,6 +75,8 @@
     </div>
 
     <!-- Botón de envío -->
-    <button type="submit" [disabled]="!userForm.valid">Registrar</button>
+    <button (click)="onRegister()" [disabled]="!userForm.valid">
+      Registrar
+    </button>
   </form>
 </div>
