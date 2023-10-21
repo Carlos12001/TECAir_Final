@@ -214,6 +214,38 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+
+        [HttpPost] 
+        [Route("flight/passenger")]
+        public async Task<ActionResult<IEnumerable<FlightDto>>> GetFlightsByPassenger([FromBody] EmailDto emailDto)
+        {
+            if (string.IsNullOrEmpty(emailDto?.Email))
+            {
+                return BadRequest("El correo electrónico es necesario.");
+            }
+
+            // Crear consulta SQL para obtener vuelos
+            string query = sqlfn.PassengerFlights(emailDto.Email);
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
         // DELETE: api/flight/400
         [HttpDelete]
         [Route("flight/{id}")]

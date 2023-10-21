@@ -157,5 +157,29 @@ namespace TECAirAPI.Functions
         {
             return cpassenger;
         }
+
+        private static string passengerflightsTemplate = @"
+			SELECT 
+				p.Pnumber,
+				f.Fnumber,
+				s.StopID,
+				afrom.City AS sfromCity,
+				ato.City AS stoCity,
+				f.Fdate,
+				f.Price AS fprice
+			FROM PASSENGER p
+			INNER JOIN FLIGHT f ON p.Fno = f.Fnumber
+			INNER JOIN STOP s ON s.Fno = f.Fnumber
+			INNER JOIN AIRPORT afrom ON s.Sfrom = afrom.AirportID
+			INNER JOIN AIRPORT ato ON s.Sto = ato.AirportID
+			WHERE p.Uemail = '{0}' AND
+				  f.fstate = false;
+		";
+
+        public string PassengerFlights(string email)
+        {
+            // Inyeccion sql posible jeje.
+            return string.Format(passengerflightsTemplate, email); // Esto inserta el email en la consulta.
+        }
     }
 }

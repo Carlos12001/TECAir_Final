@@ -79,7 +79,7 @@ namespace TECAirAPI.Controllers
                     myCommand.Parameters.AddWithValue("@upassword", user.Upassword);
                     myCommand.Parameters.AddWithValue("@unumber", user.Unumber);
                     myCommand.Parameters.AddWithValue("@fname", user.Fname);
-                    myCommand.Parameters.AddWithValue("@mname", user.Mname);
+                    myCommand.Parameters.AddWithValue("@mname", user.Mname ?? (object)DBNull.Value);
                     myCommand.Parameters.AddWithValue("@lname1", user.Lname1);
                     myCommand.Parameters.AddWithValue("@lname2", user.Lname2);
                     myReader = myCommand.ExecuteReader();
@@ -120,7 +120,7 @@ namespace TECAirAPI.Controllers
                     myCommand.Parameters.AddWithValue("@upassword", user.Upassword);
                     myCommand.Parameters.AddWithValue("@unumber", user.Unumber);
                     myCommand.Parameters.AddWithValue("@fname", user.Fname);
-                    myCommand.Parameters.AddWithValue("@mname", user.Mname);
+                    myCommand.Parameters.AddWithValue("@mname", user.Mname ?? (object)DBNull.Value);
                     myCommand.Parameters.AddWithValue("@lname1", user.Lname1);
                     myCommand.Parameters.AddWithValue("@lname2", user.Lname2);
                     myReader = myCommand.ExecuteReader();
@@ -180,8 +180,8 @@ namespace TECAirAPI.Controllers
                     using (NpgsqlCommand studentCommand = new NpgsqlCommand(studentQuery, myCon))
                     {
                         studentCommand.Parameters.AddWithValue("@StudentID", user.Studentid);
-                        studentCommand.Parameters.AddWithValue("@University", user.University);
-                        studentCommand.Parameters.AddWithValue("@Miles", user.Miles);
+                        studentCommand.Parameters.AddWithValue("@University", user.University ?? (object)DBNull.Value);
+                        studentCommand.Parameters.AddWithValue("@Miles", user.Miles ?? (object)DBNull.Value);
                         studentCommand.Parameters.AddWithValue("@Uemail", user.Email);
 
                         await studentCommand.ExecuteNonQueryAsync();
