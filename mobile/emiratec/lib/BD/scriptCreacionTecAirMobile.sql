@@ -130,15 +130,58 @@ SELECT * FROM FLIGHT;
 SELECT * FROM USERW;
 SELECT * FROM PROMO;
 SELECT * FROM STOP;
-
+SELECT * FROM AIRPORT;
+SELECT * FROM PASSENGER;
+SELECT * FROM PLANE;
 
 INSERT INTO USERW (Fname, Mname, Lname1, Lname2, Unumber, Email, Upassword) VALUES ('Saul', 'Ernesto', 'Monge', 'Mora', '88885555', 'monge@gmail.com', '9876')
+-- INSERT INTO PROMO (Fno, Image, Dpercent, Final_date) 
+-- VALUES ('1', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Cancun_Strand_Luftbild_%2822143397586%29.jpg/268px-Cancun_Strand_Luftbild_%2822143397586%29.jpg','15','2023-11-27');
 
 -- seleccionar el usuario si existe
 -- sino hacer el registro de usuario
 --SELECT Fname, Lname1 FROM USERW WHERE Email = ? [Uemail]
 
+SELECT 
+      F.Fnumber, 
+      F.Price, 
+      F.Fdate, 
+      F.Fstate, 
+      F.Pid,
+      A1.Aname as OriginAirportName,   -- Datos del aeropuerto de origen
+      A2.Aname as DestinationAirportName  -- Datos del aeropuerto de destino
+    FROM 
+      FLIGHT F
+      INNER JOIN AIRPORT A1 ON F.Ffrom = A1.AirportID  -- Unión con la tabla AIRPORT para el origen
+      INNER JOIN AIRPORT A2 ON F.Fto = A2.AirportID  -- Unión con la tabla AIRPORT para el destino
+    WHERE 
+      A1.Aname = 'Aeropuerto Juan Santamaría' AND A2.Aname = 'Aeropuerto La Aurora';  -- Filtrar basado en los nombres de los aeropuertos
 
 
-
+-- seleccionar vuelos
+SELECT 
+    f.Fnumber,
+    s.StopID,
+    a1.City AS sfromCity,
+    a2.City AS StoCity,
+    a2.Image AS StoImage,
+    strftime('%Y-%m-%d', f.Fdate) AS fdate,
+    f.Price AS Fprice
+FROM FLIGHT f
+JOIN STOP s ON f.Fnumber = s.Fno
+JOIN AIRPORT a1 ON s.Sfrom = a1.AirportID
+JOIN AIRPORT a2 ON s.Sto = a2.AirportID
+LEFT JOIN PASSENGER pas ON pas.Fno = f.Fnumber
+LEFT JOIN PLANE p ON p.PlaneID = f.Pid
+WHERE 
+    s.Sfrom = '1' AND
+    s.Sto = '2' AND
+    f.Fstate = 1 AND
+    (
+       (s.Sdate = date('now') AND s.Departure_hour > time('now', '+2 hours'))
+       OR 
+       s.Sdate > date('now')
+    ) AND
+    (SELECT COUNT(*) FROM PASSENGER WHERE Fno = f.Fnumber) < p.Capacity
+GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price;
 

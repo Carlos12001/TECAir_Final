@@ -1,14 +1,13 @@
-import 'dart:ffi';
 import 'package:emiratec/BD/database_service.dart';
+import 'package:emiratec/BD/todo_db.dart';
 import 'package:emiratec/components/ads_home_page.dart';
 import 'package:emiratec/components/class_selection.dart';
 import 'package:emiratec/components/promotions_home_page.dart';
 import 'package:emiratec/components/reservation_page.dart';
-import 'package:emiratec/objects/Airport.dart';
+import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:emiratec/screens/scheduled.dart';
 import 'package:flutter/material.dart';
-import 'package:emiratec/screens/login.dart';
 import 'package:emiratec/screens/profile.dart';
 
 void main() {
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Emiratec'),
-      //home: Login(),
     );
   }
 }
@@ -47,16 +45,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 3;
+
   String? selectedOrigin;
+
   String? selectedDestination;
+
   classSelection seatSelection = classSelection();
+
   final dbService = DatabaseService();
 
-  //Obtener listas de promos y nombres de aeropuertos 
   List<Promotion> promo = [];
+
   List<String> airportsNames = [];
 
-  /// The function updates the selected index and triggers a state change.
+  int? selectedOriginID;
+
+  int? selectedDestinationID;
+
+  /// The function updates the selected index and triggers a state change in the widget.
   ///
   /// Args:
   ///   index (int): The index parameter represents the index of the item that was tapped. It is used to
@@ -68,12 +74,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  /// The initState function is called when the widget is first created and it calls the _loadInitialData
+  /// function.
   @override
   void initState() {
     super.initState();
     _loadInitialData();
   }
 
+  /// The function `_loadInitialData` loads initial promotions and airport names from a database and
+  /// updates the state with the retrieved data.
   _loadInitialData() async {
     List<Promotion> initialPromos = await dbService.getPromotions();
     List<String> initialAirports = await dbService.getAirportsNames();
@@ -81,9 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
       promo = initialPromos;
       airportsNames = initialAirports;
     });
-    print(promo);
   }
 
+  /// The function `_updateData()` retrieves updated promotions from a database service and updates the
+  /// state with the new data.
   _updateData() async {
     List<Promotion> updatedPromos = await dbService.getPromotions();
     setState(() {
@@ -91,10 +102,21 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _getFlight(String origin, String destination){
-    
-  }
+//   Future<List<Map<String, dynamic>>> getAirports() async {
+//   final db = await database;
+//   return await TodoDB().fetchAirports(db);
+// }
 
+
+  /// This function builds a Scaffold widget with an AppBar, a bottomNavigationBar, and a body that
+  /// displays different widgets based on the selected index.
+  ///
+  /// Args:
+  ///   context (BuildContext): The `context` parameter is a reference to the current build context. It is
+  /// typically used to access the theme, localization, and other information related to the widget tree.
+  ///
+  /// Returns:
+  ///   The `build` method is returning a `Scaffold` widget.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,7 +134,13 @@ class _MyHomePageState extends State<MyHomePage> {
         homePage(promo),
         flightSearchBar(),
         Scheduled(),
-        Profile()
+        Profile(
+          onVerified: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        )
       ][_selectedIndex],
     );
   }
@@ -144,7 +172,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               items: airportsNames.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
-                                  child: Text(value, style: TextStyle(fontSize: 14)),
+                                  child: Text(value,
+                                      style: const TextStyle(fontSize: 14)),
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
@@ -168,7 +197,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               items: airportsNames.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
-                                  child: Text(value, style: TextStyle(fontSize: 14),),
+                                  child: Text(
+                                    value,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
@@ -194,16 +226,28 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (selectedOrigin != null && selectedDestination != null) {
+                List<Map<String, dynamic>> availableFlights =
+                    await DatabaseService().getAvailableFlights(
+                        selectedOrigin!, selectedDestination!);
+                List<Flight> flightsList =
+                    availableFlights.map((map) => Flight.fromMap(map)).toList();
+                print(availableFlights);
+                // Ahora puedes usar 'flightsList' para mostrar los resultados en la siguiente pantalla o hacer lo que necesites con la lista de vuelos disponibles.
+                // Por ejemplo, podrías pasar 'flightsList' a la página 'reservationPage'.
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => reservationPage(
-                          title: "Reservación",
-                          origin: selectedOrigin!,
-                          destination: selectedDestination!,
-                          seatType_: seatSelection.getType()!)),
+                    builder: (context) => reservationPage(
+                      title: "Reservación",
+                      origin: selectedOrigin!,
+                      destination: selectedDestination!,
+                      seatType_: seatSelection.getType()!,
+                      availableFlights: flightsList,
+                    ),
+                  ),
                 );
               }
             },
@@ -223,9 +267,9 @@ class _MyHomePageState extends State<MyHomePage> {
         const Divider(),
         ElevatedButton(
             onPressed: () async {
-             _updateData();
+              _updateData();
             },
-            child: Text("Actualizar promos")),
+            child: const Text("Actualizar promos")),
         promotionsHomePage(promoss),
       ],
     );

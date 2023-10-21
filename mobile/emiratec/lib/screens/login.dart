@@ -36,9 +36,9 @@ class LoginState extends State<Login> {
             stops: [0.0, 0.4, 1.0],
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
                 horizontal: 40.0), // Add padding to left and right
             child: Column(
               mainAxisAlignment:
@@ -74,6 +74,8 @@ class LoginState extends State<Login> {
 }
 
 class FloatingLoginBox extends StatefulWidget {
+  const FloatingLoginBox({super.key});
+
   @override
   _FloatingLoginBoxState createState() => _FloatingLoginBoxState();
 }
@@ -85,7 +87,7 @@ class _FloatingLoginBoxState extends State<FloatingLoginBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16.0),
@@ -94,7 +96,7 @@ class _FloatingLoginBoxState extends State<FloatingLoginBox> {
             color: Colors.black.withOpacity(0.1),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -103,46 +105,45 @@ class _FloatingLoginBoxState extends State<FloatingLoginBox> {
         children: [
           TextField(
             controller: emailController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Email',
               border: OutlineInputBorder(),
             ),
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           TextField(
             controller: passwordController,
             obscureText: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Password',
               border: OutlineInputBorder(),
             ),
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(width: 15.0),
+              const SizedBox(width: 15.0),
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    print("Email: ${emailController.text}");
-                    print("Password: ${passwordController.text}");
+                    
                   },
-                  child: Text('Login'),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  child: const Text('Login'),
                 ),
               ),
-              SizedBox(width: 30.0),
+              const SizedBox(width: 30.0),
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
                     // Code for signing in can be added here.
                   },
-                  child: Text('Sign In'),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  child: const Text('Sign In'),
                 ),
               ),
-              SizedBox(width: 15.0),
+              const SizedBox(width: 15.0),
             ],
           ),
         ],

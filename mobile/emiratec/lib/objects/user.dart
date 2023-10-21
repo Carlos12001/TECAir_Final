@@ -2,22 +2,21 @@
 /// number, email, university, student ID, and miles.
 class User {
   String Fname;
-  String Sname;
+  String? Sname;
   String FLname;
   String SLname;
   int Pnumber;
   String email;
   String upassword;
 
-  User({
-    required this.Fname,
-    required this.Sname,
-    required this.FLname,
-    required this.SLname,
-    required this.Pnumber,
-    required this.email,
-    required this.upassword
-  });
+  User(
+      {required this.Fname,
+      this.Sname,
+      required this.FLname,
+      required this.SLname,
+      required this.Pnumber,
+      required this.email,
+      required this.upassword});
 
   // Convertir un objeto User a un Map
   Map<String, dynamic> toMap() {
@@ -29,25 +28,18 @@ class User {
       'Unumber': Pnumber,
       'Email': email,
       'Upassword': upassword
-      //'university': university, // verificar  
-      //'studentId': studentId, //verificar
-      //'miles': miles // verificar
     };
   }
 
   // Convertir un Map a un objeto User
   static User fromMap(Map<String, dynamic> map) {
     return User(
-      Fname: map['Fname'],
-      Sname: map['Sname'],
-      FLname: map['FLname'],
-      SLname: map['SLname'],
-      Pnumber: map['Pnumber'],
-      email: map['Email'],
-      upassword: map['Upassword']
-      //university: map['university'],
-      //studentId: map['studentId'] != null ? map['studentId'] : null,
-      //miles: map['miles'] != null ? map['miles'] : null
-    );
+        Fname: map['Fname'],
+        Sname: map['Mname'],
+        FLname: map['Lname1'],
+        SLname: map['Lname2'],
+        Pnumber: int.parse(map['Unumber']),
+        email: map['Email'],
+        upassword: map['Upassword']);
   }
 }

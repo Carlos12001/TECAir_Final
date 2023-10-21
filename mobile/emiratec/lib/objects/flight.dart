@@ -1,51 +1,33 @@
 import 'package:emiratec/components/class_selection.dart';
 
 class Flight {
-  String origin;
-  String destination;
-  int noFlight;
-  String departureHour;
-  String arrivalHour;
-  int price;
-  DateTime date;
+  String sfromCity;
+  String stoCity;
+  String stoImage;
+  int fNumber;
+  DateTime fdate;
+  int fPrice;
   String? selectedSeat;
   seatType? selectedSeatType;
 
   Flight({
-    required this.origin,
-    required this.destination,
-    required this.noFlight,
-    required this.arrivalHour,
-    required this.departureHour,
-    required this.date,
-    required this.price,
+    required this.fNumber,
+    required this.sfromCity,
+    required this.stoCity,
+    required this.stoImage,
+    required this.fdate,
+    required this.fPrice,
   });
-
-  // Convertir un objeto Flight a un Map
-  Map<String, dynamic> toMap() {
-    return {
-      'Ffrom': origin,
-      'Fto': destination,
-      'Fnumber': noFlight,
-      'departureHour': departureHour,
-      'arrivalHour': arrivalHour,
-      'Price': price,
-      'Fdate': date.toIso8601String(),
-      'selectedSeat': selectedSeat,
-      'selectedSeatType': selectedSeatType?.toString()
-    };
-  }
 
   // Convertir un Map a un objeto Flight
   static Flight fromMap(Map<String, dynamic> map) {
     return Flight(
-      origin: map['origin'],
-      destination: map['destination'],
-      noFlight: map['noFlight'],
-      departureHour: map['departureHour'],
-      arrivalHour: map['arrivalHour'],
-      date: DateTime.parse(map['date']),
-      price: map['price'],
+      fNumber: map['Fnumber'],
+      sfromCity: map['sfromCity'],
+      stoCity: map['StoCity'],
+      stoImage: map['StoImage'],
+      fdate: DateTime.parse(map['fdate']),
+      fPrice: map['Fprice'],
     )..selectedSeat = map['selectedSeat']
      ..selectedSeatType = map['selectedSeatType'] != null ? seatType.values.firstWhere((e) => e.toString() == map['selectedSeatType']) : null;
   }

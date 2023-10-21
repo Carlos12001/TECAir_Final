@@ -53,35 +53,35 @@ Expanded flightListview(List<Flight>? flightList, seatType seatType_) {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  "Fecha: ${currentFlight.date}",
+                                  "Fecha: ${currentFlight.fdate}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
                                   style:
                                       const TextStyle(color: Color(0xFFfdfcfc)),
                                 ),
                                 Text(
-                                  "Hora salida: ${currentFlight.departureHour}",
+                                  "Ciudad de salida: ${currentFlight.sfromCity}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
                                   style:
                                       const TextStyle(color: Color(0xFFfdfcfc)),
                                 ),
                                 Text(
-                                  "Hora llegada: ${currentFlight.arrivalHour}",
+                                  "Ciudad de llegada: ${currentFlight.stoCity}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
                                   style:
                                       const TextStyle(color: Color(0xFFfdfcfc)),
                                 ),
                                 Text(
-                                  "No. de vuelo: ${currentFlight.noFlight}",
+                                  "No. de vuelo: ${currentFlight.fNumber}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
                                   style:
                                       const TextStyle(color: Color(0xFFfdfcfc)),
                                 ),
                                 Text(
-                                  "Precio: \$${currentFlight.price}",
+                                  "Precio: \$${currentFlight.fPrice}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
                                   style:

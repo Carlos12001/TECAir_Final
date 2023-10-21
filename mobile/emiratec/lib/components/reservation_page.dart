@@ -6,16 +6,19 @@ import 'package:flutter/material.dart';
 /// The `reservationPage` class is a stateful widget that displays the details of a movie, including its
 /// title and information about the movie itself.
 class reservationPage extends StatefulWidget {
-  const reservationPage(
+  reservationPage(
       {super.key,
       required this.title,
       required this.origin,
-      required this.destination, required this.seatType_});
+      required this.destination,
+      required this.seatType_,
+      required this.availableFlights});
 
   final String title;
   final String origin;
   final String destination;
   final seatType seatType_;
+  List<Flight> availableFlights;
 
   @override
   State<reservationPage> createState() => _reservationPageState();
@@ -27,8 +30,6 @@ class _reservationPageState extends State<reservationPage> {
   // TODO agregar lectura de la BD
   List<String> times = ["10:00", '15:00', '22:00'];
   String? selectedTime;
-  List<Flight> listaVuelos =[Flight(origin: "SJO", destination: "FRA", noFlight: 400, arrivalHour: "12:30", departureHour: "05:00", date: DateTime.now(), price: 1220),
-  Flight(origin: "SJO", destination: "FRA", noFlight: 500, arrivalHour: "18:30", departureHour: "08:00", date: DateTime.now(), price: 220)];
 
   /// The `_showErrorDialog` function displays an error dialog with a title, content, and an OK button
   /// that closes the dialog when pressed.
@@ -88,7 +89,7 @@ class _reservationPageState extends State<reservationPage> {
               // ),
               Container(
                 color: const Color(0xFF404040),
-                child:  Center(
+                child: Center(
                     child: Text(
                   "Vuelos ${widget.origin} -> ${widget.destination}",
                   style: TextStyle(
@@ -98,8 +99,7 @@ class _reservationPageState extends State<reservationPage> {
                 )),
               ),
               //listview de los vueslo que cumplen con las fechas y destinos
-              flightListview(listaVuelos, widget.seatType_),
-
+              flightListview(widget.availableFlights, widget.seatType_),
             ],
           )),
     );

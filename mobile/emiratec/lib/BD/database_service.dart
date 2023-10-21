@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:emiratec/BD/todo_db.dart';
 import 'package:emiratec/objects/Airport.dart';
 import 'package:emiratec/objects/flight.dart';
@@ -56,10 +55,10 @@ class DatabaseService {
     await TodoDB().insertPromotion(db, promotion);
   }
 
-  Future<void> insertFlight(Flight flight) async {
-    final db = await database;
-    await TodoDB().insertFlight(db, flight);
-  }
+  // Future<void> insertFlight(Flight flight) async {
+  //   final db = await database;
+  //   await TodoDB().insertFlight(db, flight);
+  // }
 
   Future<void> insertLayover(Layover layover) async {
     final db = await database;
@@ -92,5 +91,15 @@ class DatabaseService {
 
     return airportMaps.map((airport) => airport['City'] as String).toList();
     // 'Aname' es solo un ejemplo. Ajusta según el nombre correcto de la columna que contiene los nombres de los aeropuertos.
+  }
+
+  Future<User?> getUserByEmailAndPassword(String email, String password) async {
+    final db = await database;
+    return await TodoDB().getUserByEmailAndPassword(db, email, password);
+  }
+
+   Future<List<Map<String, dynamic>>> getAvailableFlights(String sfrom, String sto) async {
+    final db = await database;
+    return await TodoDB().fetchAvailableFlights(db, sfrom, sto);
   }
 }
