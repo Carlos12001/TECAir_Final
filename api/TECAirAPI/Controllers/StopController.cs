@@ -4,6 +4,7 @@ using Npgsql;
 using System.Data;
 using TECAirAPI.Dtos;
 using TECAirAPI.Models;
+using TECAirAPI.Functions;
 
 namespace TECAirAPI.Controllers
 {
@@ -11,6 +12,7 @@ namespace TECAirAPI.Controllers
     [ApiController]
     public class StopController : ControllerBase
     {
+        SQLfn sqlfn = new SQLfn();
         private readonly TecairContext _context;
         private readonly IConfiguration _configuration;
 
@@ -28,6 +30,31 @@ namespace TECAirAPI.Controllers
                  SELECT *
                  FROM STOP
             ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+        [HttpGet]
+        [Route("stop/available")]
+        public JsonResult GetStops()
+        {
+            string query = sqlfn.AvailableS();
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TECAir");

@@ -28,8 +28,8 @@ namespace TECAirAPI.Controllers
         public JsonResult Get()
         {
             string query = @"
-                 SELECT *
-                 FROM FLIGHT
+                 SELECT fnumber, ffrom, fto, price, to_char(fdate, 'YYYY-MM-DD') AS fdate, fstate, pid
+	             FROM FLIGHT;
             ";
 
             DataTable table = new DataTable();
@@ -55,7 +55,7 @@ namespace TECAirAPI.Controllers
         [Route("flight/available")]
         public JsonResult GetFlights()
         {
-            string query = sqlfn.Available(); // SQL function stored in SQLfn class to get available flights
+            string query = sqlfn.AvailableF(); // SQL function stored in SQLfn class to get available flights
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TECAir");
@@ -76,6 +76,31 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+        [HttpGet]
+        [Route("flight/{number}")]
+        public JsonResult GetFlight(int number)
+        {
+            string query = sqlfn.SpecificFlight(); // SQL function stored in SQLfn class to get all stops from a flight 
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@fnumber", number);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
 
         [HttpPut]
         [Route("flight/state")]
@@ -160,6 +185,65 @@ namespace TECAirAPI.Controllers
             }
 
             return new JsonResult("Vuelo aÃ±adido");
+        }
+
+        [HttpPost]
+        [Route("flight/fromto")]
+        public JsonResult PostFromTo(FlightSearchDto search)
+        {
+            string query = sqlfn.Fromto(); // SQL function stored in SQLfn class to flights that go from to 
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@sfrom", search.SfromairportID);
+                    myCommand.Parameters.AddWithValue("@sto", search.StoairportID);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+
+        [HttpPost] 
+        [Route("flight/passenger")]
+        public async Task<ActionResult<IEnumerable<FlightDto>>> GetFlightsByPassenger([FromBody] EmailDto emailDto)
+        {
+            if (string.IsNullOrEmpty(emailDto?.Email))
+            {
+                return BadRequest("El correo electrónico es necesario.");
+            }
+
+            // Crear consulta SQL para obtener vuelos
+            string query = sqlfn.PassengerFlights(emailDto.Email);
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
         }
 
         // DELETE: api/flight/400
