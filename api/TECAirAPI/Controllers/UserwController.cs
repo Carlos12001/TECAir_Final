@@ -30,8 +30,12 @@ namespace TECAirAPI.Controllers
         public JsonResult Get()
         {
             string query = @"
-                 SELECT *
-                 FROM USERW
+                 SELECT U.*, A.adminid, S.studentid, S.university, S.miles
+                 FROM USERW AS U
+                 LEFT JOIN STUDENT AS S
+                 ON U.Email = S.Uemail
+                 LEFT JOIN AIRADMIN AS A 
+                 ON U.Email = A.Uemail
             ";
 
             DataTable table = new DataTable();
