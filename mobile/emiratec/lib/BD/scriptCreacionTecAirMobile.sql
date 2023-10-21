@@ -126,6 +126,19 @@ CREATE TABLE USER_STOP
     FOREIGN KEY (Sid) REFERENCES STOP(StopID)
 );
 
-SELECT * FROM FLIGHT
+SELECT * FROM FLIGHT;
+SELECT * FROM USERW;
+SELECT * FROM PROMO;
+SELECT * FROM STOP;
 
-SELECT * FROM USERW
+
+INSERT INTO USERW (Fname, Mname, Lname1, Lname2, Unumber, Email, Upassword) VALUES ('Saul', 'Ernesto', 'Monge', 'Mora', '88885555', 'monge@gmail.com', '9876')
+
+-- seleccionar el usuario si existe
+-- sino hacer el registro de usuario
+--SELECT Fname, Lname1 FROM USERW WHERE Email = ? [Uemail]
+
+
+
+
+

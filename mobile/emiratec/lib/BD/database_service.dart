@@ -90,10 +90,6 @@ class DatabaseService {
     List<Map<String, dynamic>> airportMaps =
         await TodoDB().fetchAirportsNames(db);
 
-    print("-----");
-    print(airportMaps);
-    print("-----");
-
     return airportMaps.map((airport) => airport['City'] as String).toList();
     // 'Aname' es solo un ejemplo. Ajusta según el nombre correcto de la columna que contiene los nombres de los aeropuertos.
   }

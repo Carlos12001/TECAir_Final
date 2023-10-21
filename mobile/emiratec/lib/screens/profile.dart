@@ -1,3 +1,5 @@
+import 'package:emiratec/BD/database_service.dart';
+import 'package:emiratec/objects/user.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -68,6 +70,9 @@ class _UserInfoBoxState extends State<UserInfoBox> {
   final secondLastNameController = TextEditingController();
   final telController = TextEditingController();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final sign_in_emailController = TextEditingController();
+  final sign_in_passwordController = TextEditingController();
   final universityController = TextEditingController();
   final studentIDController = TextEditingController();
   final milesController = TextEditingController();
@@ -81,9 +86,12 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     secondLastNameController.dispose();
     telController.dispose();
     emailController.dispose();
+    passwordController.dispose();
     universityController.dispose();
     studentIDController.dispose();
     milesController.dispose();
+    sign_in_emailController.dispose();
+    sign_in_passwordController.dispose();
     super.dispose();
   }
 
@@ -106,6 +114,22 @@ class _UserInfoBoxState extends State<UserInfoBox> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            //---------
+            Container(
+              color: Colors.lightBlue[200],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    readOnlyTextField("Email", sign_in_emailController),
+                    readOnlyTextField("Contraseña", sign_in_passwordController),
+                    ElevatedButton(onPressed: (){}, child: Text('Iniciar sesión'))
+                  ],
+                ),
+              ),
+            ),
+            Divider(),
+            //------------
             readOnlyTextField("First Name", firstNameController),
             readOnlyTextField("Middle Name", middleNameController),
             Row(
@@ -121,6 +145,7 @@ class _UserInfoBoxState extends State<UserInfoBox> {
             ),
             readOnlyTextField("Tel", telController),
             readOnlyTextField("Email", emailController),
+            readOnlyTextField("Contraseña", passwordController),
             readOnlyTextField("Universidad", universityController),
             Row(
               children: [
@@ -141,16 +166,29 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     );
   }
 
-  void _printValues() {
-    print("First Name: ${firstNameController.text}");
-    print("Middle Name: ${middleNameController.text}");
-    print("First Lastname: ${firstLastNameController.text}");
-    print("Second Lastname: ${secondLastNameController.text}");
-    print("Tel: ${telController.text}");
-    print("Email: ${emailController.text}");
-    print("Universidad: ${universityController.text}");
-    print("ID de Estudiante: ${studentIDController.text}");
-    print("Millas: ${milesController.text}");
+  Future<void> _printValues() async {
+    // final dbService = DatabaseService();
+    // dbService.insertUser(User(
+    //     Fname: firstNameController.text,
+    //     Sname: middleNameController.text,
+    //     FLname: firstLastNameController.text,
+    //     SLname: secondLastNameController.text,
+    //     Pnumber: int.parse(telController.text),
+    //     email: emailController.text,
+    //     upassword: passwordController.text));
+    // List<String> prueba = await dbService.getAirportsNames();
+    // print(prueba);
+    // print("First Name: ${firstNameController.text}");
+    // print("Middle Name: ${middleNameController.text}");
+    // print("First Lastname: ${firstLastNameController.text}");
+    // print("Second Lastname: ${secondLastNameController.text}");
+    // print("Tel: ${telController.text}");
+    // print("Email: ${emailController.text}");
+    // print("Universidad: ${universityController.text}");
+    // print("ID de Estudiante: ${studentIDController.text}");
+    // print("Millas: ${milesController.text}");
+    print(sign_in_emailController.text);
+    print(sign_in_passwordController.text);
   }
 
   Widget readOnlyTextField(String title, TextEditingController controller) {

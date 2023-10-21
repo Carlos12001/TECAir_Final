@@ -7,9 +7,7 @@ class User {
   String SLname;
   int Pnumber;
   String email;
-  String? university;
-  int? studentId;
-  int? miles;
+  String upassword;
 
   User({
     required this.Fname,
@@ -18,23 +16,22 @@ class User {
     required this.SLname,
     required this.Pnumber,
     required this.email,
-    this.university,
-    this.studentId,
-    this.miles,
+    required this.upassword
   });
 
   // Convertir un objeto User a un Map
   Map<String, dynamic> toMap() {
     return {
       'Fname': Fname,
-      'Sname': Sname,
-      'FLname': FLname,
-      'SLname': SLname,
-      'Pnumber': Pnumber,
-      'email': email,
-      'university': university,
-      'studentId': studentId,
-      'miles': miles
+      'Mname': Sname,
+      'Lname1': FLname,
+      'Lname2': SLname,
+      'Unumber': Pnumber,
+      'Email': email,
+      'Upassword': upassword
+      //'university': university, // verificar  
+      //'studentId': studentId, //verificar
+      //'miles': miles // verificar
     };
   }
 
@@ -46,10 +43,11 @@ class User {
       FLname: map['FLname'],
       SLname: map['SLname'],
       Pnumber: map['Pnumber'],
-      email: map['email'],
-      university: map['university'],
-      studentId: map['studentId'] != null ? map['studentId'] : null,
-      miles: map['miles'] != null ? map['miles'] : null
+      email: map['Email'],
+      upassword: map['Upassword']
+      //university: map['university'],
+      //studentId: map['studentId'] != null ? map['studentId'] : null,
+      //miles: map['miles'] != null ? map['miles'] : null
     );
   }
 }

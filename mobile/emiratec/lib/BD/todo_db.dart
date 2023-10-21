@@ -31,8 +31,8 @@ class TodoDB {
     await database.insert('STOP', map);
   }
 
-  Future<void> insertUser(Database database, User promotion) async {
-    final map = promotion.toMap();
+  Future<void> insertUser(Database database, User newUser) async {
+    final map = newUser.toMap();
     await database.insert('USERW', map);
   }
 
