@@ -76,6 +76,33 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+
+        [HttpGet]
+        [Route("flight/promotions")]
+        public JsonResult GetFPromos()
+        {
+            string query = sqlfn.FPromotions(); // SQL function stored in SQLfn class to get available flights with promotion percentage
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+
         [HttpGet]
         [Route("flight/{number}")]
         public JsonResult GetFlight(int number)

@@ -181,5 +181,40 @@ namespace TECAirAPI.Functions
             // Inyeccion sql posible jeje.
             return string.Format(passengerflightsTemplate, email); // Esto inserta el email en la consulta.
         }
+
+        private static string flightspromotions = @"
+			SELECT 
+				f.Fnumber,
+				s.StopID,
+				a1.City AS sfromCity,
+				a2.City AS stoCity,
+				a2.Image AS stoImage,
+				to_char(f.Fdate, 'YYYY-MM-DD') AS fdate,
+				f.Price AS Fprice,
+				COALESCE(pr.dpercent, 0) AS depercent  -- Usamos COALESCE para manejar los nulos
+			FROM FLIGHT f
+			JOIN STOP s ON f.Fnumber = s.Fno
+			JOIN AIRPORT a1 ON s.Sfrom = a1.AirportID
+			JOIN AIRPORT a2 ON s.Sto = a2.AirportID
+			LEFT JOIN PASSENGER pas ON pas.Fno = f.Fnumber
+			LEFT JOIN PLANE p ON p.PlaneID = f.Pid
+			LEFT JOIN PROMO pr ON pr.Fno = f.Fnumber  -- Usamos el correcto nombre de la tabla
+			WHERE 
+				f.Fstate = true AND
+				(
+				   (s.Sdate = CURRENT_DATE AND s.Departure_hour > (CURRENT_TIME + INTERVAL '2 hour'))
+				   OR 
+				   s.Sdate > CURRENT_DATE
+				) AND
+				(SELECT COUNT(*) FROM PASSENGER WHERE Fno = f.Fnumber) < p.Capacity
+			GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price, pr.dpercent;
+		";
+
+
+        public string FPromotions()
+        {
+            return flightspromotions;
+        }
+
     }
 }
