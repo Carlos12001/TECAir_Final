@@ -5,6 +5,7 @@ import { seeFlightSelected } from '../../models/see-flight.model';
 import { searchStopSelected } from '../../models/search-stop.model';
 import { stop } from '../../models/stop.model';
 import { student } from '../../models/student.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -14,7 +15,7 @@ import { student } from '../../models/student.model';
 export class CheckoutComponent {
   public pdfData: PDF;
 
-  constructor(private pdfService: PdfService) {
+  constructor(private router: Router, private pdfService: PdfService) {
     this.pdfData = new PDF(
       '',
       '',
@@ -32,7 +33,8 @@ export class CheckoutComponent {
       '',
       '',
       0,
-      ''
+      '',
+      0
     );
   }
 
@@ -49,19 +51,36 @@ export class CheckoutComponent {
     this.pdfData.sfromcity = seeFlightSelected.sfromcity;
     this.pdfData.stocity = seeFlightSelected.stocity;
 
-    this.pdfData.sdate = stop.sdate;
+    this.pdfData.sdate = seeFlightSelected.fdate;
     this.pdfData.departurehour = stop.departurehour;
     this.pdfData.arrivalhour = stop.arrivalhour;
-    this.pdfData.fno = stop.fno;
+    this.pdfData.fno = seeFlightSelected.fnumber;
 
     this.pdfData.studentid = student.studentid;
     this.pdfData.university = userLogged.university;
     this.pdfData.miles = userLogged.miles;
     this.pdfData.uemail = student.uemail;
+    if ('depercent' in seeFlightSelected && seeFlightSelected.depercent) {
+      this.pdfData.finalprice =
+        (1 - seeFlightSelected.depercent / 100) * seeFlightSelected.fprice;
+      window.alert(
+        'Encontramos un descuento del ' +
+          seeFlightSelected.depercent +
+          '% de ahorro.\n El precio regular es: ' +
+          seeFlightSelected.fprice +
+          ' USD \n El precio final con descuento es: ' +
+          (1 - (seeFlightSelected.depercent || 0) / 100) *
+            seeFlightSelected.fprice +
+          ' USD'
+      );
+    } else {
+      this.pdfData.finalprice = seeFlightSelected.fprice;
+    }
 
     console.log('Modified PDF Data (onConfirm):', this.pdfData);
 
     // Enviamos el objeto pdfData al servicio
     this.pdfService.setPdfData(this.pdfData);
+    this.router.navigate(['/generate-pdf']);
   }
 }

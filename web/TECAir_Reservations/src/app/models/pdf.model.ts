@@ -20,6 +20,7 @@ export class PDF {
   university: string;
   miles: number;
   uemail: string;
+  finalprice: number;
 
   constructor(
     email: string,
@@ -36,11 +37,11 @@ export class PDF {
     departurehour: string,
     arrivalhour: string,
     fno: number,
-
     studentid: string,
     university: string,
     miles: number,
-    uemail: string
+    uemail: string,
+    finalprice: number
   ) {
     this.email = email;
     this.unumber = unumber;
@@ -59,6 +60,7 @@ export class PDF {
     this.university = university;
     this.miles = miles;
     this.uemail = uemail;
+    this.finalprice = finalprice;
   }
 }
 
@@ -80,6 +82,7 @@ export const pdf = {
   university: '',
   miles: 0,
   uemail: '',
+  finalprice: 0,
 };
 
 @Injectable({

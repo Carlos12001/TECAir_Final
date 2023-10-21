@@ -90,15 +90,15 @@ export class SeeFlightsComponent implements OnInit {
   }
 
   reserveFlight(flight: SeeFlight): void {
-    if (
-      searchStopSelected.sfromairportid == 0 ||
-      searchStopSelected.stoairportid == 0 ||
-      searchStopSelected.sfromcity == '' ||
-      searchStopSelected.stocity == ''
-    ) {
-      window.alert('TIENES QUE BUSCAR UN ORIGEN Y DESTINO!!');
-      return;
-    }
+    // if (
+    //   searchStopSelected.sfromairportid == 0 ||
+    //   searchStopSelected.stoairportid == 0 ||
+    //   searchStopSelected.sfromcity == '' ||
+    //   searchStopSelected.stocity == ''
+    // ) {
+    //   window.alert('TIENES QUE BUSCAR UN ORIGEN Y DESTINO!!');
+    //   return;
+    // }
     console.log('Reserving flight: ', flight);
     seeFlightSelected.fnumber = flight.fnumber;
     seeFlightSelected.stopid = flight.stopid;
