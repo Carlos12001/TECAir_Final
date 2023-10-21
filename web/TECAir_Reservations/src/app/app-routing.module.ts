@@ -12,6 +12,7 @@ import { DisplayCheckoutComponent } from './components/display-checkout/display-
 import { DisplayConfirmationComponent } from './components/display-confirmation/display-confirmation.component';
 import { SeeFlightsComponent } from './components/see-flights/see-flights.component';
 import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
+import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'display-checkout', component: DisplayCheckoutComponent },
   { path: 'display-confirmation', component: DisplayConfirmationComponent },
   { path: 'generate-pdf', component: GeneratepdfComponent },
+  { path: 'display-promotions', component: DisplayPromotionsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];

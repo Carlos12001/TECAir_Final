@@ -42,7 +42,7 @@ export class SeeFlightsComponent implements OnInit {
       .subscribe((data) => {
         if (data) {
           this.fetchFlightsWithSelection(data);
-          console.log(data);
+          // console.log(data);
         } else {
           this.fetchFlightsNoSelection();
         }
@@ -56,7 +56,7 @@ export class SeeFlightsComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching flights:', error);
-        // this.seeFlights = seeFlights;
+        this.seeFlights = seeFlights;
       },
       complete: () => {
         console.log('Finished Flights fetched');
@@ -71,16 +71,17 @@ export class SeeFlightsComponent implements OnInit {
         searchStop.stoairportid
       )
       .subscribe({
-        next: (data) => {
+        next: (data: SeeFlight[]) => {
           this.seeFlights = data;
         },
         error: (error) => {
           console.error('Error fetching flights:', error);
-          // this.seeFlights = seeFlights.filter(
-          //   (seeFlight) =>
-          //     seeFlight.sfromcity === searchStop.sfromcity &&
-          //     seeFlight.stocity === searchStop.stocity
-          // );
+          this.seeFlights = seeFlights;
+          this.seeFlights = seeFlights.filter(
+            (seeFlight) =>
+              seeFlight.sfromcity === searchStop.sfromcity &&
+              seeFlight.stocity === searchStop.stocity
+          );
         },
         complete: () => {
           console.log('Finished Flights fetched');
@@ -89,15 +90,15 @@ export class SeeFlightsComponent implements OnInit {
   }
 
   reserveFlight(flight: SeeFlight): void {
-    if (
-      searchStopSelected.sfromairportid == 0 ||
-      searchStopSelected.stoairportid == 0 ||
-      searchStopSelected.sfromcity == '' ||
-      searchStopSelected.stocity == ''
-    ) {
-      window.alert('TIENES QUE BUSCAR UN ORIGEN Y DESTINO!!');
-      return;
-    }
+    // if (
+    //   searchStopSelected.sfromairportid == 0 ||
+    //   searchStopSelected.stoairportid == 0 ||
+    //   searchStopSelected.sfromcity == '' ||
+    //   searchStopSelected.stocity == ''
+    // ) {
+    //   window.alert('TIENES QUE BUSCAR UN ORIGEN Y DESTINO!!');
+    //   return;
+    // }
     console.log('Reserving flight: ', flight);
     seeFlightSelected.fnumber = flight.fnumber;
     seeFlightSelected.stopid = flight.stopid;

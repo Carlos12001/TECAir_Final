@@ -13,6 +13,7 @@ export class DisplayCheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     if (userLogged.fname == '') {
+      window.alert('Debe iniciar sesión');
       this.router.navigate(['/display-sign-in']);
     } else if (
       seeFlightSelected.fnumber == 0 ||

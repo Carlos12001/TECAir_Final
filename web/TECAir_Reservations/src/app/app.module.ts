@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DatePipe } from '@angular/common';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
@@ -27,9 +26,10 @@ import { DisplaySeatComponent } from './components/display-seat/display-seat.com
 import { DisplayCheckoutComponent } from './components/display-checkout/display-checkout.component';
 import { DisplayConfirmationComponent } from './components/display-confirmation/display-confirmation.component';
 import { GeneratepdfComponent } from './components/generatepdf/generatepdf.component';
-
 import { BaggageCreateComponent } from './components/baggage-create/baggage-create.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { PromotionsComponent } from './components/promotions/promotions.component';
+import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
 
 @NgModule({
   imports: [
@@ -64,6 +64,8 @@ import { RegisterUserComponent } from './components/register-user/register-user.
     GeneratepdfComponent,
     BaggageCreateComponent,
     RegisterUserComponent,
+    PromotionsComponent,
+    DisplayPromotionsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserLogged } from 'src/app/models/user-logged.model';
+import { ResgiterService as RegisterService } from 'src/app/services/register.service';
 
 type UserType = 'normal' | 'student' | 'admin' | null;
 
@@ -13,7 +15,11 @@ export class RegisterUserComponent implements OnInit {
   userForm!: FormGroup;
   selectedUserType: UserType = null;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private registerService: RegisterService
+  ) {}
 
   ngOnInit() {
     this.userForm = this.fb.group({
@@ -107,8 +113,31 @@ export class RegisterUserComponent implements OnInit {
   }
   onRegister(): void {
     if (this.userForm.valid) {
-      console.log(this.userForm.value); // O cualquier otra acción que desees realizar
-      this.router.navigate(['/display-sign-in']); // <--- Asegúrate de que la ruta esté escrita correctamente
+      const sendData: UserLogged = this.userForm.value;
+      if (sendData.studentid === '') {
+        sendData.studentid = null;
+        sendData.university = null;
+        sendData.miles = null;
+      }
+      if (sendData.adminid === '') {
+        sendData.adminid = null;
+      } else {
+        sendData.adminid = sendData.adminid;
+      }
+      this.registerService.postUserLogged(sendData).subscribe({
+        next: (data: any) => {
+          console.log(sendData); // O cualquier otra acción que desees realizar
+          this.router.navigate(['/display-sign-in']);
+        },
+        error: (error) => {
+          console.error('Error fetching users:', error);
+          console.log(sendData); // O cualquier otra acción que desees realizar
+          this.router.navigate(['/display-sign-in']);
+        },
+        complete: () => {
+          console.log('Finished users fetched');
+        },
+      });
     }
   }
 }
