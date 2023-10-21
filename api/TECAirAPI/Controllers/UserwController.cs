@@ -135,6 +135,85 @@ namespace TECAirAPI.Controllers
         }
 
         [HttpPost]
+        [Route("user/new")]
+        public async Task<JsonResult> Post(UserDto user)
+        {
+            // Primero, verifiquemos si el email ya existe
+            var existingEmail = await _context.Userws.FindAsync(user.Email);
+            if (existingEmail != null)
+                return new JsonResult("Ya hay un usuario existente con este correo");
+
+            // Conexión y consulta para USERW
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+
+                // Inserción en USERW
+                string query = @"
+                INSERT INTO USERW(email, upassword, unumber, fname, mname, lname1, lname2)
+                VALUES (@email, @upassword, @unumber, @fname, @mname, @lname1, @lname2);
+                ";
+
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@email", user.Email);
+                    myCommand.Parameters.AddWithValue("@upassword", user.Upassword);
+                    myCommand.Parameters.AddWithValue("@unumber", user.Unumber);
+                    myCommand.Parameters.AddWithValue("@fname", user.Fname);
+                    myCommand.Parameters.AddWithValue("@mname", user.Mname ?? (object)DBNull.Value);
+                    myCommand.Parameters.AddWithValue("@lname1", user.Lname1);
+                    myCommand.Parameters.AddWithValue("@lname2", user.Lname2);
+
+                    await myCommand.ExecuteNonQueryAsync();
+                }
+
+                // Suponiendo que el campo 'Studentid' y 'Adminid' existen en la clase Userw
+                // Inserción en STUDENT, si corresponde
+                if (!string.IsNullOrEmpty(user.Studentid))
+                {
+                    string studentQuery = @"
+                    INSERT INTO STUDENT(StudentID, University, Miles, Uemail)
+                    VALUES (@StudentID, @University, @Miles, @Uemail);
+                    ";
+
+                    using (NpgsqlCommand studentCommand = new NpgsqlCommand(studentQuery, myCon))
+                    {
+                        studentCommand.Parameters.AddWithValue("@StudentID", user.Studentid);
+                        studentCommand.Parameters.AddWithValue("@University", user.University);
+                        studentCommand.Parameters.AddWithValue("@Miles", user.Miles);
+                        studentCommand.Parameters.AddWithValue("@Uemail", user.Email);
+
+                        await studentCommand.ExecuteNonQueryAsync();
+                    }
+                }
+
+                // Inserción en AIRADMIN, si corresponde
+                if (!string.IsNullOrEmpty(user.Adminid))
+                {
+                    string adminQuery = @"
+                    INSERT INTO AIRADMIN(AdminID, Uemail)
+                    VALUES (@AdminID, @Uemail);
+                    ";
+
+                    using (NpgsqlCommand adminCommand = new NpgsqlCommand(adminQuery, myCon))
+                    {
+                        adminCommand.Parameters.AddWithValue("@AdminID", user.Adminid);
+                        adminCommand.Parameters.AddWithValue("@Uemail", user.Email);
+
+                        await adminCommand.ExecuteNonQueryAsync();
+                    }
+                }
+
+                myCon.Close();
+            }
+            // Retornar el JSON recibido como respuesta
+            return new JsonResult(user);
+
+        }
+
+
+        [HttpPost]
         [Route("user/login")]
         public async Task<JsonResult> PostLogin(LoginDto user)
         {
