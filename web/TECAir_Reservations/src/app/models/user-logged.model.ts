@@ -6,10 +6,10 @@ export interface UserLogged {
   mname: string;
   lname1: string;
   lname2: string;
-  studentid: string;
-  miles: number;
-  university: string;
-  adminid: string;
+  studentid: string | null;
+  miles: number | null;
+  university: string | null;
+  adminid: string | null;
 }
 
 export const userLogged: UserLogged = {

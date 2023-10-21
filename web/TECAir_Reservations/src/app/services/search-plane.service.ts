@@ -22,7 +22,7 @@ export class SearchPlaneService {
   constructor(private http: HttpClient) {}
 
   public getSeeFlights(): Observable<SearchStop[]> {
-    return this.http.get<SearchStop[]>(this.url + 'api/see-flights');
+    return this.http.get<SearchStop[]>(this.url + 'api/stop/available');
   }
 
   setSearchData(data: SearchStop | null) {

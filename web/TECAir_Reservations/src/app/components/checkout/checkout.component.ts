@@ -66,8 +66,12 @@ export class CheckoutComponent {
     this.pdfData.fno = seeFlightSelected.fnumber;
 
     this.pdfData.studentid = student.studentid;
-    this.pdfData.university = userLogged.university;
-    this.pdfData.miles = userLogged.miles;
+    if (userLogged.university) {
+      this.pdfData.university = userLogged.university;
+    }
+    if (userLogged.miles) {
+      this.pdfData.miles = userLogged.miles;
+    }
     this.pdfData.uemail = student.uemail;
     if ('depercent' in seeFlightSelected && seeFlightSelected.depercent) {
       this.pdfData.finalprice =

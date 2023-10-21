@@ -173,7 +173,7 @@ namespace TECAirAPI.Functions
 			INNER JOIN AIRPORT afrom ON s.Sfrom = afrom.AirportID
 			INNER JOIN AIRPORT ato ON s.Sto = ato.AirportID
 			WHERE p.Uemail = '{0}' AND
-				  f.fstate = false;
+				  f.fstate = true;
 		";
 
         public string PassengerFlights(string email)

@@ -28,11 +28,13 @@ export class SeeFlightsService {
     stoairportid: number
   ): Observable<SeeFlight[]> {
     const body = {
-      sfromairportid: sfromairportid,
-      stoairportid: stoairportid,
+      "sfromairportID": 2,
+      "stoairportID": 1
     };
 
-    return this.http.post<SeeFlight[]>(this.url + 'api/see-flights', {
+    console.log(body);
+
+    return this.http.post<SeeFlight[]>(this.url + 'api/flight/fromto', {
       ...this.httpOptions,
       body,
     });

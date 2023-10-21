@@ -42,7 +42,7 @@ export class SeeFlightsComponent implements OnInit {
       .subscribe((data) => {
         if (data) {
           this.fetchFlightsWithSelection(data);
-          console.log(data);
+          // console.log(data);
         } else {
           this.fetchFlightsNoSelection();
         }
@@ -71,7 +71,7 @@ export class SeeFlightsComponent implements OnInit {
         searchStop.stoairportid
       )
       .subscribe({
-        next: (data) => {
+        next: (data: SeeFlight[]) => {
           this.seeFlights = data;
         },
         error: (error) => {

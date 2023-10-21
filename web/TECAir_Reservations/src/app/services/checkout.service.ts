@@ -30,7 +30,7 @@ export class CheckoutService {
       stopID: stopID,
     };
 
-    return this.http.post<CreatePassenger>(this.url + 'api/see-flights', {
+    return this.http.post<CreatePassenger>(this.url + 'api/passenger/create', {
       ...this.httpOptions,
       body,
     });

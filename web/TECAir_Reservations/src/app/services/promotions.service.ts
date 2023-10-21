@@ -20,6 +20,6 @@ export class PromotionsService {
   constructor(private http: HttpClient) {}
 
   public getSeePromotions(): Observable<SeeFlight[]> {
-    return this.http.get<SeeFlight[]>(this.url + 'api/flight/available');
+    return this.http.get<SeeFlight[]>(this.url + 'api/flight/promotions');
   }
 }
