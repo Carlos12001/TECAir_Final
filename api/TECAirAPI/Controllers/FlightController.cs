@@ -187,6 +187,33 @@ namespace TECAirAPI.Controllers
             return new JsonResult("Vuelo aÃ±adido");
         }
 
+        [HttpPost]
+        [Route("flight/fromto")]
+        public JsonResult PostFromTo(FlightSearchDto search)
+        {
+            string query = sqlfn.Fromto(); // SQL function stored in SQLfn class to flights that go from to 
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@sfrom", search.SfromairportID);
+                    myCommand.Parameters.AddWithValue("@sto", search.StoairportID);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
         // DELETE: api/flight/400
         [HttpDelete]
         [Route("flight/{id}")]

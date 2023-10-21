@@ -94,5 +94,68 @@ namespace TECAirAPI.Functions
         {
             return availableS;
         }
+
+		static string fromto = @"
+						SELECT 
+				f.Fnumber,
+				s.StopID,
+				a1.City AS sfromCity,
+				a2.City AS StoCity,
+				a2.Image AS StoImage,
+				to_char(fDate, 'YYYY-MM-DD') AS fdate,
+				f.Price AS Fprice
+			FROM FLIGHT f
+			JOIN STOP s ON f.Fnumber = s.Fno
+			JOIN AIRPORT a1 ON s.Sfrom = a1.AirportID
+			JOIN AIRPORT a2 ON s.Sto = a2.AirportID
+			LEFT JOIN PASSENGER pas ON pas.Fno = f.Fnumber
+			LEFT JOIN PLANE p ON p.PlaneID = f.Pid
+			WHERE 
+				s.Sfrom = @sfrom AND
+				s.Sto = @sto AND
+				f.Fstate = true AND
+				(
+				   (s.Sdate = CURRENT_DATE AND s.Departure_hour > (CURRENT_TIME + INTERVAL '2 hour'))
+				   OR 
+				   s.Sdate > CURRENT_DATE
+				) AND
+				(SELECT COUNT(*) FROM PASSENGER WHERE Fno = f.Fnumber) < p.Capacity
+			GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price;
+		";
+
+        public string Fromto()
+        {
+            return fromto;
+        }
+
+		static string cpassenger = @"
+			INSERT INTO PASSENGER(
+				uemail, fno)
+				VALUES (@email, @fnumber);
+			
+			INSERT INTO USER_STOP(
+				uemail, sid)
+				VALUES (@email, @stopid);
+			
+			UPDATE STUDENT
+			SET Miles = Miles + 100
+			WHERE Uemail = @email AND EXISTS (SELECT 1 FROM STUDENT WHERE Uemail = @email);
+
+			SELECT U.Email, P.Pnumber, S.Departure_hour
+			FROM USERW AS U
+			JOIN PASSENGER AS P
+			ON U.Email = P.Uemail
+			JOIN FLIGHT AS F
+			ON F.Fnumber = P.Fno
+			JOIN STOP AS S
+			ON F.Fnumber = S.Fno
+			WHERE U.Email = @email AND
+				  S.StopID = @stopid
+		";
+
+        public string Cpassenger()
+        {
+            return cpassenger;
+        }
     }
 }
