@@ -50,6 +50,8 @@ export class GeneratepdfComponent implements OnInit {
         { text: `University: ${this.pdfData.university}` },
         { text: `Millas: ${this.pdfData.miles}` },
         { text: `Precio Final: ${this.pdfData.finalprice} USD` },
+        { text: `Numero de Pasajero: ${this.pdfData.pno}` },
+        { text: `Baggages: ${this.pdfData.baggages}` },
       ],
     };
 

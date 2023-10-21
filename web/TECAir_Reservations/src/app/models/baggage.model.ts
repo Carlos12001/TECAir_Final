@@ -30,3 +30,5 @@ export const baggages: Baggage[] = [
     baggagecolor: [Color.rojo, Color.amarillo, Color.verde],
   },
 ];
+
+export const baggagesIDSelected: number[] = [1, 2, 33, 5, 4];

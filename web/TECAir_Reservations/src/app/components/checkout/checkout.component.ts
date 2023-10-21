@@ -6,6 +6,9 @@ import { searchStopSelected } from '../../models/search-stop.model';
 import { stop } from '../../models/stop.model';
 import { student } from '../../models/student.model';
 import { Router } from '@angular/router';
+import { CheckoutService } from 'src/app/services/checkout.service';
+import { CreatePassenger } from 'src/app/models/create-passenger.model';
+import { baggagesIDSelected } from 'src/app/models/baggage.model';
 
 @Component({
   selector: 'app-checkout',
@@ -15,7 +18,13 @@ import { Router } from '@angular/router';
 export class CheckoutComponent {
   public pdfData: PDF;
 
-  constructor(private router: Router, private pdfService: PdfService) {
+  pno: number = 0;
+
+  constructor(
+    private router: Router,
+    private pdfService: PdfService,
+    private checkoutService: CheckoutService
+  ) {
     this.pdfData = new PDF(
       '',
       '',
@@ -38,7 +47,7 @@ export class CheckoutComponent {
     );
   }
 
-  onConfirm(): void {
+  setDataPdf(): void {
     // Modificamos el objeto pdfData con los datos
     this.pdfData.email = userLogged.email;
     this.pdfData.unumber = userLogged.unumber;
@@ -76,11 +85,36 @@ export class CheckoutComponent {
     } else {
       this.pdfData.finalprice = seeFlightSelected.fprice;
     }
+    this.pdfData.pno = this.pno;
+    this.pdfData.baggages = [];
 
     console.log('Modified PDF Data (onConfirm):', this.pdfData);
 
     // Enviamos el objeto pdfData al servicio
     this.pdfService.setPdfData(this.pdfData);
     this.router.navigate(['/generate-pdf']);
+  }
+
+  onConfirm(): void {
+    this.checkoutService
+      .postCreatePassenger(
+        userLogged.email,
+        seeFlightSelected.fnumber,
+        seeFlightSelected.stopid
+      )
+      .subscribe({
+        next: (data: CreatePassenger) => {
+          console.log('Passenger created:', data);
+          this.pno = data.pnumber;
+          this.setDataPdf();
+        },
+        error: (error) => {
+          console.error('Error fetching passengers:', error);
+          this.setDataPdf();
+        },
+        complete: () => {
+          console.log('Finished passengers fetched');
+        },
+      });
   }
 }

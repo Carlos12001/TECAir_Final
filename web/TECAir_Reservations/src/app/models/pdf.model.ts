@@ -10,7 +10,7 @@ export class PDF {
 
   stopid: number;
   sfromcity: string;
-  stocity: string; // deberia ser la cuidad ya que yo no le muestro el id de la aeropuerto sino el nombre del lugar
+  stocity: string;
   sdate: string;
   departurehour: string;
   arrivalhour: string;
@@ -21,6 +21,9 @@ export class PDF {
   miles: number;
   uemail: string;
   finalprice: number;
+
+  pno?: number = 0;
+  baggages?: number[] = [];
 
   constructor(
     email: string,
@@ -83,6 +86,8 @@ export const pdf = {
   miles: 0,
   uemail: '',
   finalprice: 0,
+  pno: 0,
+  baggages: [0, 2, 3, 4, 5, 6],
 };
 
 @Injectable({
