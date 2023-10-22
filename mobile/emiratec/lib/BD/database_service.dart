@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:emiratec/BD/todo_db.dart';
+import 'package:emiratec/globals.dart';
 import 'package:emiratec/objects/Airport.dart';
 import 'package:emiratec/objects/Student.dart';
 import 'package:emiratec/objects/flight.dart';
@@ -10,6 +11,8 @@ import 'package:emiratec/objects/user.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert'; // Para decodificar el JSON
 
 class DatabaseService {
   Database? _database;
@@ -238,5 +241,98 @@ class DatabaseService {
       String email, String stopid) async {
     final db = await database;
     return await TodoDB().fetchUserData(db, email, stopid);
+  }
+
+  Future<List<dynamic>> fetchAirportsFromAPI() async {
+    final response = await http.get(Uri.parse('$apiLink/api/airport'));
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load airports from API');
+    }
+  }
+
+  Future<void> syncAirports() async {
+    final apiData = await fetchAirportsFromAPI();
+
+    for (var airportData in apiData) {
+      Airport airport = Airport.fromMap(airportData);
+      // Aquí puedes verificar si el aeropuerto ya existe en tu base de datos
+      // Si existe, actualiza el registro, de lo contrario, insértalo.
+      // Usaré un pseudo método `airportExists` y `updateAirport` que deberías implementar.
+
+      if (await airportExists(airport.airportID)) {
+        await updateAirport(airport);
+      } else {
+        await insertAirport(airport);
+      }
+    }
+  }
+
+  Future<bool> airportExists(int airportId) async {
+    final db = await database;
+    final result = await db
+        .query('AIRPORT', where: 'AirportID = ?', whereArgs: [airportId]);
+    return result.isNotEmpty;
+  }
+
+  Future<void> updateAirport(Airport airport) async {
+    final db = await database;
+    await db.update('AIRPORT', airport.toMap(),
+        where: 'AirportID = ?', whereArgs: [airport.airportID]);
+  }
+
+  Future<void> insertAirport(Airport airport) async {
+    final db = await database;
+    await db.insert('AIRPORT', airport.toMap());
+  }
+
+  List<Promotion> convertApiDataToPromotions(List<dynamic> apiData) {
+    return apiData.map((data) {
+      return Promotion(
+          originCity: '', // El API no proporciona city, dejar vacío o modificar
+          destinationCity: '', // Lo mismo aquí
+          endDate: DateTime.parse(data['final_date']),
+          imgPath: data['image'],
+          percentage: data['dpercent'],
+          fno: data['fno']);
+    }).toList();
+  }
+
+  Future<List<dynamic>> fetchPromosFromAPI() async {
+    final response = await http.get(Uri.parse('$apiLink/api/promo'));
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load promos from API');
+    }
+  }
+
+  Future<void> syncPromotions() async {
+    List<dynamic> apiData = await fetchPromosFromAPI();
+    List<Promotion> promotions = convertApiDataToPromotions(apiData);
+
+    for (Promotion promotion in promotions) {
+      // Intentar actualizar la promoción, si falla, insertarla
+      bool success = await updatePromotion(promotion);
+      if (!success) {
+        await insertPromotion(promotion);
+      }
+    }
+  }
+
+  Future<bool> updatePromotion(Promotion promotion) async {
+    final db = await database;
+    int updatedRows = await db.update(
+      'PROMO',
+      promotion.toMap(),
+      where: 'Fno = ? AND Image = ?',
+      whereArgs: [promotion.fno, promotion.imgPath],
+    );
+
+    // Retorna true si alguna fila fue actualizada
+    return updatedRows > 0;
   }
 }
