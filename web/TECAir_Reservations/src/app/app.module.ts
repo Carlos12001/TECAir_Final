@@ -31,6 +31,7 @@ import { RegisterUserComponent } from './components/register-user/register-user.
 import { PromotionsComponent } from './components/promotions/promotions.component';
 import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
+import { DisplayCheckInComponent } from './components/display-check-in/display-check-in.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { CheckInComponent } from './components/check-in/check-in.component';
     PromotionsComponent,
     DisplayPromotionsComponent,
     CheckInComponent,
+    DisplayCheckInComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,1600 @@
+<svg version="1.1" baseProfile="full" width="12586.0" height="784.0" viewbox="0 0 12586 784" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+[AppRoutingModule||]
+[AppComponent|+title: string|]
+[AppModule||]
+[PdfService||]
+[&lt;interface&gt;AirAdmin|+adminid: string;+uemail: string|]
+[&lt;interface&gt;Airport|+airportid: number;+code: string;+city: string;+aname: string;+image: string|]
+[&lt;interface&gt;Baggage|+bnumber?: number;+weight: string;+pemail?: string;+baggagecolor: Color\[\]|]
+[&lt;enumeration&gt;Color|rojo;blanco;azul;negro;verde;amarillo;gris;cafe]
+[&lt;interface&gt;CreatePassenger|+email: string;+pnumber: number;+departurehour: string|]
+[&lt;interface&gt;Flight|+fnumber: number;+ffrom: number;+fto: number;+price: number;+fdate: string;+fstate: boolean;+pid: string|]
+[&lt;interface&gt;Passenger|+uemail: string;+checkedin: boolean;+fno: number|]
+[&lt;interface&gt;PassengerCheckIn|+pnumber: number;+fnumber: number;+stopid: number;+sfromcity: string;+stocity: string;+fdate: string;+fprice: number|]
+[PDF|+email: string;+unumber: string;+fname: string;+mname: string;+lname1: string;+lname2: string;+stopid: number;+sfromcity: string;+stocity: string;+sdate: string;+departurehour: string;+arrivalhour: string;+fno: number;+studentid: string;+university: string;+miles: number;+uemail: string;+finalprice: number;+pno?: number;+baggages?: number\[\]|]
+[PdfService|-pdfData: PDF|+setPdfData(): void;+getPdfData(): PDF]
+[&lt;interface&gt;Plane|+planeid: string;+capacity: number|]
+[&lt;interface&gt;Promo|+fno: number;+image: string;+dpercent: number;+finaldate: string|]
+[&lt;interface&gt;SearchStop|+sfromairportid: number;+sfromcity: string;+stoairportid: number;+stocity: string|]
+[&lt;interface&gt;Seat|+snumber: string;+sclass: &quot;&quot; \| &quot;Ejecutiva&quot; \| &quot;Turista&quot;;+pemail?: string;+pnumber: string|]
+[&lt;interface&gt;SeeFlight|+fnumber: number;+stopid: number;+sfromcity: string;+stocity: string;+stoimage: string;+fdate: string;+fprice: number;+depercent?: number|]
+[&lt;interface&gt;Stop|+stopid: number;+sfrom: string;+sto: string;+sdate: string;+departurehour: string;+arrivalhour: string;+fno: number|]
+[&lt;interface&gt;UserStop|+uemail: string;+sid: string|]
+[&lt;interface&gt;Student|+studentid: string;+university: string;+miles: number;+uemail: string|]
+[&lt;interface&gt;UserLogged|+email: string;+upassword: string;+unumber: string;+fname: string;+mname: string;+lname1: string;+lname2: string;+studentid: string \| null;+miles: number \| null;+university: string \| null;+adminid: string \| null|]
+[&lt;interface&gt;UserW|+email: string;+upassword: string;+unumber?: string;+fname?: string;+mname?: string;+lname1?: string;+lname2?: string|]
+[CheckInService|-url: string;+httpOptions: { headers: HttpHeaders; };-http: HttpClient|+getPassengerCheckIn(): Observable&lt;PassengerCheckIn\[\]&gt;]
+[CheckoutService|-url: string;+httpOptions: { headers: HttpHeaders; };-http: HttpClient|+postCreatePassenger(): Observable&lt;CreatePassenger\[\]&gt;]
+[PromotionsService|-url: string;+httpOptions: { headers: HttpHeaders; };-http: HttpClient|+getSeePromotions(): Observable&lt;SeeFlight\[\]&gt;]
+[ResgiterService|-url: string;+httpOptions: { headers: HttpHeaders; };-http: HttpClient|+postUserLogged(): Observable&lt;UserLogged&gt;]
+[SearchPlaneService|-searchSubject: BehaviorSubject&lt;SearchStop \| null&gt;;-url: string;+httpOptions: { headers: HttpHeaders; };-http: HttpClient|+getSeeFlights(): Observable&lt;SearchStop\[\]&gt;;+setSearchData(): void;+getSearchData(): Observable&lt;SearchStop \| null&gt;]
+[SeeFlightsService|-url: string;+httpOptions: { headers: HttpHeaders; };-http: HttpClient|+getSeeFlights(): Observable&lt;SeeFlight\[\]&gt;;+postSeeFlightsWithSelection(): Observable&lt;SeeFlight\[\]&gt;]
+[SignInService|-url: string;+httpOptions: { headers: HttpHeaders; };-http: HttpClient|+getUsers(): Observable&lt;UserLogged\[\]&gt;]
+[BaggageCreateComponent|+baggageForm: FormGroup&lt;any&gt;;-fb: FormBuilder|+ngOnInit(): void;-createSuitcaseFormGroup(): FormGroup&lt;any&gt;;-buildColors(): FormArray&lt;FormControl&lt;boolean \| null&gt;&gt;;+getColors(): string\[\];+addBaggage(): void;+updatePriceBasedOnCount(): void;+onSubmit(): void;+deleteLastBaggage(): void;+getTotalPrice(): number]
+[ButtonsComponent||]
+[CheckInComponent|+passengerCheckIn: PassengerCheckIn\[\];+user: UserLogged;-router: Router;-checkInService: CheckInService|+ngOnInit(): void;+fetchPromo(): void;+reserveFlight(): void]
+[CheckoutComponent|+pdfData: PDF;+fecha: string;+pno: number;-router: Router;-pdfService: PdfService;-checkoutService: CheckoutService|+setDataPdf(): void;+onConfirm(): void]
+[DisplayCheckoutComponent|-router: Router|+ngOnInit(): void]
+[OnInit]&lt;:--[DisplayCheckoutComponent]
+[DisplayConfirmationComponent||]
+[DisplayFliesComponent|-router: Router|+ngOnInit(): void]
+[OnInit]&lt;:--[DisplayFliesComponent]
+[DisplayPricesComponent||]
+[DisplayPromotionsComponent||]
+[DisplayResgiterComponent||]
+[DisplaySeatComponent||]
+[DisplaySignInComponent||]
+[FooterComponent||]
+[GeneratepdfComponent|+pdfData?: PDF;+pdfGenerated: number;-router: Router;-pdfService: PdfService|+ngOnInit(): void;+generatePdf(): void;+returnHome(): void]
+[OnInit]&lt;:--[GeneratepdfComponent]
+[HomeComponent||]
+[NavbarComponent|+userLogged: UserLogged|+ngOnInit(): void]
+[OnInit]&lt;:--[NavbarComponent]
+[PlaceAirplaneComponent||]
+[PricingComponent||]
+[PromotionsComponent|+seeFlights: SeeFlight\[\];-router: Router;-promotionsService: PromotionsService|+ngOnInit(): void;+fetchPromo(): void;+reserveFlight(): void]
+[RegisterUserComponent|+userForm: FormGroup&lt;any&gt;;+selectedUserType: UserType;-fb: FormBuilder;-router: Router;-registerService: ResgiterService|+ngOnInit(): void;+selectUserType(): void;+resetSelection(): void;+onSubmit(): void;+onRegister(): void]
+[OnInit]&lt;:--[RegisterUserComponent]
+[SearchPlaneComponent|+searchStops: SearchStop\[\];+selectedOrigin: { city: string; id: number; } \| null;+selectedDestination: { city: string; id: number; } \| null;-onDestroy: Subject&lt;void&gt;;-searchPlaneService: SearchPlaneService;-router: Router|+ngOnInit(): void;+ngOnDestroy(): void;+populateSelectionFromService(): void;+fetchSearchStops(): void;+selectOrigin(): void;+selectDestination(): void;+clearSelections(): void;+seeFlights(): void]
+[OnInit]&lt;:--[SearchPlaneComponent]
+[SeeFlightsComponent|-onDestroy: Subject&lt;void&gt;;+seeFlights: SeeFlight\[\];-router: Router;-seeFlightsService: SeeFlightsService;-searchPlaneService: SearchPlaneService|+ngOnInit(): void;+ngOnDestroy(): void;+fetchFlights(): void;+fetchFlightsNoSelection(): void;+fetchFlightsWithSelection(): void;+reserveFlight(): void]
+[OnInit]&lt;:--[SeeFlightsComponent]
+[SignInComponent|+signInForm: FormGroup&lt;any&gt;;-fb: FormBuilder;-router: Router;-signInService: SignInService|+ngOnInit(): void;+onSubmit(): void]
+[OnInit]&lt;:--[SignInComponent]
+[SlidesComponent||]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="784.0" width="12586.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<g stroke-dasharray="6 6">
+<path d="M9424.0 187.2 L8560.5 375 L8560.5 515 L8560.5 515.0 " fill="none"></path>
+</g>
+<path d="M9425.1 192.4 L9424.0 187.2 L9422.8 182.0 L9437.0 184.4 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9424.2 191.0 L8821.5 375 L8821.5 515 L8821.5 515.0 " fill="none"></path>
+</g>
+<path d="M9425.8 196.1 L9424.2 191.0 L9422.7 185.9 L9437.0 187.1 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9425.0 198.8 L9065.5 375 L9065.5 477.5 L9065.5 477.5 " fill="none"></path>
+</g>
+<path d="M9427.4 203.6 L9425.0 198.8 L9422.7 194.0 L9437.0 192.9 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9449.1 203.7 L9322.5 375 L9322.5 515 L9322.5 515.0 " fill="none"></path>
+</g>
+<path d="M9453.4 206.9 L9449.1 203.7 L9444.8 200.6 L9457.0 193.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9487.9 203.7 L9614.5 375 L9614.5 455 L9614.5 455.0 " fill="none"></path>
+</g>
+<path d="M9492.2 200.6 L9487.9 203.7 L9483.6 206.9 L9480.0 193.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9512.4 194.9 L9967.5 375 L9967.5 395 L9967.5 395.0 " fill="none"></path>
+</g>
+<path d="M9514.4 189.9 L9512.4 194.9 L9510.4 199.8 L9500.0 190.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9513.0 187.4 L10357.5 375 L10357.5 447.5 L10357.5 447.5 " fill="none"></path>
+</g>
+<path d="M9514.2 182.2 L9513.0 187.4 L9511.9 192.6 L9500.0 184.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9513.2 184.6 L10703.5 375 L10703.5 485 L10703.5 485.0 " fill="none"></path>
+</g>
+<path d="M9514.0 179.4 L9513.2 184.6 L9512.3 189.9 L9500.0 182.5 Z"></path>
+<g data-name="AppRoutingModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppRoutingModule">
+<rect x="0.0" y="154.0" height="47.0" width="166.0" data-name="AppRoutingModule"></rect>
+<path d="M0.0 185.0 L166.0 185.0" fill="none" data-name="AppRoutingModule"></path>
+<path d="M0.0 193.0 L166.0 193.0" fill="none" data-name="AppRoutingModule"></path>
+</g>
+<g transform="translate(0, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppRoutingModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppRoutingModule">
+<a id="src\app\app-routing.module.ts.AppRoutingModule" xlink:href="src\app\app-routing.module.ts"><text x="75.0" y="13.5" stroke="none" text-anchor="middle" data-name="AppRoutingModule">AppRoutingModule</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppRoutingModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppRoutingModule">
+
+</g>
+</g>
+<g transform="translate(0, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppRoutingModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppRoutingModule">
+
+</g>
+</g>
+</g>
+<g data-name="AppComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppComponent">
+<rect x="206.0" y="142.5" height="70.0" width="138.0" data-name="AppComponent"></rect>
+<path d="M206.0 173.5 L344.0 173.5" fill="none" data-name="AppComponent"></path>
+<path d="M206.0 204.5 L344.0 204.5" fill="none" data-name="AppComponent"></path>
+</g>
+<g transform="translate(206, 142.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppComponent">
+<a id="src\app\app.component.ts.AppComponent" xlink:href="src\app\app.component.ts"><text x="61.0" y="13.5" stroke="none" text-anchor="middle" data-name="AppComponent">AppComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(206, 173.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AppComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="AppComponent">+title: string</text>
+
+</g>
+</g>
+<g transform="translate(206, 204.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppComponent">
+
+</g>
+</g>
+</g>
+<g data-name="AppModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppModule">
+<rect x="384.0" y="154.0" height="47.0" width="105.0" data-name="AppModule"></rect>
+<path d="M384.0 185.0 L489.0 185.0" fill="none" data-name="AppModule"></path>
+<path d="M384.0 193.0 L489.0 193.0" fill="none" data-name="AppModule"></path>
+</g>
+<g transform="translate(384, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppModule">
+<a id="src\app\app.module.ts.AppModule" xlink:href="src\app\app.module.ts"><text x="44.5" y="13.5" stroke="none" text-anchor="middle" data-name="AppModule">AppModule</text></a>
+
+</g>
+</g>
+<g transform="translate(384, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppModule">
+
+</g>
+</g>
+<g transform="translate(384, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppModule">
+
+</g>
+</g>
+</g>
+<g data-name="PdfService">
+<g fill="#eee8d5" stroke="#33322E" data-name="PdfService">
+<rect x="529.0" y="154.0" height="47.0" width="101.0" data-name="PdfService"></rect>
+<path d="M529.0 185.0 L630.0 185.0" fill="none" data-name="PdfService"></path>
+<path d="M529.0 193.0 L630.0 193.0" fill="none" data-name="PdfService"></path>
+</g>
+<g transform="translate(529, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PdfService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PdfService">
+<a id="src\app\models\pdf.model.ts.PdfService" xlink:href="src\app\models\pdf.model.ts"><text x="42.5" y="13.5" stroke="none" text-anchor="middle" data-name="PdfService">PdfService</text></a>
+
+</g>
+</g>
+<g transform="translate(529, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PdfService">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PdfService">
+
+</g>
+</g>
+<g transform="translate(529, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PdfService">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PdfService">
+
+</g>
+</g>
+</g>
+<g data-name="AirAdmin">
+<g fill="lightblue" stroke="#33322E" data-name="AirAdmin">
+<rect x="670.0" y="135.0" height="85.0" width="142.0" data-name="AirAdmin"></rect>
+<path d="M670.0 166.0 L812.0 166.0" fill="none" data-name="AirAdmin"></path>
+<path d="M670.0 212.0 L812.0 212.0" fill="none" data-name="AirAdmin"></path>
+</g>
+<g transform="translate(670, 135)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AirAdmin">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AirAdmin">
+<a id="src\app\models\air-admin.model.ts.AirAdmin" xlink:href="src\app\models\air-admin.model.ts"><text x="63.0" y="13.5" stroke="none" text-anchor="middle" data-name="AirAdmin">AirAdmin</text></a>
+
+</g>
+</g>
+<g transform="translate(670, 166)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AirAdmin">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AirAdmin">
+<text x="0.0" y="13.5" stroke="none" data-name="AirAdmin">+adminid: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AirAdmin">+uemail: string</text>
+
+</g>
+</g>
+<g transform="translate(670, 212)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AirAdmin">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AirAdmin">
+
+</g>
+</g>
+</g>
+<g data-name="Airport">
+<g fill="lightblue" stroke="#33322E" data-name="Airport">
+<rect x="852.0" y="112.5" height="130.0" width="161.0" data-name="Airport"></rect>
+<path d="M852.0 143.5 L1013.0 143.5" fill="none" data-name="Airport"></path>
+<path d="M852.0 234.5 L1013.0 234.5" fill="none" data-name="Airport"></path>
+</g>
+<g transform="translate(852, 112.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Airport">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Airport">
+<a id="src\app\models\airport.model.ts.Airport" xlink:href="src\app\models\airport.model.ts"><text x="72.5" y="13.5" stroke="none" text-anchor="middle" data-name="Airport">Airport</text></a>
+
+</g>
+</g>
+<g transform="translate(852, 143.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Airport">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Airport">
+<text x="0.0" y="13.5" stroke="none" data-name="Airport">+airportid: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Airport">+code: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Airport">+city: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Airport">+aname: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Airport">+image: string</text>
+
+</g>
+</g>
+<g transform="translate(852, 234.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Airport">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Airport">
+
+</g>
+</g>
+</g>
+<g data-name="Baggage">
+<g fill="lightblue" stroke="#33322E" data-name="Baggage">
+<rect x="1053.0" y="120.0" height="115.0" width="197.0" data-name="Baggage"></rect>
+<path d="M1053.0 151.0 L1250.0 151.0" fill="none" data-name="Baggage"></path>
+<path d="M1053.0 227.0 L1250.0 227.0" fill="none" data-name="Baggage"></path>
+</g>
+<g transform="translate(1053, 120)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Baggage">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Baggage">
+<a id="src\app\models\baggage.model.ts.Baggage" xlink:href="src\app\models\baggage.model.ts"><text x="90.5" y="13.5" stroke="none" text-anchor="middle" data-name="Baggage">Baggage</text></a>
+
+</g>
+</g>
+<g transform="translate(1053, 151)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Baggage">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Baggage">
+<text x="0.0" y="13.5" stroke="none" data-name="Baggage">+bnumber?: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Baggage">+weight: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Baggage">+pemail?: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Baggage">+baggagecolor: Color[]</text>
+
+</g>
+</g>
+<g transform="translate(1053, 227)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Baggage">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Baggage">
+
+</g>
+</g>
+</g>
+<g data-name="Color">
+<g fill="lightgreen" stroke="#33322E" data-name="Color">
+<rect x="1290.0" y="94.0" height="167.0" width="78.0" data-name="Color"></rect>
+<path d="M1290.0 125.0 L1368.0 125.0" fill="none" data-name="Color"></path>
+</g>
+<g transform="translate(1290, 94)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Color">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Color">
+<a id="src\app\models\baggage.model.ts.Color" xlink:href="src\app\models\baggage.model.ts"><text x="31.0" y="13.5" stroke="none" text-anchor="middle" data-name="Color">Color</text></a>
+
+</g>
+</g>
+<g transform="translate(1290, 125)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Color">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Color">
+<text x="0.0" y="13.5" stroke="none" data-name="Color">rojo</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Color">blanco</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Color">azul</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Color">negro</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Color">verde</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Color">amarillo</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Color">gris</text>
+<text x="0.0" y="118.5" stroke="none" data-name="Color">cafe</text>
+
+</g>
+</g>
+</g>
+<g data-name="CreatePassenger">
+<g fill="lightblue" stroke="#33322E" data-name="CreatePassenger">
+<rect x="1408.0" y="127.5" height="100.0" width="193.0" data-name="CreatePassenger"></rect>
+<path d="M1408.0 158.5 L1601.0 158.5" fill="none" data-name="CreatePassenger"></path>
+<path d="M1408.0 219.5 L1601.0 219.5" fill="none" data-name="CreatePassenger"></path>
+</g>
+<g transform="translate(1408, 127.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreatePassenger">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CreatePassenger">
+<a id="src\app\models\create-passenger.model.ts.CreatePassenger" xlink:href="src\app\models\create-passenger.model.ts"><text x="88.5" y="13.5" stroke="none" text-anchor="middle" data-name="CreatePassenger">CreatePassenger</text></a>
+
+</g>
+</g>
+<g transform="translate(1408, 158.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreatePassenger">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CreatePassenger">
+<text x="0.0" y="13.5" stroke="none" data-name="CreatePassenger">+email: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CreatePassenger">+pnumber: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CreatePassenger">+departurehour: string</text>
+
+</g>
+</g>
+<g transform="translate(1408, 219.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreatePassenger">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CreatePassenger">
+
+</g>
+</g>
+</g>
+<g data-name="Flight">
+<g fill="lightblue" stroke="#33322E" data-name="Flight">
+<rect x="1641.0" y="97.5" height="160.0" width="161.0" data-name="Flight"></rect>
+<path d="M1641.0 128.5 L1802.0 128.5" fill="none" data-name="Flight"></path>
+<path d="M1641.0 249.5 L1802.0 249.5" fill="none" data-name="Flight"></path>
+</g>
+<g transform="translate(1641, 97.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Flight">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Flight">
+<a id="src\app\models\flight.model.ts.Flight" xlink:href="src\app\models\flight.model.ts"><text x="72.5" y="13.5" stroke="none" text-anchor="middle" data-name="Flight">Flight</text></a>
+
+</g>
+</g>
+<g transform="translate(1641, 128.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Flight">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Flight">
+<text x="0.0" y="13.5" stroke="none" data-name="Flight">+fnumber: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Flight">+ffrom: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Flight">+fto: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Flight">+price: number</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Flight">+fdate: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Flight">+fstate: boolean</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Flight">+pid: string</text>
+
+</g>
+</g>
+<g transform="translate(1641, 249.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Flight">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Flight">
+
+</g>
+</g>
+</g>
+<g data-name="Passenger">
+<g fill="lightblue" stroke="#33322E" data-name="Passenger">
+<rect x="1842.0" y="127.5" height="100.0" width="181.0" data-name="Passenger"></rect>
+<path d="M1842.0 158.5 L2023.0 158.5" fill="none" data-name="Passenger"></path>
+<path d="M1842.0 219.5 L2023.0 219.5" fill="none" data-name="Passenger"></path>
+</g>
+<g transform="translate(1842, 127.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Passenger">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Passenger">
+<a id="src\app\models\passenger.model.ts.Passenger" xlink:href="src\app\models\passenger.model.ts"><text x="82.5" y="13.5" stroke="none" text-anchor="middle" data-name="Passenger">Passenger</text></a>
+
+</g>
+</g>
+<g transform="translate(1842, 158.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Passenger">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Passenger">
+<text x="0.0" y="13.5" stroke="none" data-name="Passenger">+uemail: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Passenger">+checkedin: boolean</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Passenger">+fno: number</text>
+
+</g>
+</g>
+<g transform="translate(1842, 219.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Passenger">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Passenger">
+
+</g>
+</g>
+</g>
+<g data-name="PassengerCheckIn">
+<g fill="lightblue" stroke="#33322E" data-name="PassengerCheckIn">
+<rect x="2063.0" y="97.5" height="160.0" width="166.0" data-name="PassengerCheckIn"></rect>
+<path d="M2063.0 128.5 L2229.0 128.5" fill="none" data-name="PassengerCheckIn"></path>
+<path d="M2063.0 249.5 L2229.0 249.5" fill="none" data-name="PassengerCheckIn"></path>
+</g>
+<g transform="translate(2063, 97.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PassengerCheckIn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PassengerCheckIn">
+<a id="src\app\models\passengers-check-in.model.ts.PassengerCheckIn" xlink:href="src\app\models\passengers-check-in.model.ts"><text x="75.0" y="13.5" stroke="none" text-anchor="middle" data-name="PassengerCheckIn">PassengerCheckIn</text></a>
+
+</g>
+</g>
+<g transform="translate(2063, 128.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PassengerCheckIn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PassengerCheckIn">
+<text x="0.0" y="13.5" stroke="none" data-name="PassengerCheckIn">+pnumber: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="PassengerCheckIn">+fnumber: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="PassengerCheckIn">+stopid: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="PassengerCheckIn">+sfromcity: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="PassengerCheckIn">+stocity: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="PassengerCheckIn">+fdate: string</text>
+<text x="0.0" y="103.5" stroke="none" data-name="PassengerCheckIn">+fprice: number</text>
+
+</g>
+</g>
+<g transform="translate(2063, 249.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PassengerCheckIn">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PassengerCheckIn">
+
+</g>
+</g>
+</g>
+<g data-name="PDF">
+<g fill="#eee8d5" stroke="#33322E" data-name="PDF">
+<rect x="2269.0" y="0.0" height="355.0" width="195.0" data-name="PDF"></rect>
+<path d="M2269.0 31.0 L2464.0 31.0" fill="none" data-name="PDF"></path>
+<path d="M2269.0 347.0 L2464.0 347.0" fill="none" data-name="PDF"></path>
+</g>
+<g transform="translate(2269, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PDF">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PDF">
+<a id="src\app\models\pdf.model.ts.PDF" xlink:href="src\app\models\pdf.model.ts"><text x="89.5" y="13.5" stroke="none" text-anchor="middle" data-name="PDF">PDF</text></a>
+
+</g>
+</g>
+<g transform="translate(2269, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PDF">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PDF">
+<text x="0.0" y="13.5" stroke="none" data-name="PDF">+email: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="PDF">+unumber: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="PDF">+fname: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="PDF">+mname: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="PDF">+lname1: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="PDF">+lname2: string</text>
+<text x="0.0" y="103.5" stroke="none" data-name="PDF">+stopid: number</text>
+<text x="0.0" y="118.5" stroke="none" data-name="PDF">+sfromcity: string</text>
+<text x="0.0" y="133.5" stroke="none" data-name="PDF">+stocity: string</text>
+<text x="0.0" y="148.5" stroke="none" data-name="PDF">+sdate: string</text>
+<text x="0.0" y="163.5" stroke="none" data-name="PDF">+departurehour: string</text>
+<text x="0.0" y="178.5" stroke="none" data-name="PDF">+arrivalhour: string</text>
+<text x="0.0" y="193.5" stroke="none" data-name="PDF">+fno: number</text>
+<text x="0.0" y="208.5" stroke="none" data-name="PDF">+studentid: string</text>
+<text x="0.0" y="223.5" stroke="none" data-name="PDF">+university: string</text>
+<text x="0.0" y="238.5" stroke="none" data-name="PDF">+miles: number</text>
+<text x="0.0" y="253.5" stroke="none" data-name="PDF">+uemail: string</text>
+<text x="0.0" y="268.5" stroke="none" data-name="PDF">+finalprice: number</text>
+<text x="0.0" y="283.5" stroke="none" data-name="PDF">+pno?: number</text>
+<text x="0.0" y="298.5" stroke="none" data-name="PDF">+baggages?: number[]</text>
+
+</g>
+</g>
+<g transform="translate(2269, 347)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PDF">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PDF">
+
+</g>
+</g>
+</g>
+<g data-name="Plane">
+<g fill="lightblue" stroke="#33322E" data-name="Plane">
+<rect x="2504.0" y="135.0" height="85.0" width="162.0" data-name="Plane"></rect>
+<path d="M2504.0 166.0 L2666.0 166.0" fill="none" data-name="Plane"></path>
+<path d="M2504.0 212.0 L2666.0 212.0" fill="none" data-name="Plane"></path>
+</g>
+<g transform="translate(2504, 135)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Plane">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Plane">
+<a id="src\app\models\plane.model.ts.Plane" xlink:href="src\app\models\plane.model.ts"><text x="73.0" y="13.5" stroke="none" text-anchor="middle" data-name="Plane">Plane</text></a>
+
+</g>
+</g>
+<g transform="translate(2504, 166)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Plane">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Plane">
+<text x="0.0" y="13.5" stroke="none" data-name="Plane">+planeid: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Plane">+capacity: number</text>
+
+</g>
+</g>
+<g transform="translate(2504, 212)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Plane">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Plane">
+
+</g>
+</g>
+</g>
+<g data-name="Promo">
+<g fill="lightblue" stroke="#33322E" data-name="Promo">
+<rect x="2706.0" y="120.0" height="115.0" width="166.0" data-name="Promo"></rect>
+<path d="M2706.0 151.0 L2872.0 151.0" fill="none" data-name="Promo"></path>
+<path d="M2706.0 227.0 L2872.0 227.0" fill="none" data-name="Promo"></path>
+</g>
+<g transform="translate(2706, 120)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Promo">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Promo">
+<a id="src\app\models\promo.model.ts.Promo" xlink:href="src\app\models\promo.model.ts"><text x="75.0" y="13.5" stroke="none" text-anchor="middle" data-name="Promo">Promo</text></a>
+
+</g>
+</g>
+<g transform="translate(2706, 151)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Promo">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Promo">
+<text x="0.0" y="13.5" stroke="none" data-name="Promo">+fno: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Promo">+image: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Promo">+dpercent: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Promo">+finaldate: string</text>
+
+</g>
+</g>
+<g transform="translate(2706, 227)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Promo">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Promo">
+
+</g>
+</g>
+</g>
+<g data-name="SearchStop">
+<g fill="lightblue" stroke="#33322E" data-name="SearchStop">
+<rect x="2912.0" y="120.0" height="115.0" width="205.0" data-name="SearchStop"></rect>
+<path d="M2912.0 151.0 L3117.0 151.0" fill="none" data-name="SearchStop"></path>
+<path d="M2912.0 227.0 L3117.0 227.0" fill="none" data-name="SearchStop"></path>
+</g>
+<g transform="translate(2912, 120)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SearchStop">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SearchStop">
+<a id="src\app\models\search-stop.model.ts.SearchStop" xlink:href="src\app\models\search-stop.model.ts"><text x="94.5" y="13.5" stroke="none" text-anchor="middle" data-name="SearchStop">SearchStop</text></a>
+
+</g>
+</g>
+<g transform="translate(2912, 151)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SearchStop">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SearchStop">
+<text x="0.0" y="13.5" stroke="none" data-name="SearchStop">+sfromairportid: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SearchStop">+sfromcity: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SearchStop">+stoairportid: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SearchStop">+stocity: string</text>
+
+</g>
+</g>
+<g transform="translate(2912, 227)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SearchStop">
+<g transform="translate(8, 8)" fill="#33322E" data-name="SearchStop">
+
+</g>
+</g>
+</g>
+<g data-name="Seat">
+<g fill="lightblue" stroke="#33322E" data-name="Seat">
+<rect x="3157.0" y="120.0" height="115.0" width="278.0" data-name="Seat"></rect>
+<path d="M3157.0 151.0 L3435.0 151.0" fill="none" data-name="Seat"></path>
+<path d="M3157.0 227.0 L3435.0 227.0" fill="none" data-name="Seat"></path>
+</g>
+<g transform="translate(3157, 120)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Seat">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Seat">
+<a id="src\app\models\seat.model.ts.Seat" xlink:href="src\app\models\seat.model.ts"><text x="131.0" y="13.5" stroke="none" text-anchor="middle" data-name="Seat">Seat</text></a>
+
+</g>
+</g>
+<g transform="translate(3157, 151)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Seat">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Seat">
+<text x="0.0" y="13.5" stroke="none" data-name="Seat">+snumber: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Seat">+sclass: &quot;&quot; | &quot;Ejecutiva&quot; | &quot;Turista&quot;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Seat">+pemail?: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Seat">+pnumber: string</text>
+
+</g>
+</g>
+<g transform="translate(3157, 227)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Seat">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Seat">
+
+</g>
+</g>
+</g>
+<g data-name="SeeFlight">
+<g fill="lightblue" stroke="#33322E" data-name="SeeFlight">
+<rect x="3475.0" y="90.0" height="175.0" width="186.0" data-name="SeeFlight"></rect>
+<path d="M3475.0 121.0 L3661.0 121.0" fill="none" data-name="SeeFlight"></path>
+<path d="M3475.0 257.0 L3661.0 257.0" fill="none" data-name="SeeFlight"></path>
+</g>
+<g transform="translate(3475, 90)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SeeFlight">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SeeFlight">
+<a id="src\app\models\see-flight.model.ts.SeeFlight" xlink:href="src\app\models\see-flight.model.ts"><text x="85.0" y="13.5" stroke="none" text-anchor="middle" data-name="SeeFlight">SeeFlight</text></a>
+
+</g>
+</g>
+<g transform="translate(3475, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SeeFlight">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SeeFlight">
+<text x="0.0" y="13.5" stroke="none" data-name="SeeFlight">+fnumber: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SeeFlight">+stopid: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SeeFlight">+sfromcity: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SeeFlight">+stocity: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SeeFlight">+stoimage: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="SeeFlight">+fdate: string</text>
+<text x="0.0" y="103.5" stroke="none" data-name="SeeFlight">+fprice: number</text>
+<text x="0.0" y="118.5" stroke="none" data-name="SeeFlight">+depercent?: number</text>
+
+</g>
+</g>
+<g transform="translate(3475, 257)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SeeFlight">
+<g transform="translate(8, 8)" fill="#33322E" data-name="SeeFlight">
+
+</g>
+</g>
+</g>
+<g data-name="Stop">
+<g fill="lightblue" stroke="#33322E" data-name="Stop">
+<rect x="3701.0" y="97.5" height="160.0" width="193.0" data-name="Stop"></rect>
+<path d="M3701.0 128.5 L3894.0 128.5" fill="none" data-name="Stop"></path>
+<path d="M3701.0 249.5 L3894.0 249.5" fill="none" data-name="Stop"></path>
+</g>
+<g transform="translate(3701, 97.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Stop">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Stop">
+<a id="src\app\models\stop.model.ts.Stop" xlink:href="src\app\models\stop.model.ts"><text x="88.5" y="13.5" stroke="none" text-anchor="middle" data-name="Stop">Stop</text></a>
+
+</g>
+</g>
+<g transform="translate(3701, 128.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Stop">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Stop">
+<text x="0.0" y="13.5" stroke="none" data-name="Stop">+stopid: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Stop">+sfrom: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Stop">+sto: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Stop">+sdate: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Stop">+departurehour: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Stop">+arrivalhour: string</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Stop">+fno: number</text>
+
+</g>
+</g>
+<g transform="translate(3701, 249.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Stop">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Stop">
+
+</g>
+</g>
+</g>
+<g data-name="UserStop">
+<g fill="lightblue" stroke="#33322E" data-name="UserStop">
+<rect x="3934.0" y="135.0" height="85.0" width="132.0" data-name="UserStop"></rect>
+<path d="M3934.0 166.0 L4066.0 166.0" fill="none" data-name="UserStop"></path>
+<path d="M3934.0 212.0 L4066.0 212.0" fill="none" data-name="UserStop"></path>
+</g>
+<g transform="translate(3934, 135)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserStop">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UserStop">
+<a id="src\app\models\stop.model.ts.UserStop" xlink:href="src\app\models\stop.model.ts"><text x="58.0" y="13.5" stroke="none" text-anchor="middle" data-name="UserStop">UserStop</text></a>
+
+</g>
+</g>
+<g transform="translate(3934, 166)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserStop">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UserStop">
+<text x="0.0" y="13.5" stroke="none" data-name="UserStop">+uemail: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="UserStop">+sid: string</text>
+
+</g>
+</g>
+<g transform="translate(3934, 212)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserStop">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserStop">
+
+</g>
+</g>
+</g>
+<g data-name="Student">
+<g fill="lightblue" stroke="#33322E" data-name="Student">
+<rect x="4106.0" y="120.0" height="115.0" width="156.0" data-name="Student"></rect>
+<path d="M4106.0 151.0 L4262.0 151.0" fill="none" data-name="Student"></path>
+<path d="M4106.0 227.0 L4262.0 227.0" fill="none" data-name="Student"></path>
+</g>
+<g transform="translate(4106, 120)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Student">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Student">
+<a id="src\app\models\student.model.ts.Student" xlink:href="src\app\models\student.model.ts"><text x="70.0" y="13.5" stroke="none" text-anchor="middle" data-name="Student">Student</text></a>
+
+</g>
+</g>
+<g transform="translate(4106, 151)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Student">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Student">
+<text x="0.0" y="13.5" stroke="none" data-name="Student">+studentid: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Student">+university: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Student">+miles: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Student">+uemail: string</text>
+
+</g>
+</g>
+<g transform="translate(4106, 227)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Student">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Student">
+
+</g>
+</g>
+</g>
+<g data-name="UserLogged">
+<g fill="lightblue" stroke="#33322E" data-name="UserLogged">
+<rect x="4302.0" y="67.5" height="220.0" width="199.0" data-name="UserLogged"></rect>
+<path d="M4302.0 98.5 L4501.0 98.5" fill="none" data-name="UserLogged"></path>
+<path d="M4302.0 279.5 L4501.0 279.5" fill="none" data-name="UserLogged"></path>
+</g>
+<g transform="translate(4302, 67.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserLogged">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UserLogged">
+<a id="src\app\models\user-logged.model.ts.UserLogged" xlink:href="src\app\models\user-logged.model.ts"><text x="91.5" y="13.5" stroke="none" text-anchor="middle" data-name="UserLogged">UserLogged</text></a>
+
+</g>
+</g>
+<g transform="translate(4302, 98.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserLogged">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UserLogged">
+<text x="0.0" y="13.5" stroke="none" data-name="UserLogged">+email: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="UserLogged">+upassword: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="UserLogged">+unumber: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="UserLogged">+fname: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="UserLogged">+mname: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="UserLogged">+lname1: string</text>
+<text x="0.0" y="103.5" stroke="none" data-name="UserLogged">+lname2: string</text>
+<text x="0.0" y="118.5" stroke="none" data-name="UserLogged">+studentid: string | null</text>
+<text x="0.0" y="133.5" stroke="none" data-name="UserLogged">+miles: number | null</text>
+<text x="0.0" y="148.5" stroke="none" data-name="UserLogged">+university: string | null</text>
+<text x="0.0" y="163.5" stroke="none" data-name="UserLogged">+adminid: string | null</text>
+
+</g>
+</g>
+<g transform="translate(4302, 279.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserLogged">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserLogged">
+
+</g>
+</g>
+</g>
+<g data-name="UserW">
+<g fill="lightblue" stroke="#33322E" data-name="UserW">
+<rect x="4541.0" y="97.5" height="160.0" width="166.0" data-name="UserW"></rect>
+<path d="M4541.0 128.5 L4707.0 128.5" fill="none" data-name="UserW"></path>
+<path d="M4541.0 249.5 L4707.0 249.5" fill="none" data-name="UserW"></path>
+</g>
+<g transform="translate(4541, 97.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserW">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UserW">
+<a id="src\app\models\userw.model.ts.UserW" xlink:href="src\app\models\userw.model.ts"><text x="75.0" y="13.5" stroke="none" text-anchor="middle" data-name="UserW">UserW</text></a>
+
+</g>
+</g>
+<g transform="translate(4541, 128.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserW">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UserW">
+<text x="0.0" y="13.5" stroke="none" data-name="UserW">+email: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="UserW">+upassword: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="UserW">+unumber?: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="UserW">+fname?: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="UserW">+mname?: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="UserW">+lname1?: string</text>
+<text x="0.0" y="103.5" stroke="none" data-name="UserW">+lname2?: string</text>
+
+</g>
+</g>
+<g transform="translate(4541, 249.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserW">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserW">
+
+</g>
+</g>
+</g>
+<g data-name="CheckInService">
+<g fill="#eee8d5" stroke="#33322E" data-name="CheckInService">
+<rect x="4747.0" y="108.5" height="138.0" width="494.0" data-name="CheckInService"></rect>
+<path d="M4747.0 139.5 L5241.0 139.5" fill="none" data-name="CheckInService"></path>
+<path d="M4747.0 215.5 L5241.0 215.5" fill="none" data-name="CheckInService"></path>
+</g>
+<g transform="translate(4747, 108.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CheckInService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CheckInService">
+<a id="src\app\services\check-in.service.ts.CheckInService" xlink:href="src\app\services\check-in.service.ts"><text x="239.0" y="13.5" stroke="none" text-anchor="middle" data-name="CheckInService">CheckInService</text></a>
+
+</g>
+</g>
+<g transform="translate(4747, 139.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckInService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckInService">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckInService">-url: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CheckInService">+httpOptions: { headers: HttpHeaders</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CheckInService">}</text>
+<text x="0.0" y="58.5" stroke="none" data-name="CheckInService">-http: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(4747, 215.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckInService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckInService">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckInService">+getPassengerCheckIn(): Observable&lt;PassengerCheckIn[]&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="CheckoutService">
+<g fill="#eee8d5" stroke="#33322E" data-name="CheckoutService">
+<rect x="5281.0" y="108.5" height="138.0" width="479.0" data-name="CheckoutService"></rect>
+<path d="M5281.0 139.5 L5760.0 139.5" fill="none" data-name="CheckoutService"></path>
+<path d="M5281.0 215.5 L5760.0 215.5" fill="none" data-name="CheckoutService"></path>
+</g>
+<g transform="translate(5281, 108.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CheckoutService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CheckoutService">
+<a id="src\app\services\checkout.service.ts.CheckoutService" xlink:href="src\app\services\checkout.service.ts"><text x="231.5" y="13.5" stroke="none" text-anchor="middle" data-name="CheckoutService">CheckoutService</text></a>
+
+</g>
+</g>
+<g transform="translate(5281, 139.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckoutService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckoutService">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckoutService">-url: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CheckoutService">+httpOptions: { headers: HttpHeaders</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CheckoutService">}</text>
+<text x="0.0" y="58.5" stroke="none" data-name="CheckoutService">-http: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(5281, 215.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckoutService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckoutService">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckoutService">+postCreatePassenger(): Observable&lt;CreatePassenger[]&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="PromotionsService">
+<g fill="#eee8d5" stroke="#33322E" data-name="PromotionsService">
+<rect x="5800.0" y="108.5" height="138.0" width="388.0" data-name="PromotionsService"></rect>
+<path d="M5800.0 139.5 L6188.0 139.5" fill="none" data-name="PromotionsService"></path>
+<path d="M5800.0 215.5 L6188.0 215.5" fill="none" data-name="PromotionsService"></path>
+</g>
+<g transform="translate(5800, 108.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PromotionsService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PromotionsService">
+<a id="src\app\services\promotions.service.ts.PromotionsService" xlink:href="src\app\services\promotions.service.ts"><text x="186.0" y="13.5" stroke="none" text-anchor="middle" data-name="PromotionsService">PromotionsService</text></a>
+
+</g>
+</g>
+<g transform="translate(5800, 139.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PromotionsService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PromotionsService">
+<text x="0.0" y="13.5" stroke="none" data-name="PromotionsService">-url: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="PromotionsService">+httpOptions: { headers: HttpHeaders</text>
+<text x="0.0" y="43.5" stroke="none" data-name="PromotionsService">}</text>
+<text x="0.0" y="58.5" stroke="none" data-name="PromotionsService">-http: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(5800, 215.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PromotionsService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PromotionsService">
+<text x="0.0" y="13.5" stroke="none" data-name="PromotionsService">+getSeePromotions(): Observable&lt;SeeFlight[]&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="ResgiterService">
+<g fill="#eee8d5" stroke="#33322E" data-name="ResgiterService">
+<rect x="6228.0" y="108.5" height="138.0" width="387.0" data-name="ResgiterService"></rect>
+<path d="M6228.0 139.5 L6615.0 139.5" fill="none" data-name="ResgiterService"></path>
+<path d="M6228.0 215.5 L6615.0 215.5" fill="none" data-name="ResgiterService"></path>
+</g>
+<g transform="translate(6228, 108.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ResgiterService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ResgiterService">
+<a id="src\app\services\register.service.ts.ResgiterService" xlink:href="src\app\services\register.service.ts"><text x="185.5" y="13.5" stroke="none" text-anchor="middle" data-name="ResgiterService">ResgiterService</text></a>
+
+</g>
+</g>
+<g transform="translate(6228, 139.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ResgiterService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ResgiterService">
+<text x="0.0" y="13.5" stroke="none" data-name="ResgiterService">-url: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ResgiterService">+httpOptions: { headers: HttpHeaders</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ResgiterService">}</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ResgiterService">-http: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(6228, 215.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ResgiterService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ResgiterService">
+<text x="0.0" y="13.5" stroke="none" data-name="ResgiterService">+postUserLogged(): Observable&lt;UserLogged&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="SearchPlaneService">
+<g fill="#eee8d5" stroke="#33322E" data-name="SearchPlaneService">
+<rect x="6655.0" y="86.0" height="183.0" width="429.0" data-name="SearchPlaneService"></rect>
+<path d="M6655.0 117.0 L7084.0 117.0" fill="none" data-name="SearchPlaneService"></path>
+<path d="M6655.0 208.0 L7084.0 208.0" fill="none" data-name="SearchPlaneService"></path>
+</g>
+<g transform="translate(6655, 86)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SearchPlaneService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SearchPlaneService">
+<a id="src\app\services\search-plane.service.ts.SearchPlaneService" xlink:href="src\app\services\search-plane.service.ts"><text x="206.5" y="13.5" stroke="none" text-anchor="middle" data-name="SearchPlaneService">SearchPlaneService</text></a>
+
+</g>
+</g>
+<g transform="translate(6655, 117)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SearchPlaneService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SearchPlaneService">
+<text x="0.0" y="13.5" stroke="none" data-name="SearchPlaneService">-searchSubject: BehaviorSubject&lt;SearchStop | null&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SearchPlaneService">-url: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SearchPlaneService">+httpOptions: { headers: HttpHeaders</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SearchPlaneService">}</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SearchPlaneService">-http: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(6655, 208)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SearchPlaneService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SearchPlaneService">
+<text x="0.0" y="13.5" stroke="none" data-name="SearchPlaneService">+getSeeFlights(): Observable&lt;SearchStop[]&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SearchPlaneService">+setSearchData(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SearchPlaneService">+getSearchData(): Observable&lt;SearchStop | null&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="SeeFlightsService">
+<g fill="#eee8d5" stroke="#33322E" data-name="SeeFlightsService">
+<rect x="7124.0" y="101.0" height="153.0" width="468.0" data-name="SeeFlightsService"></rect>
+<path d="M7124.0 132.0 L7592.0 132.0" fill="none" data-name="SeeFlightsService"></path>
+<path d="M7124.0 208.0 L7592.0 208.0" fill="none" data-name="SeeFlightsService"></path>
+</g>
+<g transform="translate(7124, 101)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SeeFlightsService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SeeFlightsService">
+<a id="src\app\services\see-flights.service.ts.SeeFlightsService" xlink:href="src\app\services\see-flights.service.ts"><text x="226.0" y="13.5" stroke="none" text-anchor="middle" data-name="SeeFlightsService">SeeFlightsService</text></a>
+
+</g>
+</g>
+<g transform="translate(7124, 132)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SeeFlightsService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SeeFlightsService">
+<text x="0.0" y="13.5" stroke="none" data-name="SeeFlightsService">-url: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SeeFlightsService">+httpOptions: { headers: HttpHeaders</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SeeFlightsService">}</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SeeFlightsService">-http: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(7124, 208)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SeeFlightsService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SeeFlightsService">
+<text x="0.0" y="13.5" stroke="none" data-name="SeeFlightsService">+getSeeFlights(): Observable&lt;SeeFlight[]&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SeeFlightsService">+postSeeFlightsWithSelection(): Observable&lt;SeeFlight[]&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="SignInService">
+<g fill="#eee8d5" stroke="#33322E" data-name="SignInService">
+<rect x="7632.0" y="108.5" height="138.0" width="337.0" data-name="SignInService"></rect>
+<path d="M7632.0 139.5 L7969.0 139.5" fill="none" data-name="SignInService"></path>
+<path d="M7632.0 215.5 L7969.0 215.5" fill="none" data-name="SignInService"></path>
+</g>
+<g transform="translate(7632, 108.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignInService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignInService">
+<a id="src\app\services\sign-in.service.ts.SignInService" xlink:href="src\app\services\sign-in.service.ts"><text x="160.5" y="13.5" stroke="none" text-anchor="middle" data-name="SignInService">SignInService</text></a>
+
+</g>
+</g>
+<g transform="translate(7632, 139.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignInService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignInService">
+<text x="0.0" y="13.5" stroke="none" data-name="SignInService">-url: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SignInService">+httpOptions: { headers: HttpHeaders</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SignInService">}</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SignInService">-http: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(7632, 215.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignInService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignInService">
+<text x="0.0" y="13.5" stroke="none" data-name="SignInService">+getUsers(): Observable&lt;UserLogged[]&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="BaggageCreateComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="BaggageCreateComponent">
+<rect x="8009.0" y="63.5" height="228.0" width="459.0" data-name="BaggageCreateComponent"></rect>
+<path d="M8009.0 94.5 L8468.0 94.5" fill="none" data-name="BaggageCreateComponent"></path>
+<path d="M8009.0 140.5 L8468.0 140.5" fill="none" data-name="BaggageCreateComponent"></path>
+</g>
+<g transform="translate(8009, 63.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="BaggageCreateComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="BaggageCreateComponent">
+<a id="src\app\components\baggage-create\baggage-create.component.ts.BaggageCreateComponent" xlink:href="src\app\components\baggage-create\baggage-create.component.ts"><text x="221.5" y="13.5" stroke="none" text-anchor="middle" data-name="BaggageCreateComponent">BaggageCreateComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(8009, 94.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaggageCreateComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BaggageCreateComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="BaggageCreateComponent">+baggageForm: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="BaggageCreateComponent">-fb: FormBuilder</text>
+
+</g>
+</g>
+<g transform="translate(8009, 140.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaggageCreateComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BaggageCreateComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="BaggageCreateComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="BaggageCreateComponent">-createSuitcaseFormGroup(): FormGroup&lt;any&gt;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="BaggageCreateComponent">-buildColors(): FormArray&lt;FormControl&lt;boolean | null&gt;&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="BaggageCreateComponent">+getColors(): string[]</text>
+<text x="0.0" y="73.5" stroke="none" data-name="BaggageCreateComponent">+addBaggage(): void</text>
+<text x="0.0" y="88.5" stroke="none" data-name="BaggageCreateComponent">+updatePriceBasedOnCount(): void</text>
+<text x="0.0" y="103.5" stroke="none" data-name="BaggageCreateComponent">+onSubmit(): void</text>
+<text x="0.0" y="118.5" stroke="none" data-name="BaggageCreateComponent">+deleteLastBaggage(): void</text>
+<text x="0.0" y="133.5" stroke="none" data-name="BaggageCreateComponent">+getTotalPrice(): number</text>
+
+</g>
+</g>
+</g>
+<g data-name="ButtonsComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="ButtonsComponent">
+<rect x="8508.0" y="154.0" height="47.0" width="167.0" data-name="ButtonsComponent"></rect>
+<path d="M8508.0 185.0 L8675.0 185.0" fill="none" data-name="ButtonsComponent"></path>
+<path d="M8508.0 193.0 L8675.0 193.0" fill="none" data-name="ButtonsComponent"></path>
+</g>
+<g transform="translate(8508, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ButtonsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ButtonsComponent">
+<a id="src\app\components\buttons\buttons.component.ts.ButtonsComponent" xlink:href="src\app\components\buttons\buttons.component.ts"><text x="75.5" y="13.5" stroke="none" text-anchor="middle" data-name="ButtonsComponent">ButtonsComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(8508, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ButtonsComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ButtonsComponent">
+
+</g>
+</g>
+<g transform="translate(8508, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ButtonsComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ButtonsComponent">
+
+</g>
+</g>
+</g>
+<g data-name="CheckInComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="CheckInComponent">
+<rect x="8715.0" y="93.5" height="168.0" width="345.0" data-name="CheckInComponent"></rect>
+<path d="M8715.0 124.5 L9060.0 124.5" fill="none" data-name="CheckInComponent"></path>
+<path d="M8715.0 200.5 L9060.0 200.5" fill="none" data-name="CheckInComponent"></path>
+</g>
+<g transform="translate(8715, 93.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CheckInComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CheckInComponent">
+<a id="src\app\components\check-in\check-in.component.ts.CheckInComponent" xlink:href="src\app\components\check-in\check-in.component.ts"><text x="164.5" y="13.5" stroke="none" text-anchor="middle" data-name="CheckInComponent">CheckInComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(8715, 124.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckInComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckInComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckInComponent">+passengerCheckIn: PassengerCheckIn[]</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CheckInComponent">+user: UserLogged</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CheckInComponent">-router: Router</text>
+<text x="0.0" y="58.5" stroke="none" data-name="CheckInComponent">-checkInService: CheckInService</text>
+
+</g>
+</g>
+<g transform="translate(8715, 200.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckInComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckInComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckInComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CheckInComponent">+fetchPromo(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CheckInComponent">+reserveFlight(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="CheckoutComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="CheckoutComponent">
+<rect x="9100.0" y="86.0" height="183.0" width="297.0" data-name="CheckoutComponent"></rect>
+<path d="M9100.0 117.0 L9397.0 117.0" fill="none" data-name="CheckoutComponent"></path>
+<path d="M9100.0 223.0 L9397.0 223.0" fill="none" data-name="CheckoutComponent"></path>
+</g>
+<g transform="translate(9100, 86)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CheckoutComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CheckoutComponent">
+<a id="src\app\components\checkout\checkout.component.ts.CheckoutComponent" xlink:href="src\app\components\checkout\checkout.component.ts"><text x="140.5" y="13.5" stroke="none" text-anchor="middle" data-name="CheckoutComponent">CheckoutComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(9100, 117)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckoutComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckoutComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckoutComponent">+pdfData: PDF</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CheckoutComponent">+fecha: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CheckoutComponent">+pno: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="CheckoutComponent">-router: Router</text>
+<text x="0.0" y="73.5" stroke="none" data-name="CheckoutComponent">-pdfService: PdfService</text>
+<text x="0.0" y="88.5" stroke="none" data-name="CheckoutComponent">-checkoutService: CheckoutService</text>
+
+</g>
+</g>
+<g transform="translate(9100, 223)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CheckoutComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CheckoutComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="CheckoutComponent">+setDataPdf(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CheckoutComponent">+onConfirm(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="DisplayCheckoutComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplayCheckoutComponent">
+<rect x="8440.5" y="515.0" height="93.0" width="240.0" data-name="DisplayCheckoutComponent"></rect>
+<path d="M8440.5 546.0 L8680.5 546.0" fill="none" data-name="DisplayCheckoutComponent"></path>
+<path d="M8440.5 577.0 L8680.5 577.0" fill="none" data-name="DisplayCheckoutComponent"></path>
+</g>
+<g transform="translate(8440.5, 515)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplayCheckoutComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplayCheckoutComponent">
+<a id="src\app\components\display-checkout\display-checkout.component.ts.DisplayCheckoutComponent" xlink:href="src\app\components\display-checkout\display-checkout.component.ts"><text x="112.0" y="13.5" stroke="none" text-anchor="middle" data-name="DisplayCheckoutComponent">DisplayCheckoutComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(8440.5, 546)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayCheckoutComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DisplayCheckoutComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="DisplayCheckoutComponent">-router: Router</text>
+
+</g>
+</g>
+<g transform="translate(8440.5, 577)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayCheckoutComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DisplayCheckoutComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="DisplayCheckoutComponent">+ngOnInit(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="OnInit">
+<g fill="#eee8d5" stroke="#33322E" data-name="OnInit">
+<rect x="9437.0" y="162.0" height="31.0" width="63.0" data-name="OnInit"></rect>
+</g>
+<g transform="translate(9437, 162)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="OnInit">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="OnInit">
+<text x="23.5" y="13.5" stroke="none" text-anchor="middle" data-name="OnInit">OnInit</text>
+
+</g>
+</g>
+</g>
+<g data-name="DisplayConfirmationComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplayConfirmationComponent">
+<rect x="9540.0" y="154.0" height="47.0" width="265.0" data-name="DisplayConfirmationComponent"></rect>
+<path d="M9540.0 185.0 L9805.0 185.0" fill="none" data-name="DisplayConfirmationComponent"></path>
+<path d="M9540.0 193.0 L9805.0 193.0" fill="none" data-name="DisplayConfirmationComponent"></path>
+</g>
+<g transform="translate(9540, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplayConfirmationComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplayConfirmationComponent">
+<a id="src\app\components\display-confirmation\display-confirmation.component.ts.DisplayConfirmationComponent" xlink:href="src\app\components\display-confirmation\display-confirmation.component.ts"><text x="124.5" y="13.5" stroke="none" text-anchor="middle" data-name="DisplayConfirmationComponent">DisplayConfirmationComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(9540, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayConfirmationComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayConfirmationComponent">
+
+</g>
+</g>
+<g transform="translate(9540, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayConfirmationComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayConfirmationComponent">
+
+</g>
+</g>
+</g>
+<g data-name="DisplayFliesComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplayFliesComponent">
+<rect x="8720.5" y="515.0" height="93.0" width="202.0" data-name="DisplayFliesComponent"></rect>
+<path d="M8720.5 546.0 L8922.5 546.0" fill="none" data-name="DisplayFliesComponent"></path>
+<path d="M8720.5 577.0 L8922.5 577.0" fill="none" data-name="DisplayFliesComponent"></path>
+</g>
+<g transform="translate(8720.5, 515)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplayFliesComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplayFliesComponent">
+<a id="src\app\components\display-flies\display-flies.component.ts.DisplayFliesComponent" xlink:href="src\app\components\display-flies\display-flies.component.ts"><text x="93.0" y="13.5" stroke="none" text-anchor="middle" data-name="DisplayFliesComponent">DisplayFliesComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(8720.5, 546)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayFliesComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DisplayFliesComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="DisplayFliesComponent">-router: Router</text>
+
+</g>
+</g>
+<g transform="translate(8720.5, 577)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayFliesComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DisplayFliesComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="DisplayFliesComponent">+ngOnInit(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="DisplayPricesComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplayPricesComponent">
+<rect x="9845.0" y="154.0" height="47.0" width="214.0" data-name="DisplayPricesComponent"></rect>
+<path d="M9845.0 185.0 L10059.0 185.0" fill="none" data-name="DisplayPricesComponent"></path>
+<path d="M9845.0 193.0 L10059.0 193.0" fill="none" data-name="DisplayPricesComponent"></path>
+</g>
+<g transform="translate(9845, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplayPricesComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplayPricesComponent">
+<a id="src\app\components\display-prices\display-prices.component.ts.DisplayPricesComponent" xlink:href="src\app\components\display-prices\display-prices.component.ts"><text x="99.0" y="13.5" stroke="none" text-anchor="middle" data-name="DisplayPricesComponent">DisplayPricesComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(9845, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayPricesComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayPricesComponent">
+
+</g>
+</g>
+<g transform="translate(9845, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayPricesComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayPricesComponent">
+
+</g>
+</g>
+</g>
+<g data-name="DisplayPromotionsComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplayPromotionsComponent">
+<rect x="10099.0" y="154.0" height="47.0" width="254.0" data-name="DisplayPromotionsComponent"></rect>
+<path d="M10099.0 185.0 L10353.0 185.0" fill="none" data-name="DisplayPromotionsComponent"></path>
+<path d="M10099.0 193.0 L10353.0 193.0" fill="none" data-name="DisplayPromotionsComponent"></path>
+</g>
+<g transform="translate(10099, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplayPromotionsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplayPromotionsComponent">
+<a id="src\app\components\display-promotions\display-promotions.component.ts.DisplayPromotionsComponent" xlink:href="src\app\components\display-promotions\display-promotions.component.ts"><text x="119.0" y="13.5" stroke="none" text-anchor="middle" data-name="DisplayPromotionsComponent">DisplayPromotionsComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(10099, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayPromotionsComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayPromotionsComponent">
+
+</g>
+</g>
+<g transform="translate(10099, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayPromotionsComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayPromotionsComponent">
+
+</g>
+</g>
+</g>
+<g data-name="DisplayResgiterComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplayResgiterComponent">
+<rect x="10393.0" y="154.0" height="47.0" width="231.0" data-name="DisplayResgiterComponent"></rect>
+<path d="M10393.0 185.0 L10624.0 185.0" fill="none" data-name="DisplayResgiterComponent"></path>
+<path d="M10393.0 193.0 L10624.0 193.0" fill="none" data-name="DisplayResgiterComponent"></path>
+</g>
+<g transform="translate(10393, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplayResgiterComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplayResgiterComponent">
+<a id="src\app\components\display-resgiter\display-resgiter.component.ts.DisplayResgiterComponent" xlink:href="src\app\components\display-resgiter\display-resgiter.component.ts"><text x="107.5" y="13.5" stroke="none" text-anchor="middle" data-name="DisplayResgiterComponent">DisplayResgiterComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(10393, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayResgiterComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayResgiterComponent">
+
+</g>
+</g>
+<g transform="translate(10393, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplayResgiterComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplayResgiterComponent">
+
+</g>
+</g>
+</g>
+<g data-name="DisplaySeatComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplaySeatComponent">
+<rect x="10664.0" y="154.0" height="47.0" width="201.0" data-name="DisplaySeatComponent"></rect>
+<path d="M10664.0 185.0 L10865.0 185.0" fill="none" data-name="DisplaySeatComponent"></path>
+<path d="M10664.0 193.0 L10865.0 193.0" fill="none" data-name="DisplaySeatComponent"></path>
+</g>
+<g transform="translate(10664, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplaySeatComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplaySeatComponent">
+<a id="src\app\components\display-seat\display-seat.component.ts.DisplaySeatComponent" xlink:href="src\app\components\display-seat\display-seat.component.ts"><text x="92.5" y="13.5" stroke="none" text-anchor="middle" data-name="DisplaySeatComponent">DisplaySeatComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(10664, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplaySeatComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplaySeatComponent">
+
+</g>
+</g>
+<g transform="translate(10664, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplaySeatComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplaySeatComponent">
+
+</g>
+</g>
+</g>
+<g data-name="DisplaySignInComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DisplaySignInComponent">
+<rect x="10905.0" y="154.0" height="47.0" width="215.0" data-name="DisplaySignInComponent"></rect>
+<path d="M10905.0 185.0 L11120.0 185.0" fill="none" data-name="DisplaySignInComponent"></path>
+<path d="M10905.0 193.0 L11120.0 193.0" fill="none" data-name="DisplaySignInComponent"></path>
+</g>
+<g transform="translate(10905, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DisplaySignInComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DisplaySignInComponent">
+<a id="src\app\components\display-sign-in\display-sign-in.component.ts.DisplaySignInComponent" xlink:href="src\app\components\display-sign-in\display-sign-in.component.ts"><text x="99.5" y="13.5" stroke="none" text-anchor="middle" data-name="DisplaySignInComponent">DisplaySignInComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(10905, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplaySignInComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplaySignInComponent">
+
+</g>
+</g>
+<g transform="translate(10905, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DisplaySignInComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DisplaySignInComponent">
+
+</g>
+</g>
+</g>
+<g data-name="FooterComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="FooterComponent">
+<rect x="11160.0" y="154.0" height="47.0" width="158.0" data-name="FooterComponent"></rect>
+<path d="M11160.0 185.0 L11318.0 185.0" fill="none" data-name="FooterComponent"></path>
+<path d="M11160.0 193.0 L11318.0 193.0" fill="none" data-name="FooterComponent"></path>
+</g>
+<g transform="translate(11160, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="FooterComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="FooterComponent">
+<a id="src\app\components\footer\footer.component.ts.FooterComponent" xlink:href="src\app\components\footer\footer.component.ts"><text x="71.0" y="13.5" stroke="none" text-anchor="middle" data-name="FooterComponent">FooterComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(11160, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FooterComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="FooterComponent">
+
+</g>
+</g>
+<g transform="translate(11160, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FooterComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="FooterComponent">
+
+</g>
+</g>
+</g>
+<g data-name="GeneratepdfComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="GeneratepdfComponent">
+<rect x="8962.5" y="477.5" height="168.0" width="206.0" data-name="GeneratepdfComponent"></rect>
+<path d="M8962.5 508.5 L9168.5 508.5" fill="none" data-name="GeneratepdfComponent"></path>
+<path d="M8962.5 584.5 L9168.5 584.5" fill="none" data-name="GeneratepdfComponent"></path>
+</g>
+<g transform="translate(8962.5, 477.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GeneratepdfComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GeneratepdfComponent">
+<a id="src\app\components\generatepdf\generatepdf.component.ts.GeneratepdfComponent" xlink:href="src\app\components\generatepdf\generatepdf.component.ts"><text x="95.0" y="13.5" stroke="none" text-anchor="middle" data-name="GeneratepdfComponent">GeneratepdfComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(8962.5, 508.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GeneratepdfComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GeneratepdfComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="GeneratepdfComponent">+pdfData?: PDF</text>
+<text x="0.0" y="28.5" stroke="none" data-name="GeneratepdfComponent">+pdfGenerated: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="GeneratepdfComponent">-router: Router</text>
+<text x="0.0" y="58.5" stroke="none" data-name="GeneratepdfComponent">-pdfService: PdfService</text>
+
+</g>
+</g>
+<g transform="translate(8962.5, 584.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GeneratepdfComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GeneratepdfComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="GeneratepdfComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="GeneratepdfComponent">+generatePdf(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="GeneratepdfComponent">+returnHome(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="HomeComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="HomeComponent">
+<rect x="11358.0" y="154.0" height="47.0" width="153.0" data-name="HomeComponent"></rect>
+<path d="M11358.0 185.0 L11511.0 185.0" fill="none" data-name="HomeComponent"></path>
+<path d="M11358.0 193.0 L11511.0 193.0" fill="none" data-name="HomeComponent"></path>
+</g>
+<g transform="translate(11358, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="HomeComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="HomeComponent">
+<a id="src\app\components\home\home.component.ts.HomeComponent" xlink:href="src\app\components\home\home.component.ts"><text x="68.5" y="13.5" stroke="none" text-anchor="middle" data-name="HomeComponent">HomeComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(11358, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="HomeComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="HomeComponent">
+
+</g>
+</g>
+<g transform="translate(11358, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="HomeComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="HomeComponent">
+
+</g>
+</g>
+</g>
+<g data-name="NavbarComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="NavbarComponent">
+<rect x="9208.5" y="515.0" height="93.0" width="228.0" data-name="NavbarComponent"></rect>
+<path d="M9208.5 546.0 L9436.5 546.0" fill="none" data-name="NavbarComponent"></path>
+<path d="M9208.5 577.0 L9436.5 577.0" fill="none" data-name="NavbarComponent"></path>
+</g>
+<g transform="translate(9208.5, 515)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="NavbarComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="NavbarComponent">
+<a id="src\app\components\navbar\navbar.component.ts.NavbarComponent" xlink:href="src\app\components\navbar\navbar.component.ts"><text x="106.0" y="13.5" stroke="none" text-anchor="middle" data-name="NavbarComponent">NavbarComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(9208.5, 546)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="NavbarComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="NavbarComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="NavbarComponent">+userLogged: UserLogged</text>
+
+</g>
+</g>
+<g transform="translate(9208.5, 577)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="NavbarComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="NavbarComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="NavbarComponent">+ngOnInit(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="PlaceAirplaneComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="PlaceAirplaneComponent">
+<rect x="11551.0" y="154.0" height="47.0" width="216.0" data-name="PlaceAirplaneComponent"></rect>
+<path d="M11551.0 185.0 L11767.0 185.0" fill="none" data-name="PlaceAirplaneComponent"></path>
+<path d="M11551.0 193.0 L11767.0 193.0" fill="none" data-name="PlaceAirplaneComponent"></path>
+</g>
+<g transform="translate(11551, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PlaceAirplaneComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PlaceAirplaneComponent">
+<a id="src\app\components\place-airplane\place-airplane.component.ts.PlaceAirplaneComponent" xlink:href="src\app\components\place-airplane\place-airplane.component.ts"><text x="100.0" y="13.5" stroke="none" text-anchor="middle" data-name="PlaceAirplaneComponent">PlaceAirplaneComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(11551, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PlaceAirplaneComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PlaceAirplaneComponent">
+
+</g>
+</g>
+<g transform="translate(11551, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PlaceAirplaneComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PlaceAirplaneComponent">
+
+</g>
+</g>
+</g>
+<g data-name="PricingComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="PricingComponent">
+<rect x="11807.0" y="154.0" height="47.0" width="161.0" data-name="PricingComponent"></rect>
+<path d="M11807.0 185.0 L11968.0 185.0" fill="none" data-name="PricingComponent"></path>
+<path d="M11807.0 193.0 L11968.0 193.0" fill="none" data-name="PricingComponent"></path>
+</g>
+<g transform="translate(11807, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PricingComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PricingComponent">
+<a id="src\app\components\pricing\pricing.component.ts.PricingComponent" xlink:href="src\app\components\pricing\pricing.component.ts"><text x="72.5" y="13.5" stroke="none" text-anchor="middle" data-name="PricingComponent">PricingComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(11807, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PricingComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PricingComponent">
+
+</g>
+</g>
+<g transform="translate(11807, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PricingComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PricingComponent">
+
+</g>
+</g>
+</g>
+<g data-name="PromotionsComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="PromotionsComponent">
+<rect x="12008.0" y="101.0" height="153.0" width="327.0" data-name="PromotionsComponent"></rect>
+<path d="M12008.0 132.0 L12335.0 132.0" fill="none" data-name="PromotionsComponent"></path>
+<path d="M12008.0 193.0 L12335.0 193.0" fill="none" data-name="PromotionsComponent"></path>
+</g>
+<g transform="translate(12008, 101)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PromotionsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PromotionsComponent">
+<a id="src\app\components\promotions\promotions.component.ts.PromotionsComponent" xlink:href="src\app\components\promotions\promotions.component.ts"><text x="155.5" y="13.5" stroke="none" text-anchor="middle" data-name="PromotionsComponent">PromotionsComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(12008, 132)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PromotionsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PromotionsComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="PromotionsComponent">+seeFlights: SeeFlight[]</text>
+<text x="0.0" y="28.5" stroke="none" data-name="PromotionsComponent">-router: Router</text>
+<text x="0.0" y="43.5" stroke="none" data-name="PromotionsComponent">-promotionsService: PromotionsService</text>
+
+</g>
+</g>
+<g transform="translate(12008, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PromotionsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PromotionsComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="PromotionsComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="PromotionsComponent">+fetchPromo(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="PromotionsComponent">+reserveFlight(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="RegisterUserComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="RegisterUserComponent">
+<rect x="9476.5" y="455.0" height="213.0" width="276.0" data-name="RegisterUserComponent"></rect>
+<path d="M9476.5 486.0 L9752.5 486.0" fill="none" data-name="RegisterUserComponent"></path>
+<path d="M9476.5 577.0 L9752.5 577.0" fill="none" data-name="RegisterUserComponent"></path>
+</g>
+<g transform="translate(9476.5, 455)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="RegisterUserComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="RegisterUserComponent">
+<a id="src\app\components\register-user\register-user.component.ts.RegisterUserComponent" xlink:href="src\app\components\register-user\register-user.component.ts"><text x="130.0" y="13.5" stroke="none" text-anchor="middle" data-name="RegisterUserComponent">RegisterUserComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(9476.5, 486)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RegisterUserComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="RegisterUserComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="RegisterUserComponent">+userForm: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="RegisterUserComponent">+selectedUserType: UserType</text>
+<text x="0.0" y="43.5" stroke="none" data-name="RegisterUserComponent">-fb: FormBuilder</text>
+<text x="0.0" y="58.5" stroke="none" data-name="RegisterUserComponent">-router: Router</text>
+<text x="0.0" y="73.5" stroke="none" data-name="RegisterUserComponent">-registerService: ResgiterService</text>
+
+</g>
+</g>
+<g transform="translate(9476.5, 577)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RegisterUserComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="RegisterUserComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="RegisterUserComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="RegisterUserComponent">+selectUserType(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="RegisterUserComponent">+resetSelection(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="RegisterUserComponent">+onSubmit(): void</text>
+<text x="0.0" y="73.5" stroke="none" data-name="RegisterUserComponent">+onRegister(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="SearchPlaneComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="SearchPlaneComponent">
+<rect x="9792.5" y="395.0" height="333.0" width="350.0" data-name="SearchPlaneComponent"></rect>
+<path d="M9792.5 426.0 L10142.5 426.0" fill="none" data-name="SearchPlaneComponent"></path>
+<path d="M9792.5 592.0 L10142.5 592.0" fill="none" data-name="SearchPlaneComponent"></path>
+</g>
+<g transform="translate(9792.5, 395)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SearchPlaneComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SearchPlaneComponent">
+<a id="src\app\components\search-plane\search-plane.component.ts.SearchPlaneComponent" xlink:href="src\app\components\search-plane\search-plane.component.ts"><text x="167.0" y="13.5" stroke="none" text-anchor="middle" data-name="SearchPlaneComponent">SearchPlaneComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(9792.5, 426)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SearchPlaneComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SearchPlaneComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="SearchPlaneComponent">+searchStops: SearchStop[]</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SearchPlaneComponent">+selectedOrigin: { city: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SearchPlaneComponent">id: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SearchPlaneComponent">} | null</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SearchPlaneComponent">+selectedDestination: { city: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="SearchPlaneComponent">id: number</text>
+<text x="0.0" y="103.5" stroke="none" data-name="SearchPlaneComponent">} | null</text>
+<text x="0.0" y="118.5" stroke="none" data-name="SearchPlaneComponent">-onDestroy: Subject&lt;void&gt;</text>
+<text x="0.0" y="133.5" stroke="none" data-name="SearchPlaneComponent">-searchPlaneService: SearchPlaneService</text>
+<text x="0.0" y="148.5" stroke="none" data-name="SearchPlaneComponent">-router: Router</text>
+
+</g>
+</g>
+<g transform="translate(9792.5, 592)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SearchPlaneComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SearchPlaneComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="SearchPlaneComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SearchPlaneComponent">+ngOnDestroy(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SearchPlaneComponent">+populateSelectionFromService(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SearchPlaneComponent">+fetchSearchStops(): void</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SearchPlaneComponent">+selectOrigin(): void</text>
+<text x="0.0" y="88.5" stroke="none" data-name="SearchPlaneComponent">+selectDestination(): void</text>
+<text x="0.0" y="103.5" stroke="none" data-name="SearchPlaneComponent">+clearSelections(): void</text>
+<text x="0.0" y="118.5" stroke="none" data-name="SearchPlaneComponent">+seeFlights(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="SeeFlightsComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="SeeFlightsComponent">
+<rect x="10182.5" y="447.5" height="228.0" width="350.0" data-name="SeeFlightsComponent"></rect>
+<path d="M10182.5 478.5 L10532.5 478.5" fill="none" data-name="SeeFlightsComponent"></path>
+<path d="M10182.5 569.5 L10532.5 569.5" fill="none" data-name="SeeFlightsComponent"></path>
+</g>
+<g transform="translate(10182.5, 447.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SeeFlightsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SeeFlightsComponent">
+<a id="src\app\components\see-flights\see-flights.component.ts.SeeFlightsComponent" xlink:href="src\app\components\see-flights\see-flights.component.ts"><text x="167.0" y="13.5" stroke="none" text-anchor="middle" data-name="SeeFlightsComponent">SeeFlightsComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(10182.5, 478.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SeeFlightsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SeeFlightsComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="SeeFlightsComponent">-onDestroy: Subject&lt;void&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SeeFlightsComponent">+seeFlights: SeeFlight[]</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SeeFlightsComponent">-router: Router</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SeeFlightsComponent">-seeFlightsService: SeeFlightsService</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SeeFlightsComponent">-searchPlaneService: SearchPlaneService</text>
+
+</g>
+</g>
+<g transform="translate(10182.5, 569.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SeeFlightsComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SeeFlightsComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="SeeFlightsComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SeeFlightsComponent">+ngOnDestroy(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SeeFlightsComponent">+fetchFlights(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SeeFlightsComponent">+fetchFlightsNoSelection(): void</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SeeFlightsComponent">+fetchFlightsWithSelection(): void</text>
+<text x="0.0" y="88.5" stroke="none" data-name="SeeFlightsComponent">+reserveFlight(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="SignInComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="SignInComponent">
+<rect x="10572.5" y="485.0" height="153.0" width="262.0" data-name="SignInComponent"></rect>
+<path d="M10572.5 516.0 L10834.5 516.0" fill="none" data-name="SignInComponent"></path>
+<path d="M10572.5 592.0 L10834.5 592.0" fill="none" data-name="SignInComponent"></path>
+</g>
+<g transform="translate(10572.5, 485)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignInComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignInComponent">
+<a id="src\app\components\sign-in\sign-in.component.ts.SignInComponent" xlink:href="src\app\components\sign-in\sign-in.component.ts"><text x="123.0" y="13.5" stroke="none" text-anchor="middle" data-name="SignInComponent">SignInComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(10572.5, 516)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignInComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignInComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="SignInComponent">+signInForm: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SignInComponent">-fb: FormBuilder</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SignInComponent">-router: Router</text>
+<text x="0.0" y="58.5" stroke="none" data-name="SignInComponent">-signInService: SignInService</text>
+
+</g>
+</g>
+<g transform="translate(10572.5, 592)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignInComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignInComponent">
+<text x="0.0" y="13.5" stroke="none" data-name="SignInComponent">+ngOnInit(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SignInComponent">+onSubmit(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="SlidesComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="SlidesComponent">
+<rect x="12375.0" y="154.0" height="47.0" width="155.0" data-name="SlidesComponent"></rect>
+<path d="M12375.0 185.0 L12530.0 185.0" fill="none" data-name="SlidesComponent"></path>
+<path d="M12375.0 193.0 L12530.0 193.0" fill="none" data-name="SlidesComponent"></path>
+</g>
+<g transform="translate(12375, 154)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SlidesComponent">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SlidesComponent">
+<a id="src\app\components\slides\slides.component.ts.SlidesComponent" xlink:href="src\app\components\slides\slides.component.ts"><text x="69.5" y="13.5" stroke="none" text-anchor="middle" data-name="SlidesComponent">SlidesComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(12375, 185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SlidesComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="SlidesComponent">
+
+</g>
+</g>
+<g transform="translate(12375, 193)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SlidesComponent">
+<g transform="translate(8, 8)" fill="#33322E" data-name="SlidesComponent">
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
