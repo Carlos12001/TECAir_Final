@@ -2,7 +2,7 @@ import { NumberSymbol } from '@angular/common';
 
 export interface Seat {
   snumber: string;
-  sclass: 'Ejecutiva' | 'Turista' | '';
+  sclass: 'Ejecutivo' | 'Turista' | '';
   pemail?: string;
   pnumber: number;
 }
@@ -10,25 +10,25 @@ export interface Seat {
 export const seatsExample: Seat[] = [
   {
     snumber: 'A00',
-    sclass: 'Ejecutiva',
+    sclass: 'Ejecutivo',
     pemail: '',
     pnumber: 2,
   },
   {
     snumber: 'A01',
-    sclass: 'Ejecutiva',
+    sclass: 'Ejecutivo',
     pemail: '',
     pnumber: 4,
   },
   {
     snumber: 'B02',
-    sclass: 'Ejecutiva',
+    sclass: 'Ejecutivo',
     pemail: '',
     pnumber: 6,
   },
   {
     snumber: 'B01',
-    sclass: 'Ejecutiva',
+    sclass: 'Ejecutivo',
     pemail: '',
     pnumber: 8,
   },
@@ -36,7 +36,7 @@ export const seatsExample: Seat[] = [
 
 export const seatSelected: Seat = {
   snumber: 'Z00',
-  sclass: 'Ejecutiva',
+  sclass: 'Ejecutivo',
   pemail: 'pedrog@gmail.com',
   pnumber: 0,
 };
@@ -51,25 +51,25 @@ export const seatWithCapacityExample: SeatWithCapacity = {
   seats: [
     {
       snumber: 'A00',
-      sclass: 'Ejecutiva',
+      sclass: 'Ejecutivo',
       pemail: '',
       pnumber: 2,
     },
     {
       snumber: 'A01',
-      sclass: 'Ejecutiva',
+      sclass: 'Ejecutivo',
       pemail: '',
       pnumber: 4,
     },
     {
       snumber: 'B02',
-      sclass: 'Ejecutiva',
+      sclass: 'Ejecutivo',
       pemail: '',
       pnumber: 6,
     },
     {
       snumber: 'B01',
-      sclass: 'Ejecutiva',
+      sclass: 'Ejecutivo',
       pemail: '',
       pnumber: 8,
     },

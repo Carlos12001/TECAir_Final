@@ -61,6 +61,7 @@ export class CheckInComponent {
 
   siguientePagina(passenger: PassengerCheckIn): void {
     console.log('Reserving flight: ', passenger);
+    passengerCheckInSelected.pnumber = passenger.pnumber;
     passengerCheckInSelected.fnumber = passenger.fnumber;
     passengerCheckInSelected.stopid = passenger.stopid;
     passengerCheckInSelected.sfromcity = passenger.sfromcity;

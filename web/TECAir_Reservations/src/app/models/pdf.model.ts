@@ -25,6 +25,9 @@ export class PDF {
   pno?: number = 0;
   baggages?: number[] = [];
 
+  snumber: string;
+  baggageprice: number;
+
   constructor(
     email: string,
     unumber: string,
@@ -64,6 +67,8 @@ export class PDF {
     this.miles = miles;
     this.uemail = uemail;
     this.finalprice = finalprice;
+    this.baggageprice = 0;
+    this.snumber = '';
   }
 }
 
@@ -88,6 +93,8 @@ export const pdf = {
   finalprice: 0,
   pno: 0,
   baggages: [0, 2, 3, 4, 5, 6],
+  snumber: '',
+  baggageprice: 0,
 };
 
 @Injectable({

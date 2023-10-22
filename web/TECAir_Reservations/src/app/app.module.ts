@@ -32,6 +32,7 @@ import { PromotionsComponent } from './components/promotions/promotions.componen
 import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { DisplayCheckInComponent } from './components/display-check-in/display-check-in.component';
+import { DisplayBaggageComponent } from './components/display-baggage/display-baggage.component';
 
 @NgModule({
   imports: [
@@ -70,6 +71,7 @@ import { DisplayCheckInComponent } from './components/display-check-in/display-c
     DisplayPromotionsComponent,
     CheckInComponent,
     DisplayCheckInComponent,
+    DisplayBaggageComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -19,7 +19,7 @@
 [&lt;interface&gt;Plane|+planeid: string;+capacity: number|]
 [&lt;interface&gt;Promo|+fno: number;+image: string;+dpercent: number;+finaldate: string|]
 [&lt;interface&gt;SearchStop|+sfromairportid: number;+sfromcity: string;+stoairportid: number;+stocity: string|]
-[&lt;interface&gt;Seat|+snumber: string;+sclass: &quot;&quot; \| &quot;Ejecutiva&quot; \| &quot;Turista&quot;;+pemail?: string;+pnumber: string|]
+[&lt;interface&gt;Seat|+snumber: string;+sclass: &quot;&quot; \| &quot;Ejecutivo&quot; \| &quot;Turista&quot;;+pemail?: string;+pnumber: string|]
 [&lt;interface&gt;SeeFlight|+fnumber: number;+stopid: number;+sfromcity: string;+stocity: string;+stoimage: string;+fdate: string;+fprice: number;+depercent?: number|]
 [&lt;interface&gt;Stop|+stopid: number;+sfrom: string;+sto: string;+sdate: string;+departurehour: string;+arrivalhour: string;+fno: number|]
 [&lt;interface&gt;UserStop|+uemail: string;+sid: string|]
@@ -551,7 +551,7 @@
 <g transform="translate(3157, 151)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Seat">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Seat">
 <text x="0.0" y="13.5" stroke="none" data-name="Seat">+snumber: string</text>
-<text x="0.0" y="28.5" stroke="none" data-name="Seat">+sclass: &quot;&quot; | &quot;Ejecutiva&quot; | &quot;Turista&quot;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Seat">+sclass: &quot;&quot; | &quot;Ejecutivo&quot; | &quot;Turista&quot;</text>
 <text x="0.0" y="43.5" stroke="none" data-name="Seat">+pemail?: string</text>
 <text x="0.0" y="58.5" stroke="none" data-name="Seat">+pnumber: string</text>
 
