@@ -34,7 +34,7 @@ export class PromotionsComponent {
   fetchPromo(): void {
     this.promotionsService.getSeePromotions().subscribe({
       next: (data) => {
-        this.seeFlights = data;
+        this.seeFlights = data.filter(flight => flight.depercent && flight.depercent > 0);
       },
       error: (error) => {
         console.error('Error fetching flights:', error);

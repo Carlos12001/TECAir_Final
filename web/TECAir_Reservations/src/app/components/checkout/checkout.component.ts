@@ -107,9 +107,11 @@ export class CheckoutComponent {
         seeFlightSelected.stopid
       )
       .subscribe({
-        next: (data: CreatePassenger) => {
+        next: (data: CreatePassenger[]) => {
           console.log('Passenger created:', data);
-          this.pno = data.pnumber;
+        
+          this.pno = (data[0]).pnumber;
+          this.pdfData.departurehour = (data[0]).departurehour;
           this.setDataPdf();
         },
         error: (error) => {
