@@ -101,69 +101,32 @@
   <body>
     <div class="plane">
       <div class="title">Cabina</div>
-      <div class="seat-row">
-        <div class="seat business"></div>
-        <div class="seat business"></div>
-        <div class="aisle"></div>
-        <div class="seat business"></div>
-        <div class="seat business"></div>
+      <div *ngFor="let row of seatStructure; let i = index">
+        <ng-container *ngIf="i % 4 === 0">
+          <div class="seat-row">
+            <!-- Primera mitad de asientos -->
+            <div *ngFor="let seat of seatStructure.slice(i, i + 2)"
+                 class="seat business"
+                 [class]="seat.sclass"
+                 [class.disabled]="isSeatTaken(seat.snumber)"
+                 (click)="onSeatClick(seat)">
+              {{ seat.snumber }}
+            </div>
+    
+            <!-- Pasillo -->
+            <div class="aisle"></div>
+    
+            <!-- Segunda mitad de asientos -->
+            <div *ngFor="let seat of seatStructure.slice(i + 2, i + 4)"
+                  class="seat business"     
+                  [class]="seat.sclass"
+                 [class.disabled]="isSeatTaken(seat.snumber)"
+                 (click)="onSeatClick(seat)">
+              {{ seat.snumber }}
+            </div>
+          </div>
+        </ng-container>
       </div>
-
-      <div class="seat-row">
-        <div class="seat economy"></div>
-        <div class="seat economy"></div>
-
-        <div class="aisle"></div>
-
-        <div class="seat economy"></div>
-        <div class="seat economy"></div>
-      </div>
-      <div class="seat-row">
-        <div class="seat economy"></div>
-        <div class="seat economy"></div>
-        <div class="aisle"></div>
-        <div class="seat economy"></div>
-        <div class="seat economy"></div>
-      </div>
-
-      <div class="seat-row">
-        <div class="seat economy"></div>
-        <div class="seat economy"></div>
-        <div class="aisle"></div>
-        <div class="seat economy"></div>
-        <div class="seat economy"></div>
-      </div>
-
-      <div class="seat-row">
-        <div class="seat extra-legroom"></div>
-        <div class="seat extra-legroom"></div>
-        <div class="aisle"></div>
-        <div class="seat extra-legroom"></div>
-        <div class="seat extra-legroom"></div>
-      </div>
-
-      <div class="seat-row">
-        <div class="seat extra-legroom"></div>
-        <div class="seat extra-legroom"></div>
-        <div class="aisle"></div>
-        <div class="seat extra-legroom"></div>
-        <div class="seat extra-legroom"></div>
-      </div>
-
-      <div class="seat-row">
-        <div class="seat preferred"></div>
-        <div class="seat preferred"></div>
-        <div class="aisle"></div>
-        <div class="seat preferred"></div>
-        <div class="seat preferred"></div>
-      </div>
-      <div class="seat-row">
-        <div class="seat preferred"></div>
-        <div class="seat preferred"></div>
-        <div class="aisle"></div>
-        <div class="seat preferred"></div>
-        <div class="seat preferred"></div>
-      </div>
-    </div>
+    </div>    
   </body>
 </html>

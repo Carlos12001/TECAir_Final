@@ -66,3 +66,12 @@ input:checked[type="checkbox"]:before {
   border-color: rgb(230, 9, 27);
   transform: rotate(45deg) translate(5px, -10px);
 }
+
+.seat {
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

@@ -1,153 +1,77 @@
+import { NumberSymbol } from '@angular/common';
+
 export interface Seat {
   snumber: string;
   sclass: 'Ejecutiva' | 'Turista' | '';
   pemail?: string;
-  pnumber: string;
+  pnumber: number;
 }
 
-export const seats: Seat[] = [
+export const seatsExample: Seat[] = [
   {
     snumber: 'A00',
     sclass: 'Ejecutiva',
     pemail: '',
-    pnumber: 'A0023',
+    pnumber: 2,
   },
   {
     snumber: 'A01',
     sclass: 'Ejecutiva',
     pemail: '',
-    pnumber: 'A0023',
+    pnumber: 4,
   },
   {
-    snumber: 'A02',
+    snumber: 'B02',
     sclass: 'Ejecutiva',
     pemail: '',
-    pnumber: 'A0023',
+    pnumber: 6,
   },
   {
-    snumber: 'A03',
+    snumber: 'B01',
     sclass: 'Ejecutiva',
     pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A04',
-    sclass: 'Ejecutiva',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A05',
-    sclass: 'Ejecutiva',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A06',
-    sclass: 'Ejecutiva',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A07',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A08',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A09',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A10',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A11',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A12',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A13',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A14',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A15',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A16',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A17',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A18',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A19',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A20',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A21',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A22',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
-  },
-  {
-    snumber: 'A23',
-    sclass: 'Turista',
-    pemail: '',
-    pnumber: 'A0023',
+    pnumber: 8,
   },
 ];
+
+export const seatSelected: Seat = {
+  snumber: 'Z00',
+  sclass: 'Ejecutiva',
+  pemail: 'pedrog@gmail.com',
+  pnumber: 0,
+};
+
+export interface SeatWithCapacity {
+  capacity: number;
+  seats: Seat[];
+}
+
+export const seatWithCapacityExample: SeatWithCapacity = {
+  capacity: 40,
+  seats: [
+    {
+      snumber: 'A00',
+      sclass: 'Ejecutiva',
+      pemail: '',
+      pnumber: 2,
+    },
+    {
+      snumber: 'A01',
+      sclass: 'Ejecutiva',
+      pemail: '',
+      pnumber: 4,
+    },
+    {
+      snumber: 'B02',
+      sclass: 'Ejecutiva',
+      pemail: '',
+      pnumber: 6,
+    },
+    {
+      snumber: 'B01',
+      sclass: 'Ejecutiva',
+      pemail: '',
+      pnumber: 8,
+    },
+  ],
+};
