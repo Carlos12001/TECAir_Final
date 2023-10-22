@@ -130,6 +130,50 @@ namespace TECAirAPI.Controllers
         }
 
         [HttpPut]
+        [Route("flight/modify")]
+        public async Task<JsonResult> PutFlight(FlightDto flight)
+        {
+            string query = @"
+                 UPDATE FLIGHT
+	             SET ffrom = @ffrom, fto = @fto, price = @price, fstate = @fstate, fdate = @fdate, pid = @pid
+	             WHERE fnumber=@fnumber;
+
+                 SELECT fnumber, ffrom, fto, price, to_char(fdate, 'YYYY-MM-DD') AS fdate, fstate, pid
+	             FROM FLIGHT;
+            ";
+
+            var fl = await _context.Planes.FindAsync(flight.Fnumber);
+
+            if (fl == null)
+                return new JsonResult("Vuelo no encontrado");
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@fnumber", flight.Fnumber);
+                    myCommand.Parameters.AddWithValue("@fstate", flight.Fstate);
+                    myCommand.Parameters.AddWithValue("@ffrom", flight.Ffrom);
+                    myCommand.Parameters.AddWithValue("@fto", flight.Fto);
+                    myCommand.Parameters.AddWithValue("@price", flight.Price);
+                    myCommand.Parameters.AddWithValue("@fdate", flight.Fdate);
+                    myCommand.Parameters.AddWithValue("@pid", flight.Pid);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+        [HttpPut]
         [Route("flight/state")]
         public async Task<JsonResult> Put(FlightDto flight)
         {
@@ -137,6 +181,9 @@ namespace TECAirAPI.Controllers
                  UPDATE FLIGHT
 	             SET fstate=@fstate
 	             WHERE fnumber=@fnumber;
+
+                 SELECT fnumber, ffrom, fto, price, to_char(fdate, 'YYYY-MM-DD') AS fdate, fstate, pid
+	             FROM FLIGHT;
             ";
 
             var fl = await _context.Planes.FindAsync(flight.Fnumber);
@@ -166,13 +213,16 @@ namespace TECAirAPI.Controllers
         }
 
         [HttpPost]
-        [Route("flight")]
+        [Route("flight/new")]
         public async Task<JsonResult> Post(FlightDto flight)
         {
             string query = @"
                  INSERT INTO FLIGHT(
 	                    fnumber, ffrom, fto, price, fdate, pid)
 	             VALUES (@fnumber, @ffrom, @fto, @price, @fdate, @pid);
+
+                 SELECT fnumber, ffrom, fto, price, to_char(fdate, 'YYYY-MM-DD') AS fdate, fstate, pid
+	             FROM FLIGHT;
             ";
 
             var number = await _context.Flights.FindAsync(flight.Fnumber);
@@ -211,7 +261,7 @@ namespace TECAirAPI.Controllers
                 }
             }
 
-            return new JsonResult("Vuelo aÃ±adido");
+            return new JsonResult(table);
         }
 
         [HttpPost]
@@ -275,15 +325,18 @@ namespace TECAirAPI.Controllers
 
         // DELETE: api/flight/400
         [HttpDelete]
-        [Route("flight/{id}")]
-        public async Task<JsonResult> Delete(int id)
+        [Route("flight/delete")]
+        public async Task<JsonResult> Delete(FlightDto del)
         {
             string query = @"
                  DELETE FROM FLIGHT
 	             WHERE fnumber=@fnumber;
+
+                 SELECT fnumber, ffrom, fto, price, to_char(fdate, 'YYYY-MM-DD') AS fdate, fstate, pid
+	             FROM FLIGHT;
             ";
 
-            var flight = await _context.Flights.FindAsync(id);
+            var flight = await _context.Flights.FindAsync(del.Fnumber);
 
             if (flight == null)
                 return new JsonResult("Vuelo no encontrado");
@@ -296,7 +349,7 @@ namespace TECAirAPI.Controllers
                 myCon.Open();
                 using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@fnumber", id);
+                    myCommand.Parameters.AddWithValue("@fnumber", del.Fnumber);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -305,7 +358,7 @@ namespace TECAirAPI.Controllers
                 }
             }
 
-            return new JsonResult("Vuelo eliminado");
+            return new JsonResult(table);
         }
 
         private bool FlightExists(string id)
