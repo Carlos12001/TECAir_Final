@@ -27,8 +27,8 @@ namespace TECAirAPI.Controllers
         public JsonResult Get()
         {
             string query = @"
-                 SELECT *
-                 FROM STOP
+                 SELECT stopid, sfrom, sto, to_char(sdate, 'YYYY-MM-DD') AS sdate, departure_hour, arrival_hour, fno
+	             FROM STOP;
             ";
 
             DataTable table = new DataTable();
@@ -76,13 +76,16 @@ namespace TECAirAPI.Controllers
         }
 
         [HttpPut]
-        [Route("stop")]
+        [Route("stop/modify")]
         public async Task<JsonResult> Put(StopDto stop)
         {
             string query = @"
                  UPDATE STOP
 	             SET sfrom=@sfrom, sto=@sto, sdate=@sdate, departure_hour=@departure_hour, arrival_hour=@arrival_hour
 	             WHERE stopid=@stopid;
+
+                 SELECT stopid, sfrom, sto, to_char(sdate, 'YYYY-MM-DD') AS sdate, departure_hour, arrival_hour, fno
+	             FROM STOP;
             ";
 
             var layover = await _context.Stops.FindAsync(stop.Stopid);
@@ -112,17 +115,20 @@ namespace TECAirAPI.Controllers
                 }
             }
 
-            return new JsonResult("Escala actualizada");
+            return new JsonResult(table);
         }
 
         [HttpPost]
-        [Route("stop")]
+        [Route("stop/new")]
         public async Task<JsonResult> Post(StopDto stop)
         {
             string query = @"
                  INSERT INTO STOP(
 	                    sfrom, sto, sdate, departure_hour, arrival_hour, fno)
 	             VALUES (@sfrom, @sto, @sdate, @departure_hour, @arrival_hour, @fno);
+
+                 SELECT stopid, sfrom, sto, to_char(sdate, 'YYYY-MM-DD') AS sdate, departure_hour, arrival_hour, fno
+	             FROM STOP;
             ";
 
             var from = await _context.Airports.FindAsync(stop.Sfrom);
@@ -158,16 +164,19 @@ namespace TECAirAPI.Controllers
                 }
             }
 
-            return new JsonResult("Escala aÃ±adida");
+            return new JsonResult(table);
         }
 
         [HttpDelete]
-        [Route("stop/{id}")]
-        public async Task<JsonResult> Delete(int id)
+        [Route("stop/delete")]
+        public async Task<JsonResult> Delete(StopDto id)
         {
             string query = @"
                  DELETE FROM STOP
 	             WHERE stopid=@stopid;
+
+                 SELECT stopid, sfrom, sto, to_char(sdate, 'YYYY-MM-DD') AS sdate, departure_hour, arrival_hour, fno
+	             FROM STOP;
             ";
 
             var flight = await _context.Flights.FindAsync(id);
@@ -192,7 +201,7 @@ namespace TECAirAPI.Controllers
                 }
             }
 
-            return new JsonResult("Escala eliminada");
+            return new JsonResult(table);
         }
     }
 }
