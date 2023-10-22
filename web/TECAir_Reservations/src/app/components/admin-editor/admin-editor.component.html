@@ -1,0 +1,138 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADMIN VIEW</title>
+
+  <!-- Estilos -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
+  />
+
+  <!-- Scripts necesarios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"
+    integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Botones en la parte superior -->
+    <div class="btn-group" role="group">
+      <button
+        *ngFor="let entity of entities"
+        type="button"
+        class="btn animated-btn"
+        (click)="setSelectedEntity(entity.value)"
+      >
+        {{ entity.label }}
+      </button>
+    </div>
+
+    <!-- Área de contenido -->
+    <div class="content-area">
+      <div class="sidebar">
+        <!-- Código del sidebar -->
+      </div>
+
+      <!-- Editor -->
+      <div class="editor">
+        <div *ngIf="selectedEntity === 'flights' && selectedFlight != null">
+          <h2>Editando vuelo: {{ selectedFlight.ffrom }}</h2>
+          <form>
+            <label for="price">Precio:</label>
+            <input
+              type="number"
+              id="price"
+              [(ngModel)]="selectedFlight.price"
+              name="price"
+            />
+
+            <!-- DateTimePicker -->
+            <div class="form-group mt-3">
+              <label for="departureDate">Fecha de Salida:</label>
+              <div class="input-group date" id="picker1">
+                <input type="text" class="form-control" id="departureDate" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="arrivalDate">Fecha de Llegada:</label>
+              <div class="input-group date" id="picker2">
+                <input type="text" class="form-control" id="arrivalDate" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Dropdowns -->
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <select class="form-control">
+                  <!-- Colocar las opciones aquí -->
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <select class="form-control">
+                  <!-- Colocar las opciones aquí -->
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <select class="form-control">
+                  <!-- Colocar las opciones aquí -->
+                </select>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="action-btn submit-btn"
+              (click)="submitFlight()"
+            >
+              Actualizar Precio
+            </button>
+            <button
+              type="button"
+              class="action-btn delete-btn"
+              *ngIf="selectedFlight.fnumber !== 0"
+              (click)="deleteFlight()"
+            >
+              Eliminar Vuelo
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts al final -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+  <script>
+    $(function () {
+      $("#picker1").datetimepicker();
+      $("#picker2").datetimepicker({
+        useCurrent: false,
+      });
+      $("#picker1").on("dp.change", function (e) {
+        $("#picker2").data("DateTimePicker").minDate(e.date);
+      });
+      $("#picker2").on("dp.change", function (e) {
+        $("#picker1").data("DateTimePicker").maxDate(e.date);
+      });
+    });
+  </script>
+</body>
