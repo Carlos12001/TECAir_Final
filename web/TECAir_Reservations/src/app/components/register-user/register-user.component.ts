@@ -108,8 +108,6 @@ export class RegisterUserComponent implements OnInit {
     if (this.selectedUserType === 'admin') {
       UserLogged.adminid = this.userForm.value.adminid;
     }
-
-    console.log(UserLogged);
   }
   onRegister(): void {
     if (this.userForm.valid) {
@@ -126,12 +124,12 @@ export class RegisterUserComponent implements OnInit {
       }
       this.registerService.postUserLogged(sendData).subscribe({
         next: (data: any) => {
-          console.log(sendData); // O cualquier otra acción que desees realizar
+          console.log(JSON.stringify(sendData, null, 2)); 
           this.router.navigate(['/display-sign-in']);
         },
         error: (error) => {
           console.error('Error fetching users:', error);
-          console.log(sendData); // O cualquier otra acción que desees realizar
+          console.log(JSON.stringify(sendData, null, 2)); 
           this.router.navigate(['/display-sign-in']);
         },
         complete: () => {
