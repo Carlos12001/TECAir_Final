@@ -59,13 +59,18 @@ namespace TECAirAPI.Controllers
 
         [HttpPut]
         [Route("user")]
-        public JsonResult Put(Userw user)
+        public async Task<JsonResult> Put(Userw user)
         {
             string query = @"
                  UPDATE USERW
 	             SET upassword=@upassword, unumber=@unumber, fname=@fname, mname=@mname, lname1=@lname1, lname2=@lname2
 	             WHERE email=@email;
             ";
+
+            var email = await _context.Userws.FindAsync(user.Email);
+
+            if (email == null)
+                return new JsonResult("No hay usuario existente con este correo");
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TECAir");
@@ -143,6 +148,8 @@ namespace TECAirAPI.Controllers
             if (existingEmail != null)
                 return new JsonResult("Ya hay un usuario existente con este correo");
 
+            DataTable table = new DataTable();
+
             // Conexión y consulta para USERW
             string sqlDataSource = _configuration.GetConnectionString("TECAir");
             using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
@@ -205,10 +212,29 @@ namespace TECAirAPI.Controllers
                     }
                 }
 
+                string Lquery = @"
+                 SELECT U.*, A.adminid, S.studentid, S.university, S.miles
+                 FROM USERW AS U
+                 LEFT JOIN STUDENT AS S
+                 ON U.Email = S.Uemail
+                 LEFT JOIN AIRADMIN AS A 
+                 ON U.Email = A.Uemail
+                ";
+
+                
+                NpgsqlDataReader myReader;
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(Lquery, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                }
+
                 myCon.Close();
             }
             // Retornar el JSON recibido como respuesta
-            return new JsonResult(user);
+            return new JsonResult(table);
 
         }
 

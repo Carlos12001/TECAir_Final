@@ -23,6 +23,34 @@ namespace TECAirAPI.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet]
+        [Route("passenger")]
+        public JsonResult Get()
+        {
+            string query = @"
+                 SELECT *
+                 FROM PASSENGER
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
         [HttpPost]
         [Route("passenger/create")]
         public async Task<JsonResult> PostCreate(CreatePassengerDto create)
@@ -60,6 +88,45 @@ namespace TECAirAPI.Controllers
             }
 
             return new JsonResult(table);
+        }
+
+        [HttpPut]
+        [Route("passenger/checkin")]
+        public async Task<JsonResult> Put(CheckinDto passenger)
+        {
+            string query = @"
+                 UPDATE PASSENGER
+	             SET checked_in = true
+	             WHERE pnumber=@pnumber;
+
+                 SELECT Pnumber
+                 FROM PASSENGER
+                 WHERE pnumber=@pnumber
+            ";
+
+            var email = await _context.Passengers.FindAsync(passenger.Pnumber);
+
+            if (email == null)
+                return new JsonResult("No existe pasajero asociado a ese numero");
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+            NpgsqlDataReader myReader;
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@pnumber", passenger.Pnumber);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Usuario actualizado");
         }
     }
 }
