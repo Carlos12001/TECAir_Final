@@ -1,7 +1,8 @@
 import 'dart:ffi';
 
 class Promotion {
-  //DateTime startDate;
+  String originCity;
+  String destinationCity;
   DateTime endDate;
   String imgPath;
   int percentage;
@@ -13,26 +14,30 @@ class Promotion {
     required this.imgPath,
     required this.percentage,
     required this.fno,
+    required this.originCity,
+    required this.destinationCity,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      //'startDate': startDate.toIso8601String(), // Convertir DateTime a String
-      'Final_date': endDate.toIso8601String(), // Convertir DateTime a String
+      'Final_date': endDate.toIso8601String(), 
       'Image': imgPath,
       'Dpercent': percentage,
       'Fno': fno.toString(),
+      'OriginCity': originCity,
+      'DestinationCity': destinationCity,
     };
   }
 
   // Método fromMap
   static Promotion fromMap(Map<String, dynamic> map) {
     return Promotion(
-      //startDate: DateTime.parse(map['startDate']),
       endDate: DateTime.parse(map['Final_date']),
       imgPath: map['Image'],
       percentage: map['Dpercent'],
       fno: map['Fno'],
+      originCity: map['OriginCity'],
+      destinationCity: map['DestinationCity']
     );
   }
 

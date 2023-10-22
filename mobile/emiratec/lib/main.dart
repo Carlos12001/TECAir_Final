@@ -99,8 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
   /// The function `_updateData()` retrieves updated promotions from a database service and updates the
   /// state with the new data.
   _updateData() async {
-    
-    await dbService.insertPromotion(Promotion(endDate: DateTime(2023, 12, 22), imgPath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Punta_Cana_29_april_2012.jpg/250px-Punta_Cana_29_april_2012.jpg', percentage: 10, fno: 2));
     List<Promotion> updatedPromos = await dbService.getPromotions();
     setState(() {
       promo = updatedPromos;

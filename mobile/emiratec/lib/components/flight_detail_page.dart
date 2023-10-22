@@ -67,14 +67,14 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                   Text("No. de vuelo: ${widget.reservedflight.fNumber}"),
                   Text("Precio: \$${widget.reservedflight.fPrice}"),
                   Text("Tipo de asiento: ${widget.seatType__.name}"),
-                  Divider(),
+                  const Divider(),
                   readOnlyTextField('Nombre del titular', _controllerTitular),
                   readOnlyTextField(
                       'Numero de tarjeta de crédito', _controller),
                   readOnlyTextField('Código de seguridad', _controllerSC),
                   readOnlyTextField('Fecha de caducidad', _controllerDate),
 
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   ElevatedButton(
                     onPressed: () async {
                       try {

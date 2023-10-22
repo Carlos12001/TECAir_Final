@@ -22,6 +22,10 @@ class TodoDB {
     await database.insert('PROMO', map);
   }
 
+  Future<void> clearPromotions(Database database) async {
+    await database.delete('PROMO');
+  }
+
   // Future<void> insertFlight(Database database, Flight promotion) async {
   //   final map = promotion.toMap();
   //   await database.insert('FLIGHT', map);
@@ -58,8 +62,21 @@ class TodoDB {
     await database.insert('STUDENT', map);
   }
 
-  Future<List<Map<String, dynamic>>> fetchPromotions(Database database) async {
-    return await database.query('PROMO');
+  Future<List<Map<String, dynamic>>> fetchPromotions(
+      Database database) async {
+    return await database.rawQuery('''
+      SELECT 
+          P.Fno,
+          P.Image,
+          P.Dpercent,
+          P.Final_date,
+          A1.City AS OriginCity,
+          A2.City AS DestinationCity
+      FROM PROMO P
+      JOIN FLIGHT F ON P.Fno = F.Fnumber
+      JOIN AIRPORT A1 ON F.Ffrom = A1.AirportID
+      JOIN AIRPORT A2 ON F.Fto = A2.AirportID
+    ''');
   }
 
   Future<List<Map<String, dynamic>>> fetchAirportsNames(
@@ -117,42 +134,37 @@ class TodoDB {
     return null;
   }
 
-   // Insertar en PASSENGER
-  Future<void> insertIntoPassenger(Database database, String email, String fnumber) async {
+  // Insertar en PASSENGER
+  Future<void> insertIntoPassenger(
+      Database database, String email, String fnumber) async {
     await database.rawInsert(
-      'INSERT INTO PASSENGER(uemail, fno) VALUES(?, ?)',
-      [email, fnumber]
-    );
+        'INSERT INTO PASSENGER(uemail, fno) VALUES(?, ?)', [email, fnumber]);
   }
 
   // Insertar en USER_STOP
-  Future<void> insertIntoUserStop(Database database, String email, String stopid) async {
+  Future<void> insertIntoUserStop(
+      Database database, String email, String stopid) async {
     await database.rawInsert(
-      'INSERT INTO USER_STOP(uemail, sid) VALUES(?, ?)',
-      [email, stopid]
-    );
+        'INSERT INTO USER_STOP(uemail, sid) VALUES(?, ?)', [email, stopid]);
   }
 
   // Actualizar en STUDENT
   Future<void> updateStudentMiles(Database database, String email) async {
     await database.rawUpdate(
-      'UPDATE STUDENT SET Miles = Miles + 100 WHERE Uemail = ? AND EXISTS (SELECT 1 FROM STUDENT WHERE Uemail = ?)',
-      [email, email]
-    );
+        'UPDATE STUDENT SET Miles = Miles + 100 WHERE Uemail = ? AND EXISTS (SELECT 1 FROM STUDENT WHERE Uemail = ?)',
+        [email, email]);
   }
 
   // Consulta
-  Future<List<Map<String, dynamic>>> fetchUserData(Database database, String email, String stopid) async {
-    return await database.rawQuery(
-      '''
+  Future<List<Map<String, dynamic>>> fetchUserData(
+      Database database, String email, String stopid) async {
+    return await database.rawQuery('''
       SELECT U.Email, P.Pnumber, S.Departure_hour
       FROM USERW AS U
       JOIN PASSENGER AS P ON U.Email = P.Uemail
       JOIN FLIGHT AS F ON F.Fnumber = P.Fno
       JOIN STOP AS S ON F.Fnumber = S.Fno
       WHERE U.Email = ? AND S.StopID = ?
-      ''',
-      [email, stopid]
-    );
+      ''', [email, stopid]);
   }
 }

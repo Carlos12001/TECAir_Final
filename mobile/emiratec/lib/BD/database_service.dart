@@ -76,7 +76,6 @@ class DatabaseService {
     await TodoDB().insertStudent(db, student);
   }
 
-
   Future<List<Map<String, dynamic>>> fetchAirports() async {
     final db = await database;
     return await db.query('AIRPORT');
@@ -89,6 +88,11 @@ class DatabaseService {
     print(promoMaps);
     print("-----");
     return Promotion.fromMapList(promoMaps);
+  }
+
+  Future<void> clearAllPromotions() async {
+    final db = await database;
+    await TodoDB().clearPromotions(db);
   }
 
   Future<List<String>> getAirportsNames() async {
@@ -121,7 +125,7 @@ class DatabaseService {
     return await TodoDB().userExists(db, email);
   }
 
-   Future<void> insertIntoPassenger(String email, String fnumber) async {
+  Future<void> insertIntoPassenger(String email, String fnumber) async {
     final db = await database;
     await TodoDB().insertIntoPassenger(db, email, fnumber);
   }
@@ -136,7 +140,8 @@ class DatabaseService {
     await TodoDB().updateStudentMiles(db, email);
   }
 
-  Future<List<Map<String, dynamic>>> fetchUserData(String email, String stopid) async {
+  Future<List<Map<String, dynamic>>> fetchUserData(
+      String email, String stopid) async {
     final db = await database;
     return await TodoDB().fetchUserData(db, email, stopid);
   }

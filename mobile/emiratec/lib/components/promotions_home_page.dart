@@ -58,6 +58,20 @@ Expanded promotionsHomePage(List<Promotion>? promotionList) {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
+                                  "Origen: ${currentPromotion.originCity}",
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 3,
+                                  style:
+                                      const TextStyle(color: Color(0xFFfdfcfc)),
+                                ),
+                                Text(
+                                  "Destino: ${currentPromotion.destinationCity}",
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 3,
+                                  style:
+                                      const TextStyle(color: Color(0xFFfdfcfc)),
+                                ),
+                                Text(
                                   "Porcentaje de descuento: ${currentPromotion.percentage}",
                                   overflow: TextOverflow.clip,
                                   maxLines: 3,
