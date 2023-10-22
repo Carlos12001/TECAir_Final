@@ -16,6 +16,7 @@ import { DisplayPromotionsComponent } from './components/display-promotions/disp
 import { DisplayCheckInComponent } from './components/display-check-in/display-check-in.component';
 import { DisplayBaggageComponent } from './components/display-baggage/display-baggage.component';
 
+/* The `const routes: Routes` variable is an array of route objects that define the routes for the application. Each route object has two properties: `path` and `component`. */
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'display-sign-in', component: DisplaySignInComponent },
@@ -37,4 +38,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
+/* The AppRoutingModule class is used for routing in a TypeScript application. */
 export class AppRoutingModule {}

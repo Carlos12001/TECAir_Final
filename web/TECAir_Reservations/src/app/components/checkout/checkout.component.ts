@@ -16,11 +16,20 @@ import { baggagesIDSelected } from 'src/app/models/baggage.model';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent {
+  /* `public pdfData: PDF;` is declaring a public property `pdfData` of type `PDF`. This property is used to store the data that will be used to generate a PDF document. */
   public pdfData: PDF;
 
+  /* The line `fecha: string = '';` is declaring a public property `fecha` of type `string` and initializing it with an empty string. This property is used to store the value of the departure date and time for a flight. */
   fecha: string = '';
+  /* The line `pno: number = 0;` is declaring a public property `pno` of type `number` and initializing it with the value `0`. This property is used to store the passenger number for a flight. */
   pno: number = 0;
 
+  /**
+   * The constructor initializes the private properties of the class and creates a new instance of the PDF class.
+   * @param {Router} router - The `router` parameter is an instance of the `Router` class, which is used for navigating between different routes in an Angular application. It allows you to programmatically navigate to different views or components.
+   * @param {PdfService} pdfService - The `pdfService` parameter is an instance of the `PdfService` class, which is responsible for generating and manipulating PDF documents. It likely contains methods for creating, saving, and modifying PDF files.
+   * @param {CheckoutService} checkoutService - The `checkoutService` parameter is an instance of the `CheckoutService` class. It is used to handle the logic related to the checkout process, such as adding items to the cart, calculating the total price, and processing the payment.
+   */
   constructor(
     private router: Router,
     private pdfService: PdfService,
@@ -48,6 +57,9 @@ export class CheckoutComponent {
     );
   }
 
+  /**
+   * The function sets data for generating a PDF by modifying the pdfData object and then sends it to the pdfService.
+   */
   setDataPdf(): void {
     // Modificamos el objeto pdfData con los datos
     this.pdfData.email = userLogged.email;
@@ -101,6 +113,9 @@ export class CheckoutComponent {
     this.router.navigate(['/generate-pdf']);
   }
 
+  /**
+   * The `onConfirm` function makes a POST request to create a passenger and then logs the response data, sets some variables, and calls the `setDataPdf` function.
+   */
   onConfirm(): void {
     this.checkoutService
       .postCreatePassenger(

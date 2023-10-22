@@ -1,3 +1,4 @@
+/* The code is defining an interface called `UserLogged`. An interface in TypeScript is a way to define the shape or structure of an object. */
 export interface UserLogged {
   email: string;
   upassword: string;
@@ -13,6 +14,7 @@ export interface UserLogged {
 }
 
 export const userLogged: UserLogged = {
+/* The code is initializing an object called `userLogged` with default values for each property defined in the `UserLogged` interface. Each property is assigned an empty string (`''`) or a default value (`0` for `miles`). The properties `studentid`, `miles`, `university`, and `adminid` are assigned `null` as their initial values. */
   email: '',
   upassword: '',
   unumber: '',

@@ -19,9 +19,14 @@ import { PlaceAirplaneService } from 'src/app/services/place-airplane.service';
 })
 export class PlaceAirplaneComponent implements OnInit {
   seatStructure: Seat[] = [];
+  /* The line `seatStructure: Seat[] = [];` is declaring a variable `seatStructure` of type `Seat[]` (an array of `Seat` objects) and initializing it as an empty array. This variable is used to store the structure of the seats in the airplane. */
   takenSeats: string[] = [];
+  /* The line `takenSeats: string[] = [];` is declaring and initializing an empty array called `takenSeats` of type `string[]`. This array is used to store the seat numbers of seats that have already been taken by passengers. */
   seatWithCapacity: SeatWithCapacity = seatWithCapacityExample;
 
+  /**
+   * The ngOnInit function logs the passengerCheckInSelected object and calls the getSeats function with the passengerCheckInSelected.pnumber parameter.
+   */
   ngOnInit() {
     console.log(
       'passengerCheckInSelected',
@@ -30,11 +35,20 @@ export class PlaceAirplaneComponent implements OnInit {
     this.getSeats(passengerCheckInSelected.pnumber);
   }
 
+  /**
+   * The constructor function initializes the router and placeAirplaneService dependencies.
+   * @param {Router} router - The router parameter is an instance of the Router class, which is used for navigating between different routes in an Angular application. It allows you to programmatically navigate to different views or components.
+   * @param {PlaceAirplaneService} placeAirplaneService - The `placeAirplaneService` parameter is an instance of the `PlaceAirplaneService` class. It is used to interact with the backend API and perform operations related to placing an airplane.
+   */
   constructor(
     private router: Router,
     private placeAirplaneService: PlaceAirplaneService
   ) {}
 
+  /**
+   * The function `getSeats` retrieves seat information with a specified capacity and handles any errors that occur during the process.
+   * @param {number} pnumber - The parameter "pnumber" is of type number and represents the number of seats to be fetched.
+   */
   getSeats(pnumber: number) {
     this.placeAirplaneService.getSeatWithCapacity(pnumber).subscribe({
       next: (data: SeatWithCapacity) => {
@@ -53,6 +67,10 @@ export class PlaceAirplaneComponent implements OnInit {
     });
   }
 
+  /**
+   * The function creates a seat structure based on the capacity of a seat and assigns seat numbers and classes to each seat.
+   * @returns The function does not return anything.
+   */
   createSeatStructure() {
     if (!this.seatWithCapacity) {
       console.error('SeatWithCapacity is undefined');
@@ -105,10 +123,19 @@ export class PlaceAirplaneComponent implements OnInit {
     this.takenSeats = this.seatWithCapacity.seats.map((s) => s.snumber);
   }
 
+  /**
+   * The function "isSeatTaken" checks if a seat number is included in the "takenSeats" array and returns a boolean value.
+   * @param {string} snumber - The parameter `snumber` is a string that represents the seat number.
+   * @returns a boolean value, either true or false.
+   */
   isSeatTaken(snumber: string): boolean {
     return this.takenSeats.includes(snumber);
   }
 
+  /**
+   * The `onSeatClick` function is triggered when a seat is clicked, and it checks if the seat is available before making a request to reserve the seat and navigate to the display baggage page.
+   * @param {Seat} seat - The `seat` parameter is an object that represents a seat in an airplane. It has the following properties:
+   */
   onSeatClick(seat: Seat) {
     if (!this.isSeatTaken(seat.snumber)) {
       this.placeAirplaneService.postSeat(seat).subscribe({

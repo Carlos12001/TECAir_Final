@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-display-confirmation',
   templateUrl: './display-confirmation.component.html',
-  styleUrls: ['./display-confirmation.component.css']
+  styleUrls: ['./display-confirmation.component.css'],
 })
-export class DisplayConfirmationComponent {
-
-}
+/* The DisplayConfirmationComponent class is exported in TypeScript. */
+export class DisplayConfirmationComponent {}

@@ -1,3 +1,4 @@
+/* The `export interface Airport` is defining the structure or shape of an object that represents an airport. It specifies the properties that an airport object should have, including `airportid`, `code`, `city`, `aname`, and `image`. Each property has a specific type, such as `number` for `airportid`, `string` for `code`, `city`, `aname`, and `image`. This interface can be exported and used in other parts of the code to ensure consistency and type safety when working with airport objects. */
 export interface Airport {
   airportid: number;
   code: string;
@@ -6,6 +7,7 @@ export interface Airport {
   image: string;
 }
 
+/* The `const airports` is an array of objects that represent different airports. Each object in the array has properties such as `airportid`, `code`, `city`, `aname`, and `image`, which provide information about the airport. The array contains information for multiple airports, including their unique identifiers, airport codes, city names, airport names, and image URLs. This array can be used to store and access airport data in the code. */
 const airports: Airport[] = [
   {
     airportid: 1,

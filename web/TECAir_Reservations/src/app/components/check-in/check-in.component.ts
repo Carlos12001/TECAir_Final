@@ -17,11 +17,22 @@ import { pdf } from '../../models/pdf.model';
   styleUrls: ['./check-in.component.css'],
 })
 export class CheckInComponent {
+  /* The line `passengerCheckIns: PassengerCheckIn[] = [];` is declaring a variable named `passengerCheckIns` of type `PassengerCheckIn[]` (an array of `PassengerCheckIn` objects) and initializing it with an empty array `[]`. This variable is used to store the list of passenger check-ins fetched from the server. */
   passengerCheckIns: PassengerCheckIn[] = [];
 
+  /* The line `user: UserLogged = userLogged;` is initializing the `user` variable of type `UserLogged` with the value of `userLogged`. It is assigning the `userLogged` object to the `user` variable. */
   user: UserLogged = userLogged;
+
+  /**
+   * The constructor function takes in a router and check-in service as parameters.
+   * @param {Router} router - The router parameter is an instance of the Router class, which is used for navigating between different routes in an Angular application. It provides methods for navigating to a specific route, navigating back, and other navigation-related functionality.
+   * @param {CheckInService} checkInService - The `checkInService` parameter is an instance of the `CheckInService` class. It is used to interact with the check-in functionality of the application, such as retrieving check-in data, creating new check-ins, updating check-in status, etc.
+   */
   constructor(private router: Router, private checkInService: CheckInService) {}
 
+  /**
+   * The ngOnInit function checks if the user's first name is empty and navigates to the sign-in page if it is, otherwise it fetches promotional data.
+   */
   ngOnInit(): void {
     if (userLogged.fname == '') {
       this.router.navigate(['/display-sign-in']);
@@ -29,6 +40,9 @@ export class CheckInComponent {
     this.fetchPromo();
   }
 
+  /**
+   * The function fetchPromo() fetches passenger check-in data and assigns it to the passengerCheckIns variable, handling any errors and logging completion.
+   */
   fetchPromo(): void {
     this.checkInService.getPassengerCheckIn(userLogged.email).subscribe({
       next: (data) => {
@@ -44,6 +58,10 @@ export class CheckInComponent {
     });
   }
 
+  /**
+   * The function "checkInFlight" is used to post selected check-in data for a passenger and handle the response.
+   * @param {PassengerCheckIn} passenger - The parameter "passenger" is of type "PassengerCheckIn".
+   */
   checkInFlight(passenger: PassengerCheckIn): void {
     this.checkInService.postSeletecdCheckIn(passenger).subscribe({
       next: (data) => {
@@ -59,6 +77,10 @@ export class CheckInComponent {
     });
   }
 
+  /**
+   * The function "siguientePagina" reserves a flight for a passenger and navigates to the display seat page.
+   * @param {PassengerCheckIn} passenger - The parameter "passenger" is of type "PassengerCheckIn".
+   */
   siguientePagina(passenger: PassengerCheckIn): void {
     console.log('Reserving flight: ', passenger);
     passengerCheckInSelected.pnumber = passenger.pnumber;

@@ -1,3 +1,4 @@
+/* The `export interface PassengerCheckIn` is defining a TypeScript interface called `PassengerCheckIn`. An interface in TypeScript is a way to define the structure of an object. In this case, the `PassengerCheckIn` interface has properties such as `pnumber`, `fnumber`, `stopid`, `sfromcity`, `stocity`, `fdate`, and `fprice`, each with their respective data types. */
 export interface PassengerCheckIn {
   pnumber: number;
   fnumber: number;
@@ -8,6 +9,7 @@ export interface PassengerCheckIn {
   fprice: number;
 }
 
+/* The code `export const passengerCheckInSelected: PassengerCheckIn = { ... }` is creating a constant variable called `passengerCheckInSelected` of type `PassengerCheckIn`. It is initializing this variable with an object that has properties `pnumber`, `fnumber`, `stopid`, `sfromcity`, `stocity`, `fdate`, and `fprice`, each with their respective initial values. This object represents the selected passenger check-in information. */
 export const passengerCheckInSelected: PassengerCheckIn = {
   pnumber: 0,
   fnumber: 0,
@@ -17,6 +19,7 @@ export const passengerCheckInSelected: PassengerCheckIn = {
   fdate: '',
   fprice: 0,
 };
+/* The code `export const passengerChecks: PassengerCheckIn[] = [...]` is creating a constant variable called `passengerChecks` of type `PassengerCheckIn[]`, which is an array of objects that conform to the `PassengerCheckIn` interface. Each object in the array represents a passenger check-in and contains properties such as `pnumber`, `fnumber`, `stopid`, `sfromcity`, `stocity`, `fdate`, and `fprice`, each with their respective values. This array represents a collection of passenger check-in information. */
 
 export const passengerChecks: PassengerCheckIn[] = [
   {

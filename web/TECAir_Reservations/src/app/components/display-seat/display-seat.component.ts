@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-display-seat',
   templateUrl: './display-seat.component.html',
-  styleUrls: ['./display-seat.component.css']
+  styleUrls: ['./display-seat.component.css'],
 })
-export class DisplaySeatComponent {
-
-}
+/* The DisplaySeatComponent class is used to display seat information. */
+export class DisplaySeatComponent {}

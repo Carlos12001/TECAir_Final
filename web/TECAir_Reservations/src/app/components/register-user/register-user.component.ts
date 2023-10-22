@@ -11,16 +11,28 @@ type UserType = 'normal' | 'student' | 'admin' | null;
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css'],
 })
+/* The RegisterUserComponent class is responsible for handling user registration and form validation, including differentiating between student and admin users. */
 export class RegisterUserComponent implements OnInit {
+  /* `userForm!: FormGroup;` is declaring a property `userForm` of type `FormGroup`. The `!` symbol is the non-null assertion operator in TypeScript, which tells the compiler that the property will be initialized before it is used. In this case, the `userForm` property is initialized in the `ngOnInit` method of the component. */
   userForm!: FormGroup;
+  /* The line `selectedUserType: UserType = null;` is declaring a property `selectedUserType` of type `UserType` and initializing it with a value of `null`. */
   selectedUserType: UserType = null;
 
+  /**
+   * The constructor function initializes private variables for FormBuilder, Router, and RegisterService.
+   * @param {FormBuilder} fb - The `fb` parameter is an instance of the `FormBuilder` class. The `FormBuilder` class is a utility class provided by Angular that helps in creating and managing forms in Angular applications.
+   * @param {Router} router - The `router` parameter is an instance of the `Router` class, which is used for navigating between different routes in your application. It allows you to programmatically navigate to different views or components.
+   * @param {RegisterService} registerService - The `registerService` parameter is an instance of the `RegisterService` class. It is used to make HTTP requests to the server for registering a user.
+   */
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private registerService: RegisterService
   ) {}
 
+  /**
+   * The ngOnInit function initializes a user form with various fields and validators.
+   */
   ngOnInit() {
     this.userForm = this.fb.group({
       email: ['', Validators.required],
@@ -36,6 +48,10 @@ export class RegisterUserComponent implements OnInit {
     });
   }
 
+  /**
+   * The function `selectUserType` is used to update the form validations based on the selected user type.
+   * @param {UserType} type - The parameter `type` is of type `UserType`, which is an enum that represents the different types of users.
+   */
   selectUserType(type: UserType) {
     this.selectedUserType = type;
 
@@ -79,10 +95,16 @@ export class RegisterUserComponent implements OnInit {
     }
   }
 
+  /**
+   * The function "resetSelection" sets the value of "selectedUserType" to null.
+   */
   resetSelection(): void {
     this.selectedUserType = null;
   }
 
+  /**
+   * The function onSubmit() creates an object UserLogged with properties based on the values entered in a user form, including specific properties for students and administrators.
+   */
   onSubmit(): void {
     let UserLogged = {
       email: this.userForm.value.email,
@@ -109,6 +131,9 @@ export class RegisterUserComponent implements OnInit {
       UserLogged.adminid = this.userForm.value.adminid;
     }
   }
+  /**
+   * The function `onRegister` is used to handle the registration process for a user, including validating the form data, sending the data to the server, and navigating to the sign-in page.
+   */
   onRegister(): void {
     if (this.userForm.valid) {
       const sendData: UserLogged = this.userForm.value;
@@ -124,12 +149,12 @@ export class RegisterUserComponent implements OnInit {
       }
       this.registerService.postUserLogged(sendData).subscribe({
         next: (data: any) => {
-          console.log(JSON.stringify(sendData, null, 2)); 
+          console.log(JSON.stringify(sendData, null, 2));
           this.router.navigate(['/display-sign-in']);
         },
         error: (error) => {
           console.error('Error fetching users:', error);
-          console.log(JSON.stringify(sendData, null, 2)); 
+          console.log(JSON.stringify(sendData, null, 2));
           this.router.navigate(['/display-sign-in']);
         },
         complete: () => {

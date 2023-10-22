@@ -7,6 +7,7 @@
   fdate: string; // fecha del vuelo
   fprice: number; // precio del vuelo
  */
+/* The `export interface SeeFlight` is defining an interface in TypeScript. An interface is a way to define the structure of an object. In this case, the `SeeFlight` interface defines the structure of a flight object with the following properties: */
 export interface SeeFlight {
   fnumber: number;
   stopid: number;
@@ -18,6 +19,7 @@ export interface SeeFlight {
   depercent?: number;
 }
 
+/* The `export const seeFlights` is an array of objects that represents a list of flights. Each object in the array represents a flight and contains properties such as `fnumber` (flight number), `stopid` (stop ID), `sfromcity` (departure city), `stocity` (arrival city), `stoimage` (image of the arrival airport), `fdate` (flight date), `fprice` (flight price), and `depercent` (departure percentage). */
 export const seeFlights: SeeFlight[] = [
   {
     fnumber: 653,
@@ -65,6 +67,7 @@ export const seeFlights: SeeFlight[] = [
   },
 ];
 
+/* The `export const seeFlightSelected` is a constant variable that represents a selected flight. It is of type `SeeFlight`, which is an interface defined earlier in the code. The object assigned to `seeFlightSelected` has properties such as `fnumber` (flight number), `stopid` (stop ID), `sfromcity` (departure city), `stocity` (arrival city), `stoimage` (image of the arrival airport), `fdate` (flight date), `fprice` (flight price), and `depercent` (departure percentage). */
 export const seeFlightSelected: SeeFlight = {
   fnumber: 0,
   stopid: 0,

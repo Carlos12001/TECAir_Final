@@ -4,4 +4,5 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
+/* The HomeComponent class is a component in TypeScript. */
 export class HomeComponent {}

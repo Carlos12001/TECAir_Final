@@ -34,6 +34,7 @@ import { CheckInComponent } from './components/check-in/check-in.component';
 import { DisplayCheckInComponent } from './components/display-check-in/display-check-in.component';
 import { DisplayBaggageComponent } from './components/display-baggage/display-baggage.component';
 
+/* The `@NgModule` decorator is used to define a module in Angular. It is a metadata object that specifies how the module should be compiled and run. */
 @NgModule({
   imports: [
     BrowserModule,
@@ -76,4 +77,5 @@ import { DisplayBaggageComponent } from './components/display-baggage/display-ba
   providers: [],
   bootstrap: [AppComponent],
 })
+/* The AppModule class is exported and serves as the main module for the application. */
 export class AppModule {}
