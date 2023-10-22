@@ -1,13 +1,13 @@
 class Student {
   String studentId;
   String university;
-  int miles;
+  //int miles;
   String uemail;
 
   Student({
     required this.studentId,
     required this.university,
-    required this.miles,
+   // required this.miles,
     required this.uemail,
   });
 
@@ -15,7 +15,7 @@ class Student {
     return {
       'StudentID': studentId,
       'University': university,
-      'Miles': miles,
+      //'Miles': miles,
       'Uemail': uemail,
     };
   }
@@ -24,7 +24,7 @@ class Student {
     return Student(
         studentId: map['StudentID'],
         university: map['University'],
-        miles: map['Miles'],
+        //miles: map['Miles'],
         uemail: map['Uemail']);
   }
 }

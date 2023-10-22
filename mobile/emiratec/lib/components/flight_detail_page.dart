@@ -56,6 +56,9 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  Image.network(widget.reservedflight
+                      .stoImage), // Usa Image.network si es una URL
+                  
                   Text("Fecha: ${widget.reservedflight.fdate}"),
                   Text("Ciudad salida: ${widget.reservedflight.sfromCity}"),
                   Text("Ciudad llegada: ${widget.reservedflight.stoCity}"),
@@ -64,7 +67,8 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                   Text("Tipo de asiento: ${widget.seatType__.name}"),
                   Divider(),
                   readOnlyTextField('Nombre del titular', _controllerTitular),
-                  readOnlyTextField('Numero de tarjeta de crédito', _controller),
+                  readOnlyTextField(
+                      'Numero de tarjeta de crédito', _controller),
                   readOnlyTextField('Código de seguridad', _controllerSC),
                   readOnlyTextField('Fecha de caducidad', _controllerDate),
 

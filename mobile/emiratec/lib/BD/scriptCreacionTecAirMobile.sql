@@ -185,3 +185,4 @@ WHERE
     (SELECT COUNT(*) FROM PASSENGER WHERE Fno = f.Fnumber) < p.Capacity
 GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price;
 
+SELECT Dpercent FROM PROMO WHERE Fno='1'

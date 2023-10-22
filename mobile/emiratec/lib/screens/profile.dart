@@ -1,4 +1,5 @@
 import 'package:emiratec/BD/database_service.dart';
+import 'package:emiratec/objects/Student.dart';
 import 'package:emiratec/objects/user.dart';
 import 'package:flutter/material.dart';
 
@@ -164,7 +165,9 @@ class _UserInfoBoxState extends State<UserInfoBox> {
             readOnlyTextField("ID de Estudiante", studentIDController),
 
             ElevatedButton(
-              onPressed: _addUser,
+              onPressed: 
+              
+              _addUser,
               child: const Text("Registrarse"),
             )
           ],
@@ -206,21 +209,53 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     );
   }
 
-  Future<void> _addUser() async {
-    final dbService = DatabaseService();
-    dbService.insertUser(User(
-        Fname: firstNameController.text,
-        Sname: middleNameController.text,
-        FLname: firstLastNameController.text,
-        SLname: secondLastNameController.text,
-        Pnumber: int.parse(telController.text),
-        email: emailController.text,
-        upassword: passwordController.text));
-  }
+void _showUserExistsDialog() {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Error'),
+        content: const Text('El usuario con este email ya está registrado.'),
+        actions: <Widget>[
+          ElevatedButton(
+            child: const Text('Cerrar'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 
-  Future<void> _printValues() async {
-    print(sign_in_emailController.text);
-    print(sign_in_passwordController.text);
+Future<void> _addUser() async {
+  final dbService = DatabaseService();
+
+  bool exists = await dbService.getUserExist(emailController.text);
+
+  if (exists) {
+    _showUserExistsDialog();
+  } else {
+    dbService.insertUser(User(
+      Fname: firstNameController.text,
+      Sname: middleNameController.text,
+      FLname: firstLastNameController.text,
+      SLname: secondLastNameController.text,
+      Pnumber: int.parse(telController.text),
+      email: emailController.text,
+      upassword: passwordController.text,
+    ));
+  }
+}
+
+
+  Future<void> _addStudent() async {
+    final dbService = DatabaseService();
+    dbService.insertStudent(Student(
+        studentId: studentIDController.text.toString(),
+        university: universityController.text,
+        uemail: emailController.text));
   }
 
   Widget readOnlyTextField(String title, TextEditingController controller) {

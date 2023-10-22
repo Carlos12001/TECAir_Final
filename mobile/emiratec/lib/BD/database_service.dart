@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:emiratec/BD/todo_db.dart';
 import 'package:emiratec/objects/Airport.dart';
+import 'package:emiratec/objects/Student.dart';
 import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/layover.dart';
 import 'package:emiratec/objects/promotion.dart';
@@ -70,6 +71,12 @@ class DatabaseService {
     await TodoDB().insertUser(db, user);
   }
 
+  Future<void> insertStudent(Student student) async {
+    final db = await database;
+    await TodoDB().insertStudent(db, student);
+  }
+
+
   Future<List<Map<String, dynamic>>> fetchAirports() async {
     final db = await database;
     return await db.query('AIRPORT');
@@ -98,8 +105,19 @@ class DatabaseService {
     return await TodoDB().getUserByEmailAndPassword(db, email, password);
   }
 
-   Future<List<Map<String, dynamic>>> getAvailableFlights(String sfrom, String sto) async {
+  Future<List<Map<String, dynamic>>> getAvailableFlights(
+      String sfrom, String sto) async {
     final db = await database;
     return await TodoDB().fetchAvailableFlights(db, sfrom, sto);
+  }
+
+  Future<List<Map<String, dynamic>>> getAirports() async {
+    final db = await database;
+    return await TodoDB().fetchAirports(db);
+  }
+
+  Future<bool> getUserExist(String email) async {
+    final db = await database;
+    return await TodoDB().userExists(db, email);
   }
 }

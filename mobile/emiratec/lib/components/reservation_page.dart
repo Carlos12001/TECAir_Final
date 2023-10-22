@@ -9,14 +9,10 @@ class reservationPage extends StatefulWidget {
   reservationPage(
       {super.key,
       required this.title,
-      required this.origin,
-      required this.destination,
       required this.seatType_,
       required this.availableFlights});
 
   final String title;
-  final String origin;
-  final String destination;
   final seatType seatType_;
   List<Flight> availableFlights;
 
@@ -27,8 +23,7 @@ class reservationPage extends StatefulWidget {
 /// The `_reservationPageState` class is responsible for displaying movie details and allowing the user to
 /// select a showtime and proceed to seat selection.
 class _reservationPageState extends State<reservationPage> {
-  // TODO agregar lectura de la BD
-  List<String> times = ["10:00", '15:00', '22:00'];
+
   String? selectedTime;
 
   /// The `_showErrorDialog` function displays an error dialog with a title, content, and an OK button
@@ -78,26 +73,7 @@ class _reservationPageState extends State<reservationPage> {
           alignment: Alignment.center,
           child: Column(
             children: [
-              // Container(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //     children: [
-              //       SizedBox(width: 150, height: 170, child: Text("hola")),
-              //     ],
-              //   ),
-              // ),
-              Container(
-                color: const Color(0xFF404040),
-                child: Center(
-                    child: Text(
-                  "Vuelos ${widget.origin} -> ${widget.destination}",
-                  style: TextStyle(
-                    fontSize: 18.0, // TODO hacer constantes globales
-                    color: Colors.white,
-                  ),
-                )),
-              ),
+           
               //listview de los vueslo que cumplen con las fechas y destinos
               flightListview(widget.availableFlights, widget.seatType_),
             ],

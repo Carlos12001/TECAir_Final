@@ -33,14 +33,16 @@ Expanded flightListview(List<Flight>? flightList, seatType seatType_) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          FlightDetailsPage(reservedflight: currentFlight, seatType__: seatType_,),
+                      builder: (context) => FlightDetailsPage(
+                        reservedflight: currentFlight,
+                        seatType__: seatType_,
+                      ),
                     ),
                   );
                 },
 
                 child: SizedBox(
-                  height: 150,
+                  height: 250,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -48,8 +50,14 @@ Expanded flightListview(List<Flight>? flightList, seatType seatType_) {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
+                            flex:
+                                1, // Puedes ajustar el flex según el espacio que desees que ocupe la imagen en relación al texto
+                            child: Image.network(
+                                currentFlight.stoImage), // Usa Image.network si es una URL
+                          ),
+                          Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(

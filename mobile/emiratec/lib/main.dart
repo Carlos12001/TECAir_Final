@@ -56,7 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Promotion> promo = [];
 
-  List<String> airportsNames = [];
+  //List<String> airportsNames = [];
+  List<Map<String, dynamic>> airports = [];
 
   int? selectedOriginID;
 
@@ -86,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
   /// updates the state with the retrieved data.
   _loadInitialData() async {
     List<Promotion> initialPromos = await dbService.getPromotions();
-    List<String> initialAirports = await dbService.getAirportsNames();
+    List<Map<String, dynamic>> initialAirports = await dbService.getAirports();
     setState(() {
       promo = initialPromos;
-      airportsNames = initialAirports;
+      airports = initialAirports;
     });
   }
 
@@ -101,12 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
       promo = updatedPromos;
     });
   }
-
-//   Future<List<Map<String, dynamic>>> getAirports() async {
-//   final db = await database;
-//   return await TodoDB().fetchAirports(db);
-// }
-
 
   /// This function builds a Scaffold widget with an AppBar, a bottomNavigationBar, and a body that
   /// displays different widgets based on the selected index.
@@ -160,25 +155,25 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: [
                 IntrinsicHeight(
-                  child: Row(
+                  child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           children: [
                             const Text("Desde"),
-                            DropdownButton<String>(
-                              value: selectedOrigin,
+                            DropdownButton<int>(
+                              value: selectedOriginID,
                               hint: const Text("Origen"),
-                              items: airportsNames.map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value,
+                              items: airports.map((airport) {
+                                return DropdownMenuItem<int>(
+                                  value: airport['AirportID'],
+                                  child: Text(airport['Aname'],
                                       style: const TextStyle(fontSize: 14)),
                                 );
                               }).toList(),
-                              onChanged: (String? newValue) {
+                              onChanged: (int? newValue) {
                                 setState(() {
-                                  selectedOrigin = newValue;
+                                  selectedOriginID = newValue;
                                 });
                               },
                             ),
@@ -191,21 +186,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         Column(
                           children: [
                             const Text("A"),
-                            DropdownButton<String>(
-                              value: selectedDestination,
-                              hint: const Text("Destino"),
-                              items: airportsNames.map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: const TextStyle(fontSize: 14),
-                                  ),
+                            DropdownButton<int>(
+                              value: selectedDestinationID,
+                              hint: const Text("Origen"),
+                              items: airports.map((airport) {
+                                return DropdownMenuItem<int>(
+                                  value: airport['AirportID'],
+                                  child: Text(airport['Aname'],
+                                      style: const TextStyle(fontSize: 14)),
                                 );
                               }).toList(),
-                              onChanged: (String? newValue) {
+                              onChanged: (int? newValue) {
                                 setState(() {
-                                  selectedDestination = newValue;
+                                  selectedDestinationID = newValue;
                                 });
                               },
                             ),
@@ -227,10 +220,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
             onPressed: () async {
-              if (selectedOrigin != null && selectedDestination != null) {
+              if (selectedOriginID != null && selectedDestinationID != null) {
                 List<Map<String, dynamic>> availableFlights =
                     await DatabaseService().getAvailableFlights(
-                        selectedOrigin!, selectedDestination!);
+                        selectedOriginID!.toString(), selectedDestinationID!.toString());
                 List<Flight> flightsList =
                     availableFlights.map((map) => Flight.fromMap(map)).toList();
                 print(availableFlights);
@@ -242,8 +235,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                     builder: (context) => reservationPage(
                       title: "Reservación",
-                      origin: selectedOrigin!,
-                      destination: selectedDestination!,
                       seatType_: seatSelection.getType()!,
                       availableFlights: flightsList,
                     ),

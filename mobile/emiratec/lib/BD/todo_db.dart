@@ -1,4 +1,5 @@
 import 'package:emiratec/BD/sql.dart';
+import 'package:emiratec/objects/Student.dart';
 import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/layover.dart';
 import 'package:emiratec/objects/promotion.dart';
@@ -31,9 +32,30 @@ class TodoDB {
     await database.insert('STOP', map);
   }
 
+  Future<bool> userExists(Database database, String email) async {
+    List<Map<String, dynamic>> result = await database.query(
+      'USERW',
+      where: 'email = ?',
+      whereArgs: [email],
+    );
+
+    return result.isNotEmpty;
+  }
+
   Future<void> insertUser(Database database, User newUser) async {
-    final map = newUser.toMap();
-    await database.insert('USERW', map);
+    bool exists = await userExists(database, newUser.email);
+
+    if (!exists) {
+      final map = newUser.toMap();
+      await database.insert('USERW', map);
+    } else {
+      throw Exception('User with this email already exists!');
+    }
+  }
+
+  Future<void> insertStudent(Database database, Student newStudent) async {
+    final map = newStudent.toMap();
+    await database.insert('STUDENT', map);
   }
 
   Future<List<Map<String, dynamic>>> fetchPromotions(Database database) async {
@@ -46,7 +68,7 @@ class TodoDB {
   }
 
   Future<List<Map<String, dynamic>>> fetchAirports(Database database) async {
-    return await database.query('AIRPORT', columns: ['AirportID', 'Aname      ']);
+    return await database.query('AIRPORT', columns: ['AirportID', 'Aname']);
   }
 
   Future<List<Map<String, dynamic>>> fetchAvailableFlights(
