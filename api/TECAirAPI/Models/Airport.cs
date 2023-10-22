@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The class "Airport" represents an airport and contains properties such as airport ID, code, city, name, image, and collections of flights and stops. */
 public partial class Airport
 {
     public int Airportid { get; set; }

@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The Passenger class represents a passenger with properties such as passenger number, email, check-in status, flight number, and collections of baggage, seats, and user information. */
 public partial class Passenger
 {
     public int Pnumber { get; set; }

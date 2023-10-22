@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Dtos
 {
+  /* The UserDto class represents a data transfer object for a user, containing properties such as email, password, name, student ID, university, admin ID, and miles. */
     public class UserDto
     {
         public string Email { get; set; } = null!;

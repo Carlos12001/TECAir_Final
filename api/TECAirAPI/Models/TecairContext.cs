@@ -6,39 +6,57 @@ namespace TECAirAPI.Models;
 
 public partial class TecairContext : DbContext
 {
+   /* The above code is defining a constructor for a class called TecairContext in C#. Constructors are special methods that are called when an object of a class is created. In this case, the constructor is empty and does not have any parameters or code inside it. */
     public TecairContext()
     {
     }
 
+   /* The above code is defining a constructor for the TecairContext class in C#. It takes in an argument of type DbContextOptions<TecairContext> named options. It then calls the base constructor of the DbContext class, passing in the options argument. */
     public TecairContext(DbContextOptions<TecairContext> options)
         : base(options)
     {
     }
 
+/* The above code is declaring a property called "Airadmins" of type DbSet<Airadmin>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, it is likely representing a collection of Airadmin entities, which could be a table in a database. The "virtual" keyword indicates that this property can be overridden in derived classes. */
     public virtual DbSet<Airadmin> Airadmins { get; set; }
 
+  /* The above code is declaring a property called "Airports" of type DbSet<Airport>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, the DbSet is used to represent a collection of Airport entities. The "virtual" keyword indicates that the property can be overridden in derived classes. */
     public virtual DbSet<Airport> Airports { get; set; }
 
+   /* The above code is declaring a property called "Baggages" of type DbSet<Baggage>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, it is declaring a collection of "Baggage" entities. */
     public virtual DbSet<Baggage> Baggages { get; set; }
 
+    /* The above code is declaring a property called "BaggageColors" of type DbSet<BaggageColor>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, it is declaring a collection of entities of type BaggageColor. */
     public virtual DbSet<BaggageColor> BaggageColors { get; set; }
 
+    /* The above code is declaring a property called "Flights" of type DbSet<Flight>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. This property can be used to query and manipulate the Flight entities in the database. */
     public virtual DbSet<Flight> Flights { get; set; }
 
+   /* The above code is declaring a property called "Passengers" of type DbSet<Passenger>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, the DbSet is used to represent a collection of Passenger entities. The "virtual" keyword indicates that the property can be overridden in derived classes. */
     public virtual DbSet<Passenger> Passengers { get; set; }
 
+    /* The above code is declaring a property called "Planes" of type DbSet<Plane>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, the DbSet is used to represent a collection of Plane objects. The "virtual" keyword indicates that the property can be overridden in derived classes. The "get; set;" syntax indicates that the property has both a getter and a setter, allowing it to be read and modified. */
     public virtual DbSet<Plane> Planes { get; set; }
 
+   /* The above code is declaring a property called "Promos" of type DbSet<Promo>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, the DbSet is used to represent a collection of "Promo" entities, which likely corresponds to a database table named "Promos". The "virtual" keyword indicates that the property can be overridden in derived classes. */
     public virtual DbSet<Promo> Promos { get; set; }
 
+ /* The above code is declaring a property called "Seats" of type DbSet<Seat>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. This property is virtual, which means it can be overridden in derived classes. */
     public virtual DbSet<Seat> Seats { get; set; }
 
+   /* The above code is declaring a property called "Stops" of type DbSet<Stop>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, the DbSet is being used to represent a collection of "Stop" entities. */
     public virtual DbSet<Stop> Stops { get; set; }
 
+    /* The above code is declaring a property called "Students" of type DbSet<Student>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, the DbSet<Student> represents a collection of Student entities. The "virtual" keyword indicates that the property can be overridden in derived classes. The "get; set;" syntax indicates that the property has both a getter and a setter, allowing it to be read and modified. */
     public virtual DbSet<Student> Students { get; set; }
 
+/* The above code is declaring a property called "Userws" of type DbSet<Userw>. DbSet is a class in Entity Framework that represents a collection of entities from a database table. In this case, it is declaring a collection of entities of type "Userw". The "virtual" keyword indicates that this property can be overridden in derived classes. */
     public virtual DbSet<Userw> Userws { get; set; }
 
+   /// <summary>
+   /// The `OnModelCreating` function is used to configure the relationships and properties of the entities in the database model.
+   /// </summary>
+   /// <param name="ModelBuilder">The `ModelBuilder` parameter is an instance of the `ModelBuilder` class, which is used to configure the database model for your application. It provides methods for defining entities, properties, relationships, and other aspects of the database schema.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Airadmin>(entity =>
@@ -341,5 +359,9 @@ public partial class TecairContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+/// <summary>
+/// The function is a placeholder for additional model configuration in the OnModelCreating method.
+/// </summary>
+/// <param name="ModelBuilder">The ModelBuilder class is used to configure the shape of your entity model. It provides a fluent API for configuring various aspects of your model, such as entity types, properties, relationships, and more.</param>
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

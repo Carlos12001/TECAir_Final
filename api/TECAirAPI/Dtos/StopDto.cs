@@ -1,5 +1,6 @@
 ﻿namespace TECAirAPI.Dtos
 {
+   /* The StopDto class represents a stop with various properties such as stop ID, source and destination IDs, date, departure and arrival hours, and flight number. */
     public class StopDto
     {
         public int Stopid { get; set; }

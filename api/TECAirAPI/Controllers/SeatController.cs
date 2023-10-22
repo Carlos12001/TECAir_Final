@@ -16,12 +16,20 @@ namespace TECAirAPI.Controllers
         private readonly TecairContext _context;
         private readonly IConfiguration _configuration;
 
+       /* The `SeatController` constructor is initializing the private fields `_context` and `_configuration` with the provided parameters `context` and `configuration`, respectively. These parameters are dependencies that are required by the `SeatController` class. The `TecairContext` is a database context class that provides access to the underlying database, and the `IConfiguration` interface is used to access configuration settings. By injecting these dependencies through the constructor, the `SeatController` can use them throughout its methods to interact with the database and retrieve configuration settings. */
         public SeatController(TecairContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
         }
 
+/// <summary>
+/// This C# function handles a POST request to assign a seat to a passenger in a database.
+/// </summary>
+/// <param name="SeatDto">The SeatDto is a data transfer object that represents the seat information. It contains the following properties:</param>
+/// <returns>
+/// The method is returning a JsonResult object.
+/// </returns>
         [HttpPost]
         [Route("seat/asign")]
         public async Task<JsonResult> PostCreate(SeatDto seat)
@@ -64,6 +72,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+/// <summary>
+/// This C# function retrieves seat information for a given flight and passenger.
+/// </summary>
+/// <param name="CheckinDto">The CheckinDto is a data transfer object that contains the following properties:</param>
+/// <returns>
+/// The method is returning a JsonResult object.
+/// </returns>
         [HttpPost]
         [Route("seat/flight")]
         public async Task<JsonResult> PostGetSeats(CheckinDto flight)

@@ -17,12 +17,19 @@ namespace TECAirAPI.Controllers
         private readonly TecairContext _context;
         private readonly IConfiguration _configuration;
 
+        /* The above code is defining a constructor for a FlightController class in C#. The constructor takes two parameters: a TecairContext object named "context" and an IConfiguration object named "configuration". The constructor assigns these parameters to private fields "_context" and "_configuration" respectively. */
         public FlightController(TecairContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// This function retrieves flight data from a database and returns it as a JSON result.
+        /// </summary>
+        /// <returns>
+        /// The method is returning a JsonResult object, which contains the data from the "FLIGHT" table in the form of a DataTable.
+        /// </returns>
         [HttpGet]
         [Route("flight")]
         public JsonResult Get()
@@ -51,6 +58,12 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+        /// <summary>
+        /// This C# function retrieves available flights from a database using a SQL function and returns the result as a JSON object.
+        /// </summary>
+        /// <returns>
+        /// The method is returning a JsonResult object, which contains the data from the "table" DataTable.
+        /// </returns>
         [HttpGet]
         [Route("flight/available")]
         public JsonResult GetFlights()
@@ -77,6 +90,12 @@ namespace TECAirAPI.Controllers
         }
 
 
+        /// <summary>
+        /// The GetFPromos function retrieves flight promotions from a database using a SQL function and returns the results as a JSON object.
+        /// </summary>
+        /// <returns>
+        /// The method is returning a JsonResult object, which contains the flight promotions data in the form of a DataTable.
+        /// </returns>
         [HttpGet]
         [Route("flight/promotions")]
         public JsonResult GetFPromos()
@@ -103,6 +122,13 @@ namespace TECAirAPI.Controllers
         }
 
 
+      /// <summary>
+      /// The GetFlight function retrieves all stops from a specific flight number and returns the result as a JSON object.
+      /// </summary>
+      /// <param name="number">The "number" parameter is an integer that represents the flight number. It is used to retrieve information about a specific flight from the database.</param>
+      /// <returns>
+      /// The method is returning a JsonResult object, which contains the data from the DataTable object.
+      /// </returns>
         [HttpGet]
         [Route("flight/{number}")]
         public JsonResult GetFlight(int number)
@@ -129,6 +155,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+       /// <summary>
+       /// The above function is a C# code snippet that handles a PUT request to modify a flight in a database and returns the updated flight information.
+       /// </summary>
+       /// <param name="FlightDto">FlightDto is a data transfer object that represents a flight. It contains the following properties:</param>
+       /// <returns>
+       /// The method is returning a JsonResult object.
+       /// </returns>
         [HttpPut]
         [Route("flight/modify")]
         public async Task<JsonResult> PutFlight(FlightDto flight)
@@ -173,6 +206,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+       /// <summary>
+       /// This C# function updates the state of a flight in a database and returns a JSON result.
+       /// </summary>
+       /// <param name="FlightDto">FlightDto is a data transfer object that represents a flight. It contains the following properties:</param>
+       /// <returns>
+       /// The method is returning a JsonResult object.
+       /// </returns>
         [HttpPut]
         [Route("flight/state")]
         public async Task<JsonResult> Put(FlightDto flight)
@@ -212,6 +252,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult("Vuelo actualizado");
         }
 
+       /// <summary>
+       /// This function handles the creation of a new flight record in a database and returns the updated flight records.
+       /// </summary>
+       /// <param name="FlightDto">FlightDto is a data transfer object that represents the flight information. It contains the following properties:</param>
+       /// <returns>
+       /// The method is returning a JsonResult object.
+       /// </returns>
         [HttpPost]
         [Route("flight/new")]
         public async Task<JsonResult> Post(FlightDto flight)
@@ -264,6 +311,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+      /// <summary>
+      /// This C# function handles a POST request to search for flights from one airport to another and returns the results as a JSON object.
+      /// </summary>
+      /// <param name="FlightSearchDto">FlightSearchDto is a data transfer object (DTO) that contains the search criteria for finding flights. It likely has properties such as SfromairportID and StoairportID, which represent the IDs of the departure and arrival airports respectively.</param>
+      /// <returns>
+      /// The method is returning a JsonResult object, which contains the flight search results in the form of a DataTable.
+      /// </returns>
         [HttpPost]
         [Route("flight/fromto")]
         public JsonResult PostFromTo(FlightSearchDto search)
@@ -292,6 +346,13 @@ namespace TECAirAPI.Controllers
         }
 
 
+      /// <summary>
+      /// This C# function retrieves flights based on a passenger's email address and returns them as a JSON result.
+      /// </summary>
+      /// <param name="EmailDto">The EmailDto is a data transfer object (DTO) that contains the email address of a passenger. It is used as the request body for the HTTP POST request to the "flight/passenger" route. The email address is needed to retrieve flights associated with the passenger.</param>
+      /// <returns>
+      /// The method is returning a `JsonResult` object, which contains the `table` as the JSON data.
+      /// </returns>
         [HttpPost] 
         [Route("flight/passenger")]
         public async Task<ActionResult<IEnumerable<FlightDto>>> GetFlightsByPassenger([FromBody] EmailDto emailDto)
@@ -324,6 +385,13 @@ namespace TECAirAPI.Controllers
         }
 
         // DELETE: api/flight/400
+/// <summary>
+/// This C# function deletes a flight from a database and returns the updated list of flights.
+/// </summary>
+/// <param name="FlightDto">The FlightDto is a data transfer object that represents a flight. It contains the following properties:</param>
+/// <returns>
+/// The method is returning a JsonResult object.
+/// </returns>
         [HttpDelete]
         [Route("flight/delete")]
         public async Task<JsonResult> Delete(FlightDto del)
@@ -361,6 +429,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+        /// <summary>
+        /// The FlightExists function checks if a flight with the given id exists in the Userws collection.
+        /// </summary>
+        /// <param name="id">The "id" parameter is a string that represents the email address of a user.</param>
+        /// <returns>
+        /// The method is returning a boolean value.
+        /// </returns>
         private bool FlightExists(string id)
         {
             return (_context.Userws?.Any(e => e.Email == id)).GetValueOrDefault();

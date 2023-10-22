@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The Flight class represents a flight with various properties such as flight number, origin and destination airports, price, date, state, passenger information, plane information, and promotional offers. */
 public partial class Flight
 {
     public int Fnumber { get; set; }

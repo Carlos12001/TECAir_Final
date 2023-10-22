@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The `Userw` class represents a user with various properties such as email, password, phone number, first name, middle name, and last name. */
 public partial class Userw
 {
     public string Email { get; set; } = null!;

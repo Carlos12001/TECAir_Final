@@ -16,12 +16,20 @@ namespace TECAirAPI.Controllers
         private readonly TecairContext _context;
         private readonly IConfiguration _configuration;
 
+       /* The `public BaggageController(TecairContext context, IConfiguration configuration)` is a constructor for the `BaggageController` class. It takes two parameters: `context` of type `TecairContext` and `configuration` of type `IConfiguration`. */
         public BaggageController(TecairContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
         }
 
+       /// <summary>
+       /// The function `PostCreateBaggages` is a HTTP POST endpoint that creates baggage records in the database based on the provided `CreateBaggageDto` object.
+       /// </summary>
+       /// <param name="CreateBaggageDto">CreateBaggageDto is a data transfer object that contains the following properties:</param>
+       /// <returns>
+       /// The method is returning a JsonResult object.
+       /// </returns>
         [HttpPost]
         [Route("baggage/passenger")]
         public async Task<JsonResult> PostCreateBaggages(CreateBaggageDto baggageDto)

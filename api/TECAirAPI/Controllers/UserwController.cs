@@ -19,12 +19,19 @@ namespace TECAirAPI.Controllers
         private readonly TecairContext _context;
         private readonly IConfiguration _configuration;
 
+       /* The `UserwController` constructor is initializing the private fields `_context` and `_configuration` with the provided parameters `context` and `configuration`, respectively. These fields are used throughout the controller to access the database context and configuration settings. */
         public UserwController(TecairContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// This function retrieves user data from multiple tables in a database and returns it as a JSON result.
+        /// </summary>
+        /// <returns>
+        /// The method is returning a JsonResult object, which contains the data from the "table" DataTable.
+        /// </returns>
         [HttpGet]
         [Route("user")]
         public JsonResult Get()
@@ -57,6 +64,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+        /// <summary>
+        /// The above function is a PUT endpoint in a C# API that updates a user's information in a database.
+        /// </summary>
+        /// <param name="Userw">The "Userw" parameter is a model or class that represents a user in your application. It contains properties such as "Email", "Upassword", "Unumber", "Fname", "Mname", "Lname1", and "Lname2". These properties are used to update</param>
+        /// <returns>
+        /// The method is returning a JsonResult object with the message "Usuario actualizado" (User updated).
+        /// </returns>
         [HttpPut]
         [Route("user")]
         public async Task<JsonResult> Put(Userw user)
@@ -98,6 +112,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult("Usuario actualizado");
         }
 
+       /// <summary>
+       /// This C# function handles a POST request to add a new user to a database table.
+       /// </summary>
+       /// <param name="Userw">The Userw class represents a user object with the following properties:</param>
+       /// <returns>
+       /// The method is returning a JsonResult.
+       /// </returns>
         [HttpPost]
         [Route("user")]
         public async Task<JsonResult> Post(Userw user)
@@ -139,6 +160,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult("Usuario añadido");
         }
 
+        /// <summary>
+        /// This C# function handles a POST request to create a new user, including inserting the user data into the USERW table and optionally into the STUDENT and AIRADMIN tables, and then returns the updated user data as a JSON response.
+        /// </summary>
+        /// <param name="UserDto">The UserDto is a data transfer object that represents the user information being passed in the HTTP POST request. It contains the following properties:</param>
+        /// <returns>
+        /// The method is returning a JsonResult object.
+        /// </returns>
         [HttpPost]
         [Route("user/new")]
         public async Task<JsonResult> Post(UserDto user)
@@ -239,6 +267,13 @@ namespace TECAirAPI.Controllers
         }
 
 
+       /// <summary>
+       /// This function handles the login process for a user by checking their credentials and returning a message indicating whether the login was successful or not.
+       /// </summary>
+       /// <param name="LoginDto">LoginDto is a data transfer object (DTO) that represents the user's login information. It typically contains properties such as Email and Password, which are used to authenticate the user during the login process.</param>
+       /// <returns>
+       /// The method is returning a JsonResult. If the userEntity is null, it returns a JsonResult with the message "Credenciales inválidas". Otherwise, it returns a JsonResult with the message "Sesion iniciada".
+       /// </returns>
         [HttpPost]
         [Route("user/login")]
         public async Task<JsonResult> PostLogin(LoginDto user)
@@ -252,6 +287,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult("Sesion iniciada");
         }
 
+       /// <summary>
+       /// The above function is a C# code snippet that handles a DELETE request to delete a user from a database table based on their email.
+       /// </summary>
+       /// <param name="email">The "email" parameter is the email address of the user that you want to delete from the "USERW" table.</param>
+       /// <returns>
+       /// The method is returning a JsonResult object with the message "Usuario eliminado" (User deleted).
+       /// </returns>
         [HttpDelete]
         [Route("user/{email}")]
         public JsonResult Delete(string email)
@@ -281,6 +323,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult("Usuario eliminado");
         }
 
+       /// <summary>
+       /// The function checks if a user with a given email exists in the Userws collection.
+       /// </summary>
+       /// <param name="id">The `id` parameter is a string that represents the email of a user.</param>
+       /// <returns>
+       /// The method is returning a boolean value.
+       /// </returns>
         private bool UserwExists(string id)
         {
             return (_context.Userws?.Any(e => e.Email == id)).GetValueOrDefault();

@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The Baggage class represents a piece of baggage with properties such as baggage number, weight, passenger number, and a collection of baggage colors. */
 public partial class Baggage
 {
     public int Bnumber { get; set; }

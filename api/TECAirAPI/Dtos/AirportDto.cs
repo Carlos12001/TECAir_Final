@@ -1,5 +1,6 @@
 ﻿namespace TECAirAPI.Dtos
 {
+/* The `AirportDto` class represents an airport with properties for its ID, code, city, name, and an optional image. */
     public class AirportDto
     {
         public int Airportid { get; set; }

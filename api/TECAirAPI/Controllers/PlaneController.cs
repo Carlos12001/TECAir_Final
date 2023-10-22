@@ -21,6 +21,12 @@ namespace TECAirAPI.Controllers
             _configuration = configuration;
         }
 
+       /// <summary>
+       /// This function retrieves all rows from the PLANE table in a PostgreSQL database and returns them as a JSON result.
+       /// </summary>
+       /// <returns>
+       /// The method is returning a JsonResult object, which contains the data from the PLANE table in the TECAir database.
+       /// </returns>
         [HttpGet]
         [Route("plane")]
         public JsonResult Get()
@@ -49,6 +55,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+/// <summary>
+/// The above function is a C# code snippet that handles a PUT request to modify the capacity of a plane in a database.
+/// </summary>
+/// <param name="PlaneDto">A data transfer object (DTO) representing a plane. It contains the following properties:</param>
+/// <returns>
+/// The code is returning a JsonResult object.
+/// </returns>
         [HttpPut]
         [Route("plane/modify")]
         public async Task<JsonResult> Put(PlaneDto plane)
@@ -88,6 +101,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+       /// <summary>
+       /// The above function is a C# code snippet that handles a HTTP POST request to create a new plane record in a database table.
+       /// </summary>
+       /// <param name="PlaneDto">PlaneDto is a data transfer object that represents a plane. It contains the following properties:</param>
+       /// <returns>
+       /// The method is returning a JsonResult object.
+       /// </returns>
         [HttpPost]
         [Route("plane/new")]
         public async Task<JsonResult> Post(PlaneDto plane)
@@ -129,6 +149,13 @@ namespace TECAirAPI.Controllers
         }
 
         // DELETE: api/flight/400
+       /// <summary>
+       /// This C# function deletes a plane from a database and returns the updated list of planes.
+       /// </summary>
+       /// <param name="PlaneDto">The PlaneDto is a data transfer object that represents a plane. It contains properties such as PlaneId, which is the unique identifier of the plane.</param>
+       /// <returns>
+       /// The method is returning a JsonResult object.
+       /// </returns>
         [HttpDelete]
         [Route("plane/delete")]
         public async Task<JsonResult> Delete(PlaneDto del)

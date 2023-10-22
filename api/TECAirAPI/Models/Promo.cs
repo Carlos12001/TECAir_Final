@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The Promo class represents a promotional offer for a flight, including details such as flight number, image, discount percentage, and final date. */
 public partial class Promo
 {
     public int Fno { get; set; }

@@ -2,7 +2,8 @@
 
 namespace TECAirAPI.Functions
 {
-    public class SQLfn
+    /* The SQLfn class contains SQL queries for retrieving flight information and performing operations related to flights and passengers. */
+		public class SQLfn
     {
 		static string availableF = @"
 			SELECT 
@@ -30,6 +31,12 @@ namespace TECAirAPI.Functions
 			GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price;
         ";
 
+/// <summary>
+/// The function "AvailableF" returns the value of the variable "availableF" as a string.
+/// </summary>
+/// <returns>
+/// The method is returning the value of the variable "availableF", which is a string.
+/// </returns>
 		public string AvailableF() {
 			return availableF;
 		}
@@ -63,6 +70,12 @@ namespace TECAirAPI.Functions
 			GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price, d.dpercent;
 		";
 
+/// <summary>
+/// The SpecificFlight function returns a string representing a specific flight.
+/// </summary>
+/// <returns>
+/// The method is returning a string value.
+/// </returns>
         public string SpecificFlight()
         {
             return specificFlight;
@@ -90,7 +103,13 @@ namespace TECAirAPI.Functions
 				(SELECT COUNT(*) FROM PASSENGER WHERE Fno = f.Fnumber) < p.Capacity
 			GROUP BY a1.airportid, a1.City, a2.airportid, a2.City
 		";
-        public string AvailableS()
+     /// <summary>
+		 /// The function returns the value of the variable "availableS" as a string.
+		 /// </summary>
+		 /// <returns>
+		 /// The method is returning a string value.
+		 /// </returns>
+		    public string AvailableS()
         {
             return availableS;
         }
@@ -123,7 +142,13 @@ namespace TECAirAPI.Functions
 			GROUP BY f.Fnumber, s.StopID, a1.City, a2.City, a2.Image, f.Fdate, f.Price;
 		";
 
-        public string Fromto()
+     /// <summary>
+		 /// The function "Fromto" returns a string value.
+		 /// </summary>
+		 /// <returns>
+		 /// The method is returning a string value.
+		 /// </returns>
+		    public string Fromto()
         {
             return fromto;
         }
@@ -153,7 +178,13 @@ namespace TECAirAPI.Functions
 				  S.StopID = @stopid
 		";
 
-        public string Cpassenger()
+       /// <summary>
+			 /// The function Cpassenger returns a string value.
+			 /// </summary>
+			 /// <returns>
+			 /// The method is returning a string value.
+			 /// </returns>
+			  public string Cpassenger()
         {
             return cpassenger;
         }
@@ -176,7 +207,14 @@ namespace TECAirAPI.Functions
 				  f.fstate = true AND p.checked_in=false;
 		";
 
-        public string PassengerFlights(string email)
+       /// <summary>
+			 /// The function "PassengerFlights" takes an email as input and returns a formatted string using a template.
+			 /// </summary>
+			 /// <param name="email">The email parameter is a string that represents the email address of a passenger.</param>
+			 /// <returns>
+			 /// The method is returning a string that is formatted using the "passengerflightsTemplate" and the provided email parameter.
+			 /// </returns>
+			  public string PassengerFlights(string email)
         {
             // Inyeccion sql posible jeje.
             return string.Format(passengerflightsTemplate, email); // Esto inserta el email en la consulta.
@@ -211,7 +249,13 @@ namespace TECAirAPI.Functions
 		";
 
 
-        public string FPromotions()
+        /// <summary>
+				/// The function FPromotions returns a string containing flight promotions.
+				/// </summary>
+				/// <returns>
+				/// The method is returning a string value.
+				/// </returns>
+				public string FPromotions()
         {
             return flightspromotions;
         }

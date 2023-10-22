@@ -1,5 +1,6 @@
 ﻿namespace TECAirAPI.Dtos
 {
+/* The CreateBaggageDto class represents a data transfer object for creating a baggage with a passenger number and a list of baggage information. */
     public class CreateBaggageDto
     {
         public int Pnumber { get; set; }

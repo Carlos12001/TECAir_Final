@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The BaggageColor class represents the color of a baggage item and includes properties for the baggage number, color, and a navigation property to the corresponding baggage item. */
 public partial class BaggageColor
 {
     public int Bno { get; set; }

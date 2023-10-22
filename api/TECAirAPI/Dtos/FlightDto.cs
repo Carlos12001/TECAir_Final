@@ -1,5 +1,6 @@
 ﻿namespace TECAirAPI.Dtos
 {
+   /* The FlightDto class represents a flight with properties such as flight number, departure and arrival locations, price, date, state, and passenger ID. */
     public class FlightDto
     {
         public int Fnumber { get; set; }

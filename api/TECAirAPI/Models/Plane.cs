@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TECAirAPI.Models;
 
+/* The Plane class represents a plane with properties such as Planeid and Capacity, and a collection of Flights. */
 public partial class Plane
 {
     public string Planeid { get; set; } = null!;

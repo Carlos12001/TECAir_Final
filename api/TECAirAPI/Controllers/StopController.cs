@@ -22,6 +22,12 @@ namespace TECAirAPI.Controllers
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// This C# function retrieves data from a database table called "STOP" and returns it as a JSON result.
+        /// </summary>
+        /// <returns>
+        /// The method is returning a JsonResult object, which contains the data from the "STOP" table in the TECAir database.
+        /// </returns>
         [HttpGet]
         [Route("stop")]
         public JsonResult Get()
@@ -50,6 +56,12 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+        /// <summary>
+        /// The above function is an HTTP GET endpoint that retrieves available stops from a database and returns them as a JSON result.
+        /// </summary>
+        /// <returns>
+        /// The method is returning a JsonResult object, which contains the data from the "table" DataTable.
+        /// </returns>
         [HttpGet]
         [Route("stop/available")]
         public JsonResult GetStops()
@@ -75,6 +87,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+       /// <summary>
+       /// This C# function updates a stop record in a database and returns the updated stop information as a JSON result.
+       /// </summary>
+       /// <param name="StopDto">StopDto is a data transfer object that represents a stop in a flight itinerary. It contains the following properties:</param>
+       /// <returns>
+       /// The method is returning a JsonResult object.
+       /// </returns>
         [HttpPut]
         [Route("stop/modify")]
         public async Task<JsonResult> Put(StopDto stop)
@@ -118,6 +137,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+      /// <summary>
+      /// The above function is a C# code snippet that handles a HTTP POST request to create a new stop in a database and returns the updated list of stops.
+      /// </summary>
+      /// <param name="StopDto">StopDto is a data transfer object that contains the following properties:</param>
+      /// <returns>
+      /// The method is returning a JsonResult object.
+      /// </returns>
         [HttpPost]
         [Route("stop/new")]
         public async Task<JsonResult> Post(StopDto stop)

@@ -20,6 +20,12 @@ namespace TECAirAPI.Controllers
             _configuration = configuration;
         }
 
+      /// <summary>
+      /// The above function is a GET request that retrieves data from a PostgreSQL database table called "PROMO" and returns it as a JSON result.
+      /// </summary>
+      /// <returns>
+      /// The method is returning a JsonResult object, which contains the data from the "PROMO" table in the TECAir database.
+      /// </returns>
         [HttpGet]
         [Route("promo")]
         public JsonResult Get()
@@ -48,6 +54,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+        /// <summary>
+        /// This C# function updates a promo in a database and returns the updated promo information as a JSON result.
+        /// </summary>
+        /// <param name="PromoDto">PromoDto is a data transfer object that represents a promo. It contains the following properties:</param>
+        /// <returns>
+        /// The method is returning a JsonResult object.
+        /// </returns>
         [HttpPut]
         [Route("promo/modify")]
         public async Task<JsonResult> Put(PromoDto promo)
@@ -89,6 +102,13 @@ namespace TECAirAPI.Controllers
             return new JsonResult(table);
         }
 
+        /// <summary>
+        /// The above function is a C# code snippet that handles a POST request to create a new promo in a database and returns the created promo as a JSON result.
+        /// </summary>
+        /// <param name="PromoDto">PromoDto is a data transfer object that represents the data for creating a new promo. It contains the following properties:</param>
+        /// <returns>
+        /// The method is returning a JsonResult object.
+        /// </returns>
         [HttpPost]
         [Route("promo/new")]
         public async Task<JsonResult> Post(PromoDto promo)
@@ -132,6 +152,13 @@ namespace TECAirAPI.Controllers
         }
 
         // DELETE: api/flight/400
+        /// <summary>
+        /// This C# function deletes a promo from a database table and returns the updated list of promos.
+        /// </summary>
+        /// <param name="PromoDto">PromoDto is a data transfer object that represents a promo. It contains the following properties:</param>
+        /// <returns>
+        /// The method is returning a JsonResult object.
+        /// </returns>
         [HttpDelete]
         [Route("promo/delete")]
         public async Task<JsonResult> Delete(PromoDto del)
