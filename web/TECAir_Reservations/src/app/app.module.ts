@@ -34,6 +34,7 @@ import { AdminEditorComponent } from './components/admin-editor/admin-editor.com
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { DisplayCheckInComponent } from './components/display-check-in/display-check-in.component';
 import { DisplayBaggageComponent } from './components/display-baggage/display-baggage.component';
+import { DisplayAdminEditorComponent } from './components/display-admin-editor/display-admin-editor.component';
 
 /* The `@NgModule` decorator is used to define a module in Angular. It is a metadata object that specifies how the module should be compiled and run. */
 @NgModule({
@@ -75,6 +76,7 @@ import { DisplayBaggageComponent } from './components/display-baggage/display-ba
     CheckInComponent,
     DisplayCheckInComponent,
     DisplayBaggageComponent,
+    DisplayAdminEditorComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
