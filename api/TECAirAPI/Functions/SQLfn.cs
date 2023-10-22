@@ -165,7 +165,7 @@ namespace TECAirAPI.Functions
 				s.StopID,
 				afrom.City AS sfromCity,
 				ato.City AS stoCity,
-				f.Fdate,
+				to_char(f.Fdate, 'YYYY-MM-DD') AS fdate,
 				f.Price AS fprice
 			FROM PASSENGER p
 			INNER JOIN FLIGHT f ON p.Fno = f.Fnumber
