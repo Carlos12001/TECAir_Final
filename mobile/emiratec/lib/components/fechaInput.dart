@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// The `FechaInput` class is a stateful widget in Dart that allows the user to select a date and
+/// notifies the parent widget when a date is selected.
 class FechaInput extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
 
@@ -9,6 +11,7 @@ class FechaInput extends StatefulWidget {
   _FechaInputState createState() => _FechaInputState();
 }
 
+/// The _FechaInputState class is a state class in Dart.
 class _FechaInputState extends State<FechaInput> {
   DateTime selectedDate = DateTime.now();
 

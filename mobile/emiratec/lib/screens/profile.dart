@@ -4,6 +4,8 @@ import 'package:emiratec/objects/Student.dart';
 import 'package:emiratec/objects/user.dart';
 import 'package:flutter/material.dart';
 
+/// The `Profile` class is a stateful widget in Dart that takes a callback function `onVerified` as a
+/// parameter.
 class Profile extends StatefulWidget {
   final Function(int) onVerified;
 
@@ -13,6 +15,8 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => ProfileState();
 }
 
+/// The `ProfileState` class represents the state of the `Profile` widget and builds the UI for the
+/// profile screen.
 class ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
@@ -62,6 +66,8 @@ class ProfileState extends State<Profile> {
   }
 }
 
+/// The `UserInfoBox` class is a stateful widget in Dart that allows users to provide a verification
+/// function.
 class UserInfoBox extends StatefulWidget {
   final Function(int) onVerified;
 
@@ -71,6 +77,8 @@ class UserInfoBox extends StatefulWidget {
   _UserInfoBoxState createState() => _UserInfoBoxState();
 }
 
+/// The `_UserInfoBoxState` class is a stateful widget that manages the text editing controllers and the
+/// UI elements for a user information box, including sign-in and registration forms.
 class _UserInfoBoxState extends State<UserInfoBox> {
   final firstNameController = TextEditingController();
   final middleNameController = TextEditingController();
@@ -85,6 +93,7 @@ class _UserInfoBoxState extends State<UserInfoBox> {
   final studentIDController = TextEditingController();
   final milesController = TextEditingController();
 
+  /// The dispose function is used to dispose of all the controllers when the widget is removed.
   @override
   void dispose() {
     // Dispose of the controllers when the widget is removed
@@ -175,6 +184,8 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     );
   }
 
+  /// The `_verifyUserLogin` function checks if a user's email and password match in the database and
+  /// performs certain actions based on the result.
   Future<void> _verifyUserLogin() async {
     final dbService = DatabaseService();
     User? user = await dbService.getUserByEmailAndPassword(
@@ -190,6 +201,10 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     }
   }
 
+  /// The `_showErrorDialog` function displays an error dialog with a title, content, and a close button.
+  ///
+  /// Returns:
+  ///   The `_showErrorDialog` function is returning an `AlertDialog` widget.
   void _showErrorDialog() {
     showDialog(
       context: context,
@@ -210,6 +225,11 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     );
   }
 
+  /// The `_showUserExistsDialog` function displays an error dialog with a message indicating that a user
+  /// with the provided email is already registered.
+  ///
+  /// Returns:
+  ///   an AlertDialog widget.
   void _showUserExistsDialog() {
     showDialog(
       context: context,
@@ -230,11 +250,14 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     );
   }
 
+  /// The function `_addUserStudent` adds a user and a student asynchronously.
   Future<void> _addUserStudent() async {
     _addUser();
     _addStudent();
   }
 
+  /// The function `_addUser` checks if a user exists in the database and inserts a new user if they do
+  /// not exist.
   Future<void> _addUser() async {
     final dbService = DatabaseService();
 
@@ -255,8 +278,9 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     }
   }
 
-
-    Future<void> _addStudent() async {
+  /// The `_addStudent` function adds a student to a database and displays success or error messages to
+  /// the user.
+  Future<void> _addStudent() async {
     final dbService = DatabaseService();
     if (studentIDController.text.isNotEmpty &&
         universityController.text.isNotEmpty &&
@@ -268,18 +292,28 @@ class _UserInfoBoxState extends State<UserInfoBox> {
             uemail: emailController.text));
 
         // Opcionalmente: Mostrar un mensaje de éxito al usuario.
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Estudiante agregado con éxito!')));
-
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Estudiante agregado con éxito!')));
       } catch (e) {
         // Mostrar el error al usuario o registrar en algún log.
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al agregar el estudiante: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error al agregar el estudiante: $e')));
       }
     } else {
       // Opcionalmente: Notificar al usuario que todos los campos son requeridos.
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Todos los campos son requeridos.')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Todos los campos son requeridos.')));
     }
   }
 
+  /// The function returns a read-only text field widget with a given title and a controller for managing
+  /// the text.
+  ///
+  /// Args:
+  ///   title (String): A string that represents the title or label for the text field.
+  ///   controller (TextEditingController): The TextEditingController is a class that allows you to
+  /// control the text being edited in a TextField widget. It provides methods to set and retrieve the
+  /// text value, as well as listen for changes to the text.
 
   Widget readOnlyTextField(String title, TextEditingController controller) {
     return Padding(

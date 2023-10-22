@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 enum seatType { Turista, Ejecutivo }
 
+/// The class `classSelection` is a stateful widget in Dart that allows the user to select a seat type,
+/// with a default value of `Turista`.
 class classSelection extends StatefulWidget {
   classSelection({super.key});
   seatType? _seatType = seatType.Turista;

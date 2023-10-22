@@ -14,6 +14,9 @@ void main() {
   runApp(const MyApp());
 }
 
+/// The `MyApp` class is a Dart class that represents the main application and sets up the theme and
+/// initial home page for a mobile app called "TecAir mobile" with a primary color of `0xFFC42F17` and a
+/// title of "Emiratec".
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -34,6 +37,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// The `MyHomePage` class is a stateful widget in Dart that represents a home page with a title.
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -43,6 +47,9 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+/// The `_MyHomePageState` class is a stateful widget that represents the home page of a Flutter app and
+/// includes functionality for displaying promotions, searching for flights, and navigating between
+/// different screens.
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 3;
 
@@ -142,6 +149,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+/// The `flightSearchBar` function returns a container widget that displays a flight search bar with
+/// dropdown menus for selecting origin and destination airports, a seat selection, and a search button.
+/// 
+/// Returns:
+///   The `flightSearchBar()` function returns a `Container` widget.
   Container flightSearchBar() {
     return Container(
       color: const Color(0xFF222222),
@@ -251,6 +263,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+/// The `homePage` function returns a `Column` widget that displays an ad, a divider, a button to update
+/// promotions, and a list of promotions.
+/// 
+/// Args:
+///   promoss (List<Promotion>): The parameter "promoss" is a list of Promotion objects.
+/// 
+/// Returns:
+///   a Column widget.
   Column homePage(List<Promotion> promoss) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -268,6 +288,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+/// The `homeNavigationBar` function returns a `BottomNavigationBar` widget with four items for a home
+/// screen navigation bar in a Flutter app.
+/// 
+/// Returns:
+///   a BottomNavigationBar widget.
   BottomNavigationBar homeNavigationBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,

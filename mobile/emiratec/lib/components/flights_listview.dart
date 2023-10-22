@@ -4,12 +4,19 @@ import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
 
+/// The function expands a flight list view based on the seat type.
+///
+/// Args:
+///   flightList (List<Flight>): A list of Flight objects. Each Flight object represents a flight with
+/// various properties such as flight number, departure time, arrival time, etc.
+///   seatType_ (seatType): The seatType_ parameter is a variable of type seatType, which represents the
+/// type of seat that the user wants to filter the flight list by.
+
 Expanded flightListview(List<Flight>? flightList, seatType seatType_) {
   return Expanded(
     flex: 4,
     child: FutureBuilder<List<Flight>>(
-      future: getFlightsList(
-          flightList), // Aquí se supone que tendrías una función que retorna Future<List<Movie>>
+      future: getFlightsList(flightList),
       builder: (BuildContext context, AsyncSnapshot<List<Flight>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -50,10 +57,8 @@ Expanded flightListview(List<Flight>? flightList, seatType seatType_) {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            flex:
-                                1, // Puedes ajustar el flex según el espacio que desees que ocupe la imagen en relación al texto
-                            child: Image.network(
-                                currentFlight.stoImage), // Usa Image.network si es una URL
+                            flex: 1,
+                            child: Image.network(currentFlight.stoImage),
                           ),
                           Expanded(
                             child: Column(
@@ -120,6 +125,15 @@ Expanded flightListview(List<Flight>? flightList, seatType seatType_) {
     ),
   );
 }
+
+/// The function returns a list of flights, or an empty list if the input flight list is null.
+///
+/// Args:
+///   flightList (List<Flight>): The flightList parameter is a List of Flight objects.
+///
+/// Returns:
+///   a `Future` object that resolves to a `List<Flight>`. If the `flightList` parameter is not null, it
+/// will return the `flightList` itself. Otherwise, it will return an empty list `[]`.
 
 Future<List<Flight>> getFlightsList(List<Flight>? flightList) async {
   if (flightList != null) {

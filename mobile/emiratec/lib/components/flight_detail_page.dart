@@ -4,6 +4,8 @@ import 'package:emiratec/globals.dart';
 import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
+/// The `FlightDetailsPage` class is a stateful widget that displays the details of a reserved flight
+/// and the selected seat type.
 
 class FlightDetailsPage extends StatefulWidget {
   final Flight reservedflight;
@@ -15,6 +17,8 @@ class FlightDetailsPage extends StatefulWidget {
   _FlightDetailsPageState createState() => _FlightDetailsPageState();
 }
 
+/// The `_FlightDetailsPageState` class is a stateful widget that displays flight details and allows the
+/// user to make a reservation by filling in their personal information.
 class _FlightDetailsPageState extends State<FlightDetailsPage> {
   late TextEditingController _controller;
   late TextEditingController _controllerSC;
@@ -40,10 +44,9 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+
     // Obtiene el tamaño de la pantalla
     var screenSize = MediaQuery.of(context).size;
-
-    // Decide el padding basado en la orientación
     final double paddingValue = screenSize.width > 600 ? 32.0 : 16.0;
 
     return Scaffold(
@@ -59,7 +62,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Image.network(widget.reservedflight
-                      .stoImage), // Usa Image.network si es una URL
+                      .stoImage),
 
                   Text("Fecha: ${widget.reservedflight.fdate}"),
                   Text("Ciudad salida: ${widget.reservedflight.sfromCity}"),
@@ -78,13 +81,21 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                   ElevatedButton(
                     onPressed: () async {
                       try {
-  
-                        // Llamando al método insertIntoPassenger de DatabaseService
-                        await DatabaseService()
-                            .insertIntoPassenger(globalUser, widget.reservedflight.fNumber.toString());
-                        await DatabaseService().insertIntoUserStop(globalUser, widget.reservedflight.fNumber.toString());
-                        await DatabaseService().updateStudentMiles(globalUser);
-                        print("reservado con exito");
+                        if (_controllerTitular.text.isNotEmpty &&
+                            _controllerDate.text.isNotEmpty &&
+                            _controller.text.isNotEmpty &&
+                            _controllerSC.text.isNotEmpty &&
+                            globalUser.isNotEmpty) {
+                          // Llamando al método insertIntoPassenger de DatabaseService
+                          await DatabaseService().insertIntoPassenger(
+                              globalUser,
+                              widget.reservedflight.fNumber.toString());
+                          await DatabaseService().insertIntoUserStop(globalUser,
+                              widget.reservedflight.fNumber.toString());
+                          await DatabaseService()
+                              .updateStudentMiles(globalUser);
+                          print("reservado con exito");
+                        }
                       } catch (error) {
                         // Si hay un error, lo mostramos
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -102,7 +113,14 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
       ),
     );
   }
-
+/// The function returns a read-only text field widget with a given title and a controller for managing
+/// the text.
+/// 
+/// Args:
+///   title (String): A string that represents the title or label for the text field.
+///   controller (TextEditingController): The TextEditingController is a class that allows you to
+/// control the text being edited in a TextField widget. It provides methods to set and retrieve the
+/// text value, as well as listen for changes to the text.
   Widget readOnlyTextField(String title, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),

@@ -23,42 +23,10 @@ class reservationPage extends StatefulWidget {
 /// The `_reservationPageState` class is responsible for displaying movie details and allowing the user to
 /// select a showtime and proceed to seat selection.
 class _reservationPageState extends State<reservationPage> {
-
   String? selectedTime;
-
-  /// The `_showErrorDialog` function displays an error dialog with a title, content, and an OK button
-  /// that closes the dialog when pressed.
-  ///
-  /// Args:
-  ///   context (BuildContext): The `BuildContext` object represents the location in the widget tree where
-  /// the dialog should be shown. It is typically obtained from the `BuildContext` parameter of the
-  /// enclosing widget's build method.
-  ///
-  /// Returns:
-  ///   The `_showErrorDialog` function returns an `AlertDialog` widget.
-  void _showErrorDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Error'),
-          content: const Text('Por favor selecciona el horario'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop(); // Cierra el diálogo
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    //Movie peliculaN = widget.pelicula;
     return Scaffold(
       backgroundColor: const Color(0xFF222222),
       appBar: AppBar(
@@ -73,7 +41,6 @@ class _reservationPageState extends State<reservationPage> {
           alignment: Alignment.center,
           child: Column(
             children: [
-           
               //listview de los vueslo que cumplen con las fechas y destinos
               flightListview(widget.availableFlights, widget.seatType_),
             ],

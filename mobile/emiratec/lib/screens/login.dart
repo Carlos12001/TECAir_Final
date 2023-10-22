@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// The Login class is a StatefulWidget in Dart.
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -7,6 +8,8 @@ class Login extends StatefulWidget {
   State<Login> createState() => LoginState();
 }
 
+/// The LoginState class represents the state of the Login widget and contains the UI elements for the
+/// login screen.
 class LoginState extends State<Login> {
   double opacity = 0;
   static final loginController = TextEditingController();
@@ -73,6 +76,7 @@ class LoginState extends State<Login> {
   }
 }
 
+/// The FloatingLoginBox class is a StatefulWidget in Dart that represents a floating login box.
 class FloatingLoginBox extends StatefulWidget {
   const FloatingLoginBox({super.key});
 
@@ -80,6 +84,8 @@ class FloatingLoginBox extends StatefulWidget {
   _FloatingLoginBoxState createState() => _FloatingLoginBoxState();
 }
 
+/// The `_FloatingLoginBoxState` class is a stateful widget that represents a floating login box with
+/// email and password text fields, and login and sign-in buttons.
 class _FloatingLoginBoxState extends State<FloatingLoginBox> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -126,9 +132,7 @@ class _FloatingLoginBoxState extends State<FloatingLoginBox> {
               const SizedBox(width: 15.0),
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                   child: const Text('Login'),
                 ),
