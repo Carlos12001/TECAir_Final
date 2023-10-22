@@ -8,26 +8,50 @@ import { FormControl, FormsModule } from '@angular/forms';
   templateUrl: './admin-editor.component.html',
   styleUrls: ['./admin-editor.component.css'],
 })
+
+/* The AdminEditorComponent class is a TypeScript class that represents a component used for editing and managing flight data in an admin interface. */
 export class AdminEditorComponent implements OnInit {
+  /* The line `selectedEntity: string = '';` is declaring a variable `selectedEntity` of type `string` and initializing it with an empty string value. This variable is used to store the currently selected entity, which is used in the component to determine which entity's data to display or manipulate. */
   selectedEntity: string = '';
+  /* The line `entities = [{ label: 'vuelos', value: 'flights' }];` is declaring a variable `entities` and initializing it with an array containing one object. This object has two properties: `label` and `value`. */
   entities = [{ label: 'vuelos', value: 'flights' }];
+  /* The line `flights: Flight[] = [];` is declaring a variable `flights` and initializing it with an empty array. This variable is of type `Flight[]`, which means it is an array that can only contain elements of type `Flight`. */
   flights: Flight[] = [];
+  /* The line `selectedFlight: Flight | null = null;` is declaring a variable `selectedFlight` of type `Flight | null` and initializing it with a value of `null`. */
   selectedFlight: Flight | null = null;
+  /* The line `originalFlight: Flight | null = null;` is declaring a variable `originalFlight` of type `Flight | null` and initializing it with a value of `null`. This variable is used to store a copy of the original flight object before any modifications are made to it. It is used in the component to compare the modified flight object with the original flight object when submitting or updating the flight data. */
   originalFlight: Flight | null = null;
+  /* The line `priceControl = new FormControl();` is creating a new instance of the `FormControl` class and assigning it to the variable `priceControl`. */
   priceControl = new FormControl();
 
+  /**
+   * The ngOnInit function sets the value of the priceControl to the price of the selectedFlight if it exists.
+   */
   ngOnInit() {
     if (this.selectedFlight) {
       this.priceControl.setValue(this.selectedFlight.price);
     }
   }
 
+  /**
+   * The function "sumitFlight" is defined in TypeScript.
+   */
   sumitFlight() {}
 
+  /**
+   * The deleteFlight function is used to delete a flight.
+   */
   deleteFlight() {}
 
+  /**
+   * The function "submitFlight" is used to submit a flight.
+   */
   submitFlight() {}
 
+  /**
+   * The function updates the price of a selected flight based on the value of an event target.
+   * @param {any} event - The event parameter is an object that represents the event that triggered the function. It contains information about the event, such as the target element and its value.
+   */
   updatePrice(event: any): void {
     if (this.selectedFlight) {
       this.selectedFlight.price = Number(event.target.value);
