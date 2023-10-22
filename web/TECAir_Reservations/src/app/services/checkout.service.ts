@@ -22,17 +22,19 @@ export class CheckoutService {
   public postCreatePassenger(
     email: string,
     fnumber: number,
-    stopID: number
-  ): Observable<CreatePassenger> {
+    stopid: number
+  ): Observable<CreatePassenger[]> {
     const body = {
       email: email,
       fnumber: fnumber,
-      stopID: stopID,
+      stopid: stopid,
     };
+    console.log(body);
 
-    return this.http.post<CreatePassenger>(this.url + 'api/passenger/create', {
-      ...this.httpOptions,
+    return this.http.post<CreatePassenger[]>(
+      this.url + 'api/passenger/create',
       body,
-    });
+      this.httpOptions
+    );
   }
 }
