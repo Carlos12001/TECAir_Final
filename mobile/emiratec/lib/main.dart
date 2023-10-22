@@ -63,6 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int? selectedDestinationID;
 
+  //final String globalUser = "";
+
   /// The function updates the selected index and triggers a state change in the widget.
   ///
   /// Args:

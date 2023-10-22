@@ -1,4 +1,6 @@
+import 'package:emiratec/BD/database_service.dart';
 import 'package:emiratec/components/class_selection.dart';
+import 'package:emiratec/globals.dart';
 import 'package:emiratec/objects/flight.dart';
 import 'package:emiratec/objects/promotion.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +60,7 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                 children: <Widget>[
                   Image.network(widget.reservedflight
                       .stoImage), // Usa Image.network si es una URL
-                  
+
                   Text("Fecha: ${widget.reservedflight.fdate}"),
                   Text("Ciudad salida: ${widget.reservedflight.sfromCity}"),
                   Text("Ciudad llegada: ${widget.reservedflight.stoCity}"),
@@ -74,11 +76,22 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
 
                   SizedBox(height: 20.0),
                   ElevatedButton(
-                    onPressed: () {
-                      // Lógica para la acción de "reservar"
+                    onPressed: () async {
+                      try {
+  
+                        // Llamando al método insertIntoPassenger de DatabaseService
+                        await DatabaseService()
+                            .insertIntoPassenger(globalUser, widget.reservedflight.fNumber.toString());
+                            print("reservado con exito");
+                      } catch (error) {
+                        // Si hay un error, lo mostramos
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                                'Error al registrar el pasajero: $error')));
+                      }
                     },
-                    child: Text("Reservar"),
-                  ),
+                    child: const Text("Reservar"),
+                  )
                 ],
               ),
             ),

@@ -116,4 +116,43 @@ class TodoDB {
 
     return null;
   }
+
+   // Insertar en PASSENGER
+  Future<void> insertIntoPassenger(Database database, String email, String fnumber) async {
+    await database.rawInsert(
+      'INSERT INTO PASSENGER(uemail, fno) VALUES(?, ?)',
+      [email, fnumber]
+    );
+  }
+
+  // Insertar en USER_STOP
+  Future<void> insertIntoUserStop(Database database, String email, String stopid) async {
+    await database.rawInsert(
+      'INSERT INTO USER_STOP(uemail, sid) VALUES(?, ?)',
+      [email, stopid]
+    );
+  }
+
+  // Actualizar en STUDENT
+  Future<void> updateStudentMiles(Database database, String email) async {
+    await database.rawUpdate(
+      'UPDATE STUDENT SET Miles = Miles + 100 WHERE Uemail = ? AND EXISTS (SELECT 1 FROM STUDENT WHERE Uemail = ?)',
+      [email, email]
+    );
+  }
+
+  // Consulta
+  Future<List<Map<String, dynamic>>> fetchUserData(Database database, String email, String stopid) async {
+    return await database.rawQuery(
+      '''
+      SELECT U.Email, P.Pnumber, S.Departure_hour
+      FROM USERW AS U
+      JOIN PASSENGER AS P ON U.Email = P.Uemail
+      JOIN FLIGHT AS F ON F.Fnumber = P.Fno
+      JOIN STOP AS S ON F.Fnumber = S.Fno
+      WHERE U.Email = ? AND S.StopID = ?
+      ''',
+      [email, stopid]
+    );
+  }
 }

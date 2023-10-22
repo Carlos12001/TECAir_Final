@@ -1,4 +1,5 @@
 import 'package:emiratec/BD/database_service.dart';
+import 'package:emiratec/globals.dart';
 import 'package:emiratec/objects/Student.dart';
 import 'package:emiratec/objects/user.dart';
 import 'package:flutter/material.dart';
@@ -183,7 +184,9 @@ class _UserInfoBoxState extends State<UserInfoBox> {
 
     if (user != null) {
       widget.onVerified(0);
-      print("Usuario verificado con éxito!");
+      // Agregar usuario global
+      globalUser = sign_in_emailController.text;
+      print(globalUser);
     } else {
       _showErrorDialog();
     }

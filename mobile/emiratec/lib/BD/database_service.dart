@@ -120,4 +120,24 @@ class DatabaseService {
     final db = await database;
     return await TodoDB().userExists(db, email);
   }
+
+   Future<void> insertIntoPassenger(String email, String fnumber) async {
+    final db = await database;
+    await TodoDB().insertIntoPassenger(db, email, fnumber);
+  }
+
+  Future<void> insertIntoUserStop(String email, String stopid) async {
+    final db = await database;
+    await TodoDB().insertIntoUserStop(db, email, stopid);
+  }
+
+  Future<void> updateStudentMiles(String email) async {
+    final db = await database;
+    await TodoDB().updateStudentMiles(db, email);
+  }
+
+  Future<List<Map<String, dynamic>>> fetchUserData(String email, String stopid) async {
+    final db = await database;
+    return await TodoDB().fetchUserData(db, email, stopid);
+  }
 }

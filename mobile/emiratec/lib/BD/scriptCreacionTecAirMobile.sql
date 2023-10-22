@@ -134,6 +134,7 @@ SELECT * FROM AIRPORT;
 SELECT * FROM PASSENGER;
 SELECT * FROM PLANE;
 
+
 INSERT INTO USERW (Fname, Mname, Lname1, Lname2, Unumber, Email, Upassword) VALUES ('Saul', 'Ernesto', 'Monge', 'Mora', '88885555', 'monge@gmail.com', '9876')
 -- INSERT INTO PROMO (Fno, Image, Dpercent, Final_date) 
 -- VALUES ('1', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Cancun_Strand_Luftbild_%2822143397586%29.jpg/268px-Cancun_Strand_Luftbild_%2822143397586%29.jpg','15','2023-11-27');
