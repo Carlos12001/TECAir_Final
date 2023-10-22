@@ -166,9 +166,7 @@ class _UserInfoBoxState extends State<UserInfoBox> {
             readOnlyTextField("ID de Estudiante", studentIDController),
 
             ElevatedButton(
-              onPressed: 
-              
-              _addUser,
+              onPressed: _addUser,
               child: const Text("Registrarse"),
             )
           ],
@@ -212,54 +210,76 @@ class _UserInfoBoxState extends State<UserInfoBox> {
     );
   }
 
-void _showUserExistsDialog() {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Error'),
-        content: const Text('El usuario con este email ya está registrado.'),
-        actions: <Widget>[
-          ElevatedButton(
-            child: const Text('Cerrar'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
-
-Future<void> _addUser() async {
-  final dbService = DatabaseService();
-
-  bool exists = await dbService.getUserExist(emailController.text);
-
-  if (exists) {
-    _showUserExistsDialog();
-  } else {
-    dbService.insertUser(User(
-      Fname: firstNameController.text,
-      Sname: middleNameController.text,
-      FLname: firstLastNameController.text,
-      SLname: secondLastNameController.text,
-      Pnumber: int.parse(telController.text),
-      email: emailController.text,
-      upassword: passwordController.text,
-    ));
+  void _showUserExistsDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: const Text('El usuario con este email ya está registrado.'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('Cerrar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
-}
 
+  Future<void> _addUserStudent() async {
+    _addUser();
+    _addStudent();
+  }
 
-  Future<void> _addStudent() async {
+  Future<void> _addUser() async {
     final dbService = DatabaseService();
-    dbService.insertStudent(Student(
-        studentId: studentIDController.text.toString(),
-        university: universityController.text,
-        uemail: emailController.text));
+
+    bool exists = await dbService.getUserExist(emailController.text);
+
+    if (exists) {
+      _showUserExistsDialog();
+    } else {
+      dbService.insertUser(User(
+        Fname: firstNameController.text,
+        Sname: middleNameController.text,
+        FLname: firstLastNameController.text,
+        SLname: secondLastNameController.text,
+        Pnumber: int.parse(telController.text),
+        email: emailController.text,
+        upassword: passwordController.text,
+      ));
+    }
   }
+
+
+    Future<void> _addStudent() async {
+    final dbService = DatabaseService();
+    if (studentIDController.text.isNotEmpty &&
+        universityController.text.isNotEmpty &&
+        emailController.text.isNotEmpty) {
+      try {
+        await dbService.insertStudent(Student(
+            studentId: studentIDController.text,
+            university: universityController.text,
+            uemail: emailController.text));
+
+        // Opcionalmente: Mostrar un mensaje de éxito al usuario.
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Estudiante agregado con éxito!')));
+
+      } catch (e) {
+        // Mostrar el error al usuario o registrar en algún log.
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al agregar el estudiante: $e')));
+      }
+    } else {
+      // Opcionalmente: Notificar al usuario que todos los campos son requeridos.
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Todos los campos son requeridos.')));
+    }
+  }
+
 
   Widget readOnlyTextField(String title, TextEditingController controller) {
     return Padding(

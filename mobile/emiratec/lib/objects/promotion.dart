@@ -4,13 +4,15 @@ class Promotion {
   //DateTime startDate;
   DateTime endDate;
   String imgPath;
-  double percentage;
+  int percentage;
+  int fno;
 
   Promotion({
     //required this.startDate,
     required this.endDate,
     required this.imgPath,
     required this.percentage,
+    required this.fno,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class Promotion {
       'Final_date': endDate.toIso8601String(), // Convertir DateTime a String
       'Image': imgPath,
       'Dpercent': percentage,
+      'Fno': fno.toString(),
     };
   }
 
@@ -29,6 +32,7 @@ class Promotion {
       endDate: DateTime.parse(map['Final_date']),
       imgPath: map['Image'],
       percentage: map['Dpercent'],
+      fno: map['Fno'],
     );
   }
 

@@ -133,6 +133,8 @@ SELECT * FROM STOP;
 SELECT * FROM AIRPORT;
 SELECT * FROM PASSENGER;
 SELECT * FROM PLANE;
+SELECT * FROM USER_STOP;
+SELECT * FROM STUDENT
 
 
 INSERT INTO USERW (Fname, Mname, Lname1, Lname2, Unumber, Email, Upassword) VALUES ('Saul', 'Ernesto', 'Monge', 'Mora', '88885555', 'monge@gmail.com', '9876')

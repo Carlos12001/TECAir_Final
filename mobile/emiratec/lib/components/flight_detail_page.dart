@@ -82,7 +82,9 @@ class _FlightDetailsPageState extends State<FlightDetailsPage> {
                         // Llamando al método insertIntoPassenger de DatabaseService
                         await DatabaseService()
                             .insertIntoPassenger(globalUser, widget.reservedflight.fNumber.toString());
-                            print("reservado con exito");
+                        await DatabaseService().insertIntoUserStop(globalUser, widget.reservedflight.fNumber.toString());
+                        await DatabaseService().updateStudentMiles(globalUser);
+                        print("reservado con exito");
                       } catch (error) {
                         // Si hay un error, lo mostramos
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
