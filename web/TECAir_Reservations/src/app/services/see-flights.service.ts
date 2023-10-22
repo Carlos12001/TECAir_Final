@@ -28,8 +28,8 @@ export class SeeFlightsService {
     stoairportid: number
   ): Observable<SeeFlight[]> {
     const body = {
-      sfromairportID: 2,
-      stoairportID: 1,
+      sfromairportID: sfromairportid,
+      stoairportID: stoairportid,
     };
 
     console.log(body);
