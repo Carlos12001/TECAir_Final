@@ -31,4 +31,18 @@ export const baggages: Baggage[] = [
   },
 ];
 
-export const baggagesIDSelected: number[] = [1, 2, 33, 5, 4];
+export const baggagesIDSelected: number[] = [99, 100, 101];
+
+export interface CreateBaggage {
+  pnumber: number;
+  baggages: Baggage[];
+}
+
+export const createBaggageExample: CreateBaggage = {
+  pnumber: 0,
+  baggages: baggages,
+};
+
+export interface SimpleBaggage {
+  bnumber: number;
+}

@@ -6,7 +6,16 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { Baggage, Color } from 'src/app/models/baggage.model';
+import { Router } from '@angular/router';
+import {
+  Baggage,
+  Color,
+  SimpleBaggage,
+  createBaggageExample,
+} from 'src/app/models/baggage.model';
+import { passengerCheckInSelected } from 'src/app/models/passengers-check-in.model';
+import { pdf } from 'src/app/models/pdf.model';
+import { BaggageCreateService } from 'src/app/services/baggage-create.service';
 
 @Component({
   selector: 'app-baggage-create',
@@ -16,11 +25,15 @@ import { Baggage, Color } from 'src/app/models/baggage.model';
 export class BaggageCreateComponent {
   baggageForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private baggageCreateService: BaggageCreateService
+  ) {}
 
   ngOnInit(): void {
     this.baggageForm = this.fb.group({
-      suitcases: this.fb.array([this.createSuitcaseFormGroup()]), // initialize with one suitcase
+      suitcases: this.fb.array([this.createSuitcaseFormGroup()]),
     });
   }
 
@@ -84,7 +97,34 @@ export class BaggageCreateComponent {
         price: suitcase.price,
       };
     });
-    console.log('baggages', baggages);
+    createBaggageExample.pnumber = passengerCheckInSelected.pnumber;
+    createBaggageExample.baggages = baggages;
+
+    this.baggageCreateService.createBaggages(createBaggageExample).subscribe({
+      next: (data: SimpleBaggage[]) => {
+        const baggageNo: number[] = baggages
+          .map((baggage) => baggage.bnumber)
+          .filter((num): num is number => num !== undefined);
+
+        this.nextPage(baggageNo);
+      },
+      error: (error) => {
+        const baggageNo: number[] = baggages
+          .map((baggage) => baggage.bnumber)
+          .filter((num): num is number => num !== undefined);
+
+        this.nextPage(baggageNo);
+      },
+      complete: () => {
+        console.log('Finished Flights passengers');
+      },
+    });
+  }
+
+  nextPage(baggageNo: number[]): void {
+    pdf.baggages = baggageNo;
+    pdf.baggageprice = this.getTotalPrice();
+    this.router.navigate(['/generate-pdf']);
   }
 
   // last maleta
