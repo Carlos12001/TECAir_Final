@@ -30,6 +30,7 @@ import { BaggageCreateComponent } from './components/baggage-create/baggage-crea
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { PromotionsComponent } from './components/promotions/promotions.component';
 import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
+import { CheckInComponent } from './components/check-in/check-in.component';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import { DisplayPromotionsComponent } from './components/display-promotions/disp
     RegisterUserComponent,
     PromotionsComponent,
     DisplayPromotionsComponent,
+    CheckInComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

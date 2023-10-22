@@ -18,6 +18,7 @@ import { baggagesIDSelected } from 'src/app/models/baggage.model';
 export class CheckoutComponent {
   public pdfData: PDF;
 
+  fecha: string = '';
   pno: number = 0;
 
   constructor(
@@ -61,7 +62,6 @@ export class CheckoutComponent {
     this.pdfData.stocity = seeFlightSelected.stocity;
 
     this.pdfData.sdate = seeFlightSelected.fdate;
-    this.pdfData.departurehour = stop.departurehour;
     this.pdfData.arrivalhour = stop.arrivalhour;
     this.pdfData.fno = seeFlightSelected.fnumber;
 
@@ -90,6 +90,8 @@ export class CheckoutComponent {
       this.pdfData.finalprice = seeFlightSelected.fprice;
     }
     this.pdfData.pno = this.pno;
+    this.pdfData.departurehour = this.fecha;
+    this.pdfData.arrivalhour = this.fecha;
     this.pdfData.baggages = [];
 
     console.log('Modified PDF Data (onConfirm):', this.pdfData);
@@ -109,9 +111,9 @@ export class CheckoutComponent {
       .subscribe({
         next: (data: CreatePassenger[]) => {
           console.log('Passenger created:', data);
-        
-          this.pno = (data[0]).pnumber;
-          this.pdfData.departurehour = (data[0]).departurehour;
+
+          this.pno = data[0].pnumber;
+          this.fecha = data[0].departurehour;
           this.setDataPdf();
         },
         error: (error) => {
