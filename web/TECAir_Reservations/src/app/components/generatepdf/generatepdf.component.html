@@ -1,3 +1,7 @@
-<div class="pdf-button-container">
-  <button (click)="generatePdf()">Generar PDF</button>
+<div class="pdf-button-container"  class="button-container">
+  <button class="confirm-btn" (click)="generatePdf()">Generar PDF</button>
+  <div *ngIf="pdfGenerated>0">
+    <br/>
+    <button class="confirm-btn" (click)="returnHome()" >Home</button></div>
 </div>
+

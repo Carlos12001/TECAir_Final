@@ -1,7 +1,7 @@
 export interface Stop {
   stopid: number;
-  sfrom: number;
-  sto: number;
+  sfrom: string;
+  sto: string;
   sdate: string;
   departurehour: string;
   arrivalhour: string;

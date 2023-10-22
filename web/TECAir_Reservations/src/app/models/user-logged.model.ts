@@ -6,16 +6,16 @@ export interface UserLogged {
   mname: string;
   lname1: string;
   lname2: string;
-  studentid: string;
-  miles: number;
-  university: string;
-  adminid: string;
+  studentid: string | null;
+  miles: number | null;
+  university: string | null;
+  adminid: string | null;
 }
 
 export const userLogged: UserLogged = {
-  email: '',
+  email: 'pipevarji@up.edu.ph',
   upassword: '',
-  unumber: '',
+  unumber: '1234',
   fname: '',
   mname: '',
   lname1: '',

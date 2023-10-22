@@ -1,13 +1,13 @@
 export interface Student {
-  stutdentid: string;
+  studentid: string;  // Corrección aquí
   university: string;
   miles: number;
   uemail: string;
 }
 
 export const student = {
-  stutdentid: '',
+  studentid: '',
   university: '',
   miles: 0,
-  uemail: '',
+  uemail: 'felipevargas13',
 };

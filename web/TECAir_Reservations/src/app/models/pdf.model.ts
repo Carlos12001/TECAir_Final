@@ -9,8 +9,8 @@ export class PDF {
   lname2: string;
 
   stopid: number;
-  sfrom: number;
-  sto: number;
+  sfromcity: string;
+  stocity: string;
   sdate: string;
   departurehour: string;
   arrivalhour: string;
@@ -20,6 +20,10 @@ export class PDF {
   university: string;
   miles: number;
   uemail: string;
+  finalprice: number;
+
+  pno?: number = 0;
+  baggages?: number[] = [];
 
   constructor(
     email: string,
@@ -30,17 +34,17 @@ export class PDF {
     lname2: string,
 
     stopid: number,
-    sfrom: number,
-    sto: number,
+    sfromcity: string,
+    stocity: string,
     sdate: string,
     departurehour: string,
     arrivalhour: string,
     fno: number,
-
     studentid: string,
     university: string,
     miles: number,
-    uemail: string
+    uemail: string,
+    finalprice: number
   ) {
     this.email = email;
     this.unumber = unumber;
@@ -49,8 +53,8 @@ export class PDF {
     this.lname1 = lname1;
     this.lname2 = lname2;
     this.stopid = stopid;
-    this.sfrom = sfrom;
-    this.sto = sto;
+    this.sfromcity = sfromcity;
+    this.stocity = stocity;
     this.sdate = sdate;
     this.departurehour = departurehour;
     this.arrivalhour = arrivalhour;
@@ -59,6 +63,7 @@ export class PDF {
     this.university = university;
     this.miles = miles;
     this.uemail = uemail;
+    this.finalprice = finalprice;
   }
 }
 
@@ -70,8 +75,8 @@ export const pdf = {
   lname1: '',
   lname2: '',
   stopid: 0,
-  sfrom: 0,
-  sto: 0,
+  sfromcity: '',
+  stocity: '',
   sdate: '',
   departurehour: '',
   arrivalhour: '',
@@ -80,15 +85,24 @@ export const pdf = {
   university: '',
   miles: 0,
   uemail: '',
+  finalprice: 0,
+  pno: 0,
+  baggages: [0, 2, 3, 4, 5, 6],
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class PdfService {
+  private pdfData: PDF = pdf;
+
   constructor() {}
 
+  setPdfData(data: PDF) {
+    this.pdfData = data;
+  }
+
   getPdfData(): PDF {
-    return pdf; // Retornando la constante pdf que ya tienes definida
+    return this.pdfData;
   }
 }

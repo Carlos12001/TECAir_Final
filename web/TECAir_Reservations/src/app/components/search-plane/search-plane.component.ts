@@ -22,8 +22,8 @@ export class SearchPlaneComponent implements OnInit {
   private onDestroy = new Subject<void>();
 
   ngOnInit(): void {
-    this.fetchSearchStops();
     this.populateSelectionFromService();
+    this.fetchSearchStops();
   }
 
   ngOnDestroy(): void {
@@ -54,17 +54,18 @@ export class SearchPlaneComponent implements OnInit {
   ) {}
 
   fetchSearchStops(): void {
-    // this.searchPlaneService.getSeeFlights().subscribe({
-    //   next: (data) => {
-    //     this.searchStops = data;
-    //   },
-    //   error: (error) => {
-    //     console.error('Error fetching SearchStops:', error);
-    //   },
-    //   complete: () => {
-    //     console.log('Finished SearchStops fetched');
-    //   },
-    // });
+    this.searchPlaneService.getSeeFlights().subscribe({
+      next: (data) => {
+        this.searchStops = data;
+      },
+      error: (error) => {
+        this.populateSelectionFromService();
+        console.error('Error fetching SearchStops:', error);
+      },
+      complete: () => {
+        console.log('Finished SearchStops fetched');
+      },
+    });
   }
 
   get uniqueOrigins(): { city: string; id: number }[] {

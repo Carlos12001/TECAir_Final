@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environment';
-import { SearchStop } from '../models/search-stop.model';
+import { UserLogged } from '../models/user-logged.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SearchPlaneService {
-  private searchSubject = new BehaviorSubject<SearchStop | null>(null);
-
+export class SignInService {
   private url: string = environment.apiUrl;
 
   httpOptions = {
@@ -21,15 +19,7 @@ export class SearchPlaneService {
 
   constructor(private http: HttpClient) {}
 
-  public getSeeFlights(): Observable<SearchStop[]> {
-    return this.http.get<SearchStop[]>(this.url + 'api/stop/available');
-  }
-
-  setSearchData(data: SearchStop | null) {
-    this.searchSubject.next(data);
-  }
-
-  getSearchData(): Observable<SearchStop | null> {
-    return this.searchSubject.asObservable();
+  getUsers(): Observable<UserLogged[]> {
+    return this.http.get<UserLogged[]>(this.url + 'api/user');
   }
 }
