@@ -13,9 +13,9 @@ export interface UserLogged {
 }
 
 export const userLogged: UserLogged = {
-  email: 'pipevarji@up.edu.ph',
+  email: '',
   upassword: '',
-  unumber: '1234',
+  unumber: '',
   fname: '',
   mname: '',
   lname1: '',
