@@ -15,6 +15,7 @@ import { GeneratepdfComponent } from './components/generatepdf/generatepdf.compo
 import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
 import { DisplayCheckInComponent } from './components/display-check-in/display-check-in.component';
 import { DisplayBaggageComponent } from './components/display-baggage/display-baggage.component';
+import { DisplayAdminEditorComponent } from './components/display-admin-editor/display-admin-editor.component';
 
 /* The `const routes: Routes` variable is an array of route objects that define the routes for the application. Each route object has two properties: `path` and `component`. */
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'display-promotions', component: DisplayPromotionsComponent },
   { path: 'display-check-in', component: DisplayCheckInComponent },
   { path: 'display-baggage', component: DisplayBaggageComponent },
+  { path: 'display-admin-editor', component: DisplayAdminEditorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];

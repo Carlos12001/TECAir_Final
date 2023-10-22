@@ -30,9 +30,11 @@ import { BaggageCreateComponent } from './components/baggage-create/baggage-crea
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { PromotionsComponent } from './components/promotions/promotions.component';
 import { DisplayPromotionsComponent } from './components/display-promotions/display-promotions.component';
+import { AdminEditorComponent } from './components/admin-editor/admin-editor.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { DisplayCheckInComponent } from './components/display-check-in/display-check-in.component';
 import { DisplayBaggageComponent } from './components/display-baggage/display-baggage.component';
+import { DisplayAdminEditorComponent } from './components/display-admin-editor/display-admin-editor.component';
 
 /* The `@NgModule` decorator is used to define a module in Angular. It is a metadata object that specifies how the module should be compiled and run. */
 @NgModule({
@@ -70,9 +72,11 @@ import { DisplayBaggageComponent } from './components/display-baggage/display-ba
     RegisterUserComponent,
     PromotionsComponent,
     DisplayPromotionsComponent,
+    AdminEditorComponent,
     CheckInComponent,
     DisplayCheckInComponent,
     DisplayBaggageComponent,
+    DisplayAdminEditorComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
