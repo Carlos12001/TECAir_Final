@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Issue</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container h-100">
+      <div class="row align-items-center h-100">
+        <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+          <div class="d-flex justify-content-between flex-wrap">
+            <!-- Origen Dropdown -->
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {{ selectedOrigin ? selectedOrigin.city : "Origen" }}
+                </a>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let origin of uniqueOrigins">
+                    <button
+                      class="dropdown-item"
+                      (click)="selectOrigin(origin)"
+                    >
+                      {{ origin.city }}
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <!-- Destino Dropdown -->
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {{
+                    selectedDestination ? selectedDestination.city : "Destino"
+                  }}
+                </a>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let destination of uniqueDestinations">
+                    <button
+                      class="dropdown-item"
+                      (click)="selectDestination(destination)"
+                    >
+                      {{ destination.city }}
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <button class="btn btn-remove btn-sm" (click)="clearSelections()">
+              X
+            </button>
+
+            <button
+              class="btn btn-primary btn-sm"
+              (click)="seeFlights()"
+              [disabled]="!selectedOrigin || !selectedDestination"
+            >
+              Buscar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

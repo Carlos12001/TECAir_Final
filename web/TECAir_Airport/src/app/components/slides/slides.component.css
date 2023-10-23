@@ -1,0 +1,47 @@
+/* Adjust the container's width to make it narrower */
+.custom-carousel-size {
+  width: 50%;
+  margin-left: auto; /* center the carousel */
+  margin-right: auto; /* center the carousel */
+}
+
+/* Set the image to take the full width of its container, 
+       and specify a maximum height to prevent vertical stretching */
+.custom-carousel-img {
+  width: 75%; /* changed this to make the image narrower */
+  max-height: 30vh;
+  object-fit: cover;
+  margin-left: auto; /* center the image */
+  margin-right: auto; /* center the image */
+}
+
+/* Default font sizes for large screens */
+.carousel-caption h3 {
+  font-size: 2rem;
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+}
+
+/* Adjust font size for medium screens */
+@media (max-width: 500px) {
+  .carousel-caption h3 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.875rem;
+  }
+}
+
+/* Adjust font size for small screens */
+@media (max-width: 768px) {
+  .carousel-caption h3 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.75rem;
+  }
+}
