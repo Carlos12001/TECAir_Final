@@ -36,27 +36,27 @@ VALUES
 INSERT INTO USERW(
 	email, upassword, unumber, fname, mname, lname1, lname2)
 	VALUES 
-	('pedrog@gmail.com',    '1234', '12345678', 'Pedro', NULL, 'Gutierrez', 'Garcia'),
-	('klein@gmail.com',     '1234', '11111111', 'Klein', NULL, 'Morietti', 'Fool'),
-	('melissa@gmail.com',   '1234', '12121212', 'Melissa', NULL, 'Morietti', 'Fool'),
-    ('victor@gmail.com',    '1234', '22222222', 'Victor', NULL, 'nose', 'nose'),
-	('david@gmail.com',     '1234', '118200713', 'David', 'Alberto', 'Robles', 'Vargas'),
-	('carlos@gmail.com',    '1234', '33333333', 'Carlos', 'Andres', 'Mata', 'Calderon'),
-	('felipe@gmail.com',    '1234', '44444444', 'Felipe', 'Luis', 'Vargas', 'Jimenez'),
-	('jose@gmail.com',      '1234', '55555555', 'Jose', 'Carlos', 'Umañana', 'Rivera'),
-	('audrey@gmail.com',    '1234', '66666666', 'Audrey', NULL, 'Hall', 'Justice'),
-	('alger@gmail.com',     '1234', '77777777', 'Alger', NULL, 'Wilson', 'Hanged'),
-	('sunless@gmail.com',   '1234', '88888888', 'Sunless', NULL, 'Major', 'Antartica'),
-	('maria@gmail.com',     '1234', '99999999', 'Maria', 'Isabel', 'Garcia', 'Lopez'),
-    ('john@gmail.com',      '1234', '10101010', 'John', NULL, 'Smith', 'Johnson'),
-    ('juan@hotmail.com',    '1234', '20202020', 'Juan', 'Carlos', 'Perez', 'Rodriguez'),
-    ('laura@yahoo.com',     '1234', '30303030', 'Laura', NULL, 'Martinez', 'Hernandez'),
-    ('william@gmail.com',   '1234', '40404040', 'William', NULL, 'Davis', 'Brown'),
-    ('ana@hotmail.com',     '1234', '50505050', 'Ana', 'Maria', 'Lopez', 'Gutierrez'),
-    ('james@gmail.com',     '1234', '60606060', 'James', 'Robert', 'Johnson', 'Davis'),
-    ('sofia@yahoo.com',     '1234', '70707070', 'Sofia', NULL, 'Gonzalez', 'Torres'),
-    ('michael@gmail.com',   '1234', '80808080', 'Michael', NULL, 'Hernandez', 'Rodriguez'),
-    ('linda@gmail.com',     '1234', '90909090', 'Linda', NULL, 'Wilson', 'Anderson');
+	('pedrog@gmail.com', '1234', '12345678', 'Pedro', NULL, 'Gutierrez', 'Garcia'),
+	('klein@gmail.com', '1234', '11111111', 'Klein', NULL, 'Morietti', 'Fool'),
+	('melissa@gmail.com', '1234', '12121212', 'Melissa', NULL, 'Morietti', 'Fool'),
+    ('victor@gmail.com', '4321', '22222222', 'Victor', NULL, 'nose', 'nose'),
+	('david@gmail.com', '5049', '118200713', 'David', 'Alberto', 'Robles', 'Vargas'),
+	('carlos@gmail.com', '3333', '33333333', 'Carlos', 'Andres', 'Mata', 'Calderon'),
+	('felipe@gmail.com', '4444', '44444444', 'Felipe', 'Luis', 'Vargas', 'Jimenez'),
+	('jose@gmail.com', '5555', '55555555', 'Jose', 'Carlos', 'Umañana', 'Rivera'),
+	('audrey@gmail.com', '6666', '66666666', 'Audrey', NULL, 'Hall', 'Justice'),
+	('alger@gmail.com', '7777', '77777777', 'Alger', NULL, 'Wilson', 'Hanged'),
+	('sunless@gmail.com', '8888', '88888888', 'Sunless', NULL, 'Major', 'Antartica'),
+	('maria@gmail.com', '9999', '99999999', 'Maria', 'Isabel', 'Garcia', 'Lopez'),
+    ('john@gmail.com', '1010', '10101010', 'John', NULL, 'Smith', 'Johnson'),
+    ('juan@hotmail.com', '2020', '20202020', 'Juan', 'Carlos', 'Perez', 'Rodriguez'),
+    ('laura@yahoo.com', '3030', '30303030', 'Laura', NULL, 'Martinez', 'Hernandez'),
+    ('william@gmail.com', '4040', '40404040', 'William', NULL, 'Davis', 'Brown'),
+    ('ana@hotmail.com', '5050', '50505050', 'Ana', 'Maria', 'Lopez', 'Gutierrez'),
+    ('james@gmail.com', '6060', '60606060', 'James', 'Robert', 'Johnson', 'Davis'),
+    ('sofia@yahoo.com', '7070', '70707070', 'Sofia', NULL, 'Gonzalez', 'Torres'),
+    ('michael@gmail.com', '8080', '80808080', 'Michael', NULL, 'Hernandez', 'Rodriguez'),
+    ('linda@gmail.com', '9090', '90909090', 'Linda', NULL, 'Wilson', 'Anderson');
 	
 INSERT INTO STUDENT (StudentID, University, Miles, Uemail)
 VALUES 
@@ -129,28 +129,30 @@ VALUES
 -- Insertar pasajeros
 INSERT INTO PASSENGER (Uemail, Checked_in, Fno)
 VALUES
-    ('klein@gmail.com',     true, 2),
-    ('victor@gmail.com',    true, 2),
-	('jose@gmail.com',      true, 2),
-	('audrey@gmail.com',    true, 2),
-	('alger@gmail.com',     true, 2),
-	('sunless@gmail.com',   true, 2),
-	('maria@gmail.com',     true, 2),
-    ('john@gmail.com',      true, 2),
-    ('juan@hotmail.com',    true, 2),
-    ('laura@yahoo.com',     true, 2),
-    ('william@gmail.com',   true, 2),
-    ('ana@hotmail.com',     true, 2),
-    ('james@gmail.com',     true, 2),
-    ('sofia@yahoo.com',     true, 2),
-    ('michael@gmail.com',   true, 2),
-    ('linda@gmail.com',     true, 2);
+    ('klein@gmail.com', false, 2),
+    ('victor@gmail.com', false, 2),
+	('jose@gmail.com', false, 2),
+	('audrey@gmail.com', false, 2),
+	('alger@gmail.com', false, 2),
+	('sunless@gmail.com', false, 2),
+	('maria@gmail.com', false, 2),
+    ('john@gmail.com', false, 2),
+    ('juan@hotmail.com', false, 2),
+    ('laura@yahoo.com', false, 2),
+    ('william@gmail.com', false, 2),
+    ('ana@hotmail.com', false, 2),
+    ('james@gmail.com', false, 2),
+    ('sofia@yahoo.com', false, 2),
+    ('michael@gmail.com', false, 2),
+    ('linda@gmail.com', false, 2);
 
 -- Insert asientos
 
 INSERT INTO SEAT (Snumber, Sclass, Pno)
 VALUES
     ('A1', 'Ejecutivo', 1),
+    ('A2', 'Ejecutivo', 2),
+	('A3', 'Ejecutivo', 3),
 	('A4', 'Ejecutivo', 4),
 	('B1', 'Turista', 5),
 	('B2', 'Turista', 6),
@@ -178,22 +180,22 @@ VALUES
 -- Insertar pasajeros
 INSERT INTO PASSENGER (Uemail, Checked_in, Fno)
 VALUES
-    ('klein@gmail.com',     true, 3),
-    ('victor@gmail.com',    true, 3),
-	('jose@gmail.com',      true, 3),
-	('audrey@gmail.com',    true, 3),
-	('alger@gmail.com',     true, 3),
-	('sunless@gmail.com',   true, 3),
-	('maria@gmail.com',     true, 3),
-    ('john@gmail.com',      true, 3),
-    ('juan@hotmail.com',    true, 3),
-    ('laura@yahoo.com',     true, 3),
-    ('william@gmail.com',   true, 3),
-    ('ana@hotmail.com',     true, 3),
-    ('james@gmail.com',     true, 3),
-    ('sofia@yahoo.com',     true, 3),
-    ('michael@gmail.com',   true, 3),
-    ('linda@gmail.com',     true, 3);
+    ('klein@gmail.com', false, 3),
+    ('victor@gmail.com', false, 3),
+	('jose@gmail.com', false, 3),
+	('audrey@gmail.com', false, 3),
+	('alger@gmail.com', false, 3),
+	('sunless@gmail.com', false, 3),
+	('maria@gmail.com', false, 3),
+    ('john@gmail.com', false, 3),
+    ('juan@hotmail.com', false, 3),
+    ('laura@yahoo.com', false, 3),
+    ('william@gmail.com', false, 3),
+    ('ana@hotmail.com', false, 3),
+    ('james@gmail.com', false, 3),
+    ('sofia@yahoo.com', false, 3),
+    ('michael@gmail.com', false, 3),
+    ('linda@gmail.com', false, 3);
 
 -- Insert asientos
 
@@ -228,23 +230,41 @@ VALUES
 -- Insertar pasajeros
 INSERT INTO PASSENGER (Uemail, Checked_in, Fno)
 VALUES
-    ('klein@gmail.com',     false, 4),
-    ('victor@gmail.com',    false, 4),
-	('jose@gmail.com',      false, 4),
-	('audrey@gmail.com',    false, 4),
-	('alger@gmail.com',     false, 4),
-	('sunless@gmail.com',   false, 4),
-	('maria@gmail.com',     false, 4),
-    ('john@gmail.com',      false, 4),
-    ('juan@hotmail.com',    false, 4),
-    ('laura@yahoo.com',     false, 4),
-    ('william@gmail.com',   false, 4),
-    ('ana@hotmail.com',     false, 4),
-    ('james@gmail.com',     false, 4),
-    ('sofia@yahoo.com',     false, 4),
-    ('michael@gmail.com',   false, 4);
+    ('klein@gmail.com', false, 4),
+    ('victor@gmail.com', false, 4),
+	('jose@gmail.com', false, 4),
+	('audrey@gmail.com', false, 4),
+	('alger@gmail.com', false, 4),
+	('sunless@gmail.com', false, 4),
+	('maria@gmail.com', false, 4),
+    ('john@gmail.com', false, 4),
+    ('juan@hotmail.com', false, 4),
+    ('laura@yahoo.com', false, 4),
+    ('william@gmail.com', false, 4),
+    ('ana@hotmail.com', false, 4),
+    ('james@gmail.com', false, 4),
+    ('sofia@yahoo.com', false, 4),
+    ('michael@gmail.com', false, 4);
 
+-- Insert asientos
 
+INSERT INTO SEAT (Snumber, Sclass, Pno)
+VALUES
+    ('A1', 'Ejecutivo', 33),
+    ('A2', 'Ejecutivo', 34),
+	('A3', 'Ejecutivo', 35),
+	('A4', 'Ejecutivo', 36),
+	('B1', 'Turista', 37),
+	('B2', 'Turista', 38),
+	('B3', 'Turista', 39),
+	('B4', 'Turista', 40),
+	('C1', 'Turista', 41),
+	('C2', 'Turista', 42),
+	('C3', 'Turista', 43),
+	('C4', 'Turista', 44),
+	('D1', 'Turista', 45),
+	('D2', 'Turista', 46),
+	('D3', 'Turista', 47);
 	
 INSERT INTO PROMO (Fno, Image, Dpercent, Final_date)
 VALUES (4, 'https://upload.wikimedia.org/wikipedia/commons/2/20/Terminal_Aeropuerto_Pudahuel.jpg', 25, '2023-11-07');
@@ -258,9 +278,46 @@ VALUES
     (20, 13, '2023-12-16', '10:00:00', '21:30:00', 12),
     (20, 18, '2023-12-16', '12:30:00', '15:00:00', 12),
 	(18, 13, '2023-12-16', '16:00:00', '21:30:00', 12);
+	
+-- Insertar pasajeros
+INSERT INTO PASSENGER (Uemail, Checked_in, Fno)
+VALUES
+    ('klein@gmail.com', false, 12),
+    ('victor@gmail.com', false, 12),
+	('jose@gmail.com', false, 12),
+	('audrey@gmail.com', false, 12),
+	('alger@gmail.com', false, 12),
+	('sunless@gmail.com', false, 12),
+	('maria@gmail.com', false, 12),
+    ('john@gmail.com', false, 12),
+    ('juan@hotmail.com', false, 12),
+    ('laura@yahoo.com', false, 12),
+    ('william@gmail.com', false, 12),
+    ('ana@hotmail.com', false, 12),
+    ('james@gmail.com', false, 12),
+    ('sofia@yahoo.com', false, 12),
+    ('michael@gmail.com', false, 12);
 
+-- Insert asientos
 
-
+INSERT INTO SEAT (Snumber, Sclass, Pno)
+VALUES
+    ('A1', 'Ejecutivo', 48),
+    ('A2', 'Ejecutivo', 49),
+	('A3', 'Ejecutivo', 50),
+	('A4', 'Ejecutivo', 51),
+	('B1', 'Turista', 52),
+	('B2', 'Turista', 53),
+	('B3', 'Turista', 54),
+	('B4', 'Turista', 55),
+	('C1', 'Turista', 56),
+	('C2', 'Turista', 57),
+	('C3', 'Turista', 58),
+	('C4', 'Turista', 59),
+	('D1', 'Turista', 60),
+	('D2', 'Turista', 61),
+	('D3', 'Turista', 62);
+	
 INSERT INTO PROMO (Fno, Image, Dpercent, Final_date)
 VALUES (12, 'https://upload.wikimedia.org/wikipedia/commons/9/92/Washington_Dulles_International_Airport_at_Dusk.jpg', 15, '2023-12-15');
 
@@ -276,8 +333,8 @@ VALUES
 -- Insertar pasajeros
 INSERT INTO PASSENGER (Uemail, Checked_in, Fno)
 VALUES
-    ('pedrog@gmail.com', true, 5),
-    ('victor@gmail.com', true, 5);
+    ('pedrog@gmail.com', false, 5),
+    ('victor@gmail.com', false, 5);
 
 -- Insert asientos
 
@@ -301,3 +358,10 @@ VALUES
     ('klein@gmail.com', false, 1),
     ('victor@gmail.com', false, 1);
 
+-- Insert asientos
+
+INSERT INTO SEAT (Snumber, Sclass, Pno)
+VALUES
+    ('A1', 'Ejecutivo', 65),
+    ('C3', 'Turista', 66);
+	
