@@ -2,11 +2,23 @@
   <div class="container">
     <!-- Botones en la parte superior -->
     <div class="btn-group" role="group">
-      <button type="button" class="btn animated-btn">Vuelo</button>
+      <button
+        type="button"
+        class="btn animated-btn"
+        (click)="selectedEntity = 'flights'"
+      >
+        Vuelo
+      </button>
       <button type="button" class="btn animated-btn">Escala</button>
       <button type="button" class="btn animated-btn">Avión</button>
       <button type="button" class="btn animated-btn">Usuario</button>
-      <button type="button" class="btn animated-btn">Promo</button>
+      <button
+        type="button"
+        class="btn animated-btn"
+        (click)="selectedEntity = 'promos'"
+      >
+        Promo
+      </button>
     </div>
 
     <!-- Área de contenido -->
@@ -60,25 +72,6 @@
               </div>
             </div>
 
-            <!-- Dropdowns -->
-            <div class="row mt-4">
-              <div class="col-md-4">
-                <select class="form-control">
-                  <!-- Colocar las opciones aquí -->
-                </select>
-              </div>
-              <div class="col-md-4">
-                <select class="form-control">
-                  <!-- Colocar las opciones aquí -->
-                </select>
-              </div>
-              <div class="col-md-4">
-                <select class="form-control">
-                  <!-- Colocar las opciones aquí -->
-                </select>
-              </div>
-            </div>
-
             <button
               type="submit"
               class="action-btn submit-btn"
@@ -96,12 +89,141 @@
             </button>
           </form>
         </div>
+        <div *ngIf="selectedEntity === 'promos' && selectedPromo != null">
+          <h2>Editando promoción: {{ selectedPromo.fno }}</h2>
+          <form>
+            <!-- Image input -->
+            <div class="form-group">
+              <label for="image">Imagen:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="image"
+                name="image"
+                [formControl]="imageControl"
+                placeholder="assets/img/promoX.png"
+              />
+            </div>
+
+            <!-- Percentage input -->
+            <div class="form-group">
+              <label for="dpercent">Porcentaje de Descuento:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="dpercent"
+                [formControl]="discountControl"
+                name="dpercent"
+              />
+            </div>
+
+            <!-- Date picker for final date -->
+            <div class="form-group mt-3">
+              <label for="finalDate">Fecha de Expiración:</label>
+              <div class="input-group date" id="picker1">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="finalDate"
+                  name="finalDate"
+                />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Buttons for operations -->
+            <button
+              type="submit"
+              class="action-btn submit-btn"
+              (click)="submitPromo()"
+            >
+              Actualizar Promoción
+            </button>
+            <button
+              type="button"
+              class="action-btn delete-btn"
+              *ngIf="selectedPromo.fno !== 0"
+              (click)="deletePromo()"
+            >
+              Eliminar Promoción
+            </button>
+          </form>
+        </div>
+
+        <!-- Datos de Usuario  -->
+        <div *ngIf="selectedEntity === 'user' || selectedEntity === 'student' || selectedEntity === 'admin'">
+          <h2>Editando usuario: {{ selectedUser.fname }}</h2>
+
+          <div>
+              <label for="email">Email:</label>
+              <input id="email" [(ngModel)]="userLogged.email" />
+          </div>
+          <div>
+              <label for="password">Password:</label>
+              <input id="password" type="password" [(ngModel)]="userLogged.upassword" />
+          </div>
+          <div>
+              <label for="number">Número:</label>
+              <input id="number" [(ngModel)]="userLogged.unumber" />
+          </div>
+          <div>
+              <label for="firstName">Nombre:</label>
+              <input id="firstName" [(ngModel)]="userLogged.fname" />
+          </div>
+          <div>
+              <label for="middleName">Segundo Nombre:</label>
+              <input id="middleName" [(ngModel)]="userLogged.mname" />
+          </div>
+          <div>
+              <label for="lastName1">Apellido:</label>
+              <input id="lastName1" [(ngModel)]="userLogged.lname1" />
+          </div>
+          <div>
+              <label for="lastName2">Segundo Apellido:</label>
+              <input id="lastName2" [(ngModel)]="userLogged.lname2" />
+          </div>
+
+          <!-- Datos específicos para Estudiantes -->
+          <div *ngIf="selectedEntity === 'student'">
+              <h2>Editando usuario E: {{ selectedUser.fname }}</h2>
+              <div>
+                  <label for="studentId">Student ID:</label>
+                  <input id="studentId" [(ngModel)]="userLogged.studentid" />
+              </div>
+              <div>
+                  <label for="university">University:</label>
+                  <input id="university" [(ngModel)]="userLogged.university" />
+              </div>
+              <div>
+                  <label for="miles">Miles:</label>
+                  <input id="miles" [(ngModel)]="userLogged.miles" />
+              </div>
+          </div>
+
+          <!-- Datos específicos para Admin -->
+          <div *ngIf="selectedEntity === 'admin'">
+              <h2>Editando usuario A: {{ selectedUser.fname }}</h2>
+              <div>
+                  <label for="adminId">Admin ID:</label>
+                  <input id="adminId" [(ngModel)]="userLogged.adminid" />
+              </div>
+          </div>
+        </div>
+
+
+          <button (click)="saveUserLogged()">Guardar Datos</button>
+          <button (click)="deleteUserLogged()" class="btn btn-danger">
+            Eliminar Usuario
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Scripts al final -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
   <script>
     $(function () {
       $("#picker1").datetimepicker();
@@ -115,5 +237,5 @@
         $("#picker1").data("DateTimePicker").maxDate(e.date);
       });
     });
-  </script>
+  //</script>-->
 </body>

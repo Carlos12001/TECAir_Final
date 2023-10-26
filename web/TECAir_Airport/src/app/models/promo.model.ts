@@ -21,3 +21,5 @@ const promoExamples: Promo[] = [
     finaldate: '2024-11-09',
   },
 ];
+
+export { promoExamples };
