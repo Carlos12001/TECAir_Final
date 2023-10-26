@@ -323,13 +323,61 @@ namespace TECAirAPI.Controllers
             return new JsonResult("Usuario eliminado");
         }
 
-       /// <summary>
-       /// The function checks if a user with a given email exists in the Userws collection.
-       /// </summary>
-       /// <param name="id">The `id` parameter is a string that represents the email of a user.</param>
-       /// <returns>
-       /// The method is returning a boolean value.
-       /// </returns>
+        [HttpDelete]
+        [Route("user/delget/{email}")]
+        public JsonResult Delget(string email)
+        {
+            string sqlDataSource = _configuration.GetConnectionString("TECAir");
+
+            // Primero, realizamos la operación de eliminación
+            string deleteQuery = @"
+                DELETE FROM USERW
+                WHERE Email=@email;
+            ";
+
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(deleteQuery, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@email", email);
+                    myCommand.ExecuteNonQuery();
+                }
+                myCon.Close();
+            }
+
+            // Después, obtenemos la lista actualizada de usuarios
+            DataTable table = new DataTable();
+            string selectQuery = @"
+                 SELECT U.*, A.adminid, S.studentid, S.university, S.miles
+                 FROM USERW AS U
+                 LEFT JOIN STUDENT AS S ON U.Email = S.Uemail
+                 LEFT JOIN AIRADMIN AS A ON U.Email = A.Uemail;
+            ";
+
+            using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (NpgsqlCommand myCommand = new NpgsqlCommand(selectQuery, myCon))
+                {
+                    NpgsqlDataReader myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                }
+                myCon.Close();
+            }
+
+            return new JsonResult(table); // Retornamos la lista actualizada de usuarios
+        }
+
+
+        /// <summary>
+        /// The function checks if a user with a given email exists in the Userws collection.
+        /// </summary>
+        /// <param name="id">The `id` parameter is a string that represents the email of a user.</param>
+        /// <returns>
+        /// The method is returning a boolean value.
+        /// </returns>
         private bool UserwExists(string id)
         {
             return (_context.Userws?.Any(e => e.Email == id)).GetValueOrDefault();
